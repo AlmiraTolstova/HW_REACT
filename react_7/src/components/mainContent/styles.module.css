@@ -1,0 +1,37 @@
+.main {
+  padding: 32px;
+  min-height: 60vh;
+}
+
+.heading {
+  margin-bottom: 10px;
+}
+
+.text {
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.light {
+  background-color: #f5f7fa;
+}
+
+.light .heading {
+  color: #1f3c88;
+}
+
+.light .text {
+  color: #333;
+}
+
+.dark {
+  background-color: #1d3373;
+}
+
+.dark .heading {
+  color: #90caf9;
+}
+
+.dark .text {
+  color: #e0e0e0;
+}

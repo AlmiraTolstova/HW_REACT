@@ -1,5 +1,4 @@
-function ThemeSwitcher(props) {
-  const { theme, changeTheme } = props;
+function ThemeSwitcher({ theme, changeTheme }) {
   return (
     <div>
       <button onClick={changeTheme}>Switch Theme</button>

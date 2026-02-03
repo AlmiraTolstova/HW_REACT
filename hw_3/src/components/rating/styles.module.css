@@ -1,0 +1,46 @@
+.container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 24px;
+}
+
+.btnContainer button {
+  width: 140px;
+  height: 44px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnContainer button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.bad {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.ok {
+  background-color: #faad14;
+  color: white;
+}
+
+.good {
+  background-color: #52c41a;
+  color: white;
+}
+
+.excellent {
+  background-color: #1890ff;
+  color: white;
+}

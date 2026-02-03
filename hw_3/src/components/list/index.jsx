@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./styles.module.css";
 
 function List() {
   const [people, setPeople] = useState([

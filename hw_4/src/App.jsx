@@ -9,7 +9,9 @@ function App() {
 
   return (
     <>
+      <h1>Task 1</h1>
       <CitySelector />
+      <h2>Task 2</h2>
       <MathQuiz></MathQuiz>
     </>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./styles.module.css";
 
 function Answer({ x, y, updatePoints }) {
   const [resultFromUser, setResultFromUser] = useState(0);
@@ -6,7 +7,7 @@ function Answer({ x, y, updatePoints }) {
     setResultFromUser(event.target.value);
   };
   return (
-    <div>
+    <div className={styles.answer}>
       <label>
         {" "}
         Result=

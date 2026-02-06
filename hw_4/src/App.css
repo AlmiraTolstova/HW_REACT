@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Arial";
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}

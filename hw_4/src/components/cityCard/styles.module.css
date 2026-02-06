@@ -1,0 +1,22 @@
+.cityCard {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.cityCard img {
+  width: 80%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cityCard p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.cityCard ul {
+  padding-left: 20px;
+  text-align: left;
+}

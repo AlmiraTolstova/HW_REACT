@@ -1,6 +1,8 @@
 import { useState } from "react";
 import CityCard from "../cityCard";
 
+import styles from "./styles.module.css";
+
 const citiesData = [
   {
     name: "Токио",
@@ -92,7 +94,7 @@ function CitySelector() {
     console.log(event.target.value);
   };
   return (
-    <div>
+    <div className={styles.citySelector}>
       <form>
         <label>
           Выберите город:

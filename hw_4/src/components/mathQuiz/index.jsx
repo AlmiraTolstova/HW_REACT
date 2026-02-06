@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Answer from "../answer";
+import styles from "./styles.module.css";
 
 const getRandom = () => {
   return Math.round(Math.random() * 100);
@@ -27,9 +28,9 @@ function MathQuiz() {
   }
 
   return (
-    <div>
+    <div className={styles.mathQuiz}>
       <p>Points: {points}</p>
-      <p>{reaction}</p>
+      <p className={styles.reaction}>{reaction}</p>
       <p>
         {x}+{y}=?{" "}
       </p>

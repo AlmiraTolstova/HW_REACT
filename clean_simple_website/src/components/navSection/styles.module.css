@@ -1,0 +1,21 @@
+.nav {
+  padding: 16px 24px;
+}
+
+.nav__list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+}
+
+.nav__link:hover {
+  color: #5b6cff;
+}

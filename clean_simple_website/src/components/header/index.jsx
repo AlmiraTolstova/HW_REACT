@@ -1,3 +1,6 @@
+import Btn from "../button";
+import Button from "../button";
+import NavIconSection from "../navIconsSection";
 import NavSection from "../navSection";
 
 function Header() {
@@ -6,6 +9,8 @@ function Header() {
     <div>
       {" "}
       <NavSection items={navItems} />
+      <NavIconSection />
+      <Btn />
     </div>
   );
 }

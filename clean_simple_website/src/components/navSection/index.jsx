@@ -1,11 +1,11 @@
 import styles from "./styles.module.css";
 function NavSection({ items }) {
   return (
-    <nav className="nav">
-      <ul className="nav__list">
+    <nav className={styles.nav}>
+      <ul className={styles.nav__list}>
         {items.map((item) => (
-          <li key={item} className="nav__item">
-            <a href={`#${item.toLowerCase()}`} className="nav__link">
+          <li key={item} className={styles.nav__item}>
+            <a href={`#${item.toLowerCase()}`} className={styles.nav__link}>
               {item}
             </a>
           </li>

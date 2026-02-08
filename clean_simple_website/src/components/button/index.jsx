@@ -1,9 +1,21 @@
 import styles from "./styles.module.css";
+import clsx from "clsx";
 
-function Btn() {
+const VARIANTS = {
+  primary: styles.btnPrimary,
+  outline: styles.btnOutline,
+  secondary: styles.btnSecondary,
+  red: styles.btnRed,
+  inline: styles.inline,
+};
+
+function Btn({ variant, children }) {
   return (
     <div>
-      <button className={styles.btn}>Get started</button>
+      {console.log(styles.btn, VARIANTS[variant])}
+      <button className={clsx(styles.btn, VARIANTS[variant])}>
+        {children}
+      </button>
     </div>
   );
 }

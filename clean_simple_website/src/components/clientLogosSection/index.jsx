@@ -4,6 +4,7 @@ import appleWatchLogo from "../../assets/clientLogosSection/apple-watch.png";
 import atlassianLogo from "../../assets/clientLogosSection/atlassian.png";
 import audiLogo from "../../assets/clientLogosSection/audi.png";
 import facebookLogo from "../../assets/clientLogosSection/facebook.png";
+import styles from "./styles.module.css";
 
 const logosList = [
   bitBucketLogo,
@@ -15,9 +16,9 @@ const logosList = [
 
 function ClientLogoSection() {
   return (
-    <div>
-      {logosList.map((item) => {
-        return <ClientLogo imgLink={item} />;
+    <div className={styles.container}>
+      {logosList.map((item, index) => {
+        return <ClientLogo key={index} imgLink={item} />;
       })}
     </div>
   );

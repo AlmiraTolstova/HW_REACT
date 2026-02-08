@@ -2,10 +2,11 @@ import TwitterIcon from "../../icons/twitterIcon";
 import FacebookIcon from "../../icons/facebookIcon";
 import TelegramIcon from "../../icons/telegramIcon";
 import MediumIcon from "../../icons/mIcon";
+import styles from "./styles.module.css";
 
 function NavIconSection() {
   return (
-    <div>
+    <div className={styles.container}>
       <FacebookIcon />
       <TelegramIcon />
       <TwitterIcon />

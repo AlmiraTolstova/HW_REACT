@@ -1,0 +1,5 @@
+.container {
+  width: 10.125rem;
+  display: flex;
+  justify-content: space-between;
+}

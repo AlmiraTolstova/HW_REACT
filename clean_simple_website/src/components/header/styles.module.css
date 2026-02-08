@@ -1,0 +1,26 @@
+.container {
+  margin: auto;
+  margin-top: 19px;
+  margin-bottom: 18px;
+  /* border: 1px solid black; */
+  display: flex;
+  width: 75.375rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.block1 {
+  display: flex;
+  align-items: center;
+}
+.block1 img {
+  width: 26px;
+  height: 26px;
+  margin-right: 73px;
+}
+.block2 {
+  display: flex;
+  align-items: center;
+}
+.block2 button {
+  margin-left: 44px;
+}

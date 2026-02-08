@@ -1,0 +1,37 @@
+.page {
+  padding-top: 141px;
+  padding-bottom: 171px;
+}
+.container {
+  margin: auto;
+  width: 1202px;
+  /* border: 1px solid red; */
+  background-image: url("../../assets/aboutUsSection/clouds.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 573px;
+}
+.container h3 {
+  padding-top: 20px;
+  padding-bottom: 92px;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  color: #3d4f9f;
+}
+.block1 {
+  justify-items: center;
+}
+.cardsContainer {
+  display: flex;
+  gap: 67px;
+  padding-bottom: 92px;
+}
+.blockBtns {
+  display: flex;
+}

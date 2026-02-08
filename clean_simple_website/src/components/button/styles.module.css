@@ -2,22 +2,46 @@
   height: 43px;
   min-width: 113px;
   padding: 0 24px;
-
-  background-color: #d2e1ff;
-  color: #3a79ff;
-
-  font-size: 16px;
-  font-weight: 600;
-
+  border-radius: 2px;
   border: none;
-  border-radius: 12px;
-
   cursor: pointer;
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
+
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
 }
 
+/* Варианты цветов  */
+
+.btnPrimary {
+  background-color: #d2e1ff;
+  color: #3a79ff;
+}
+
+.btnOutline {
+  color: #adb4d2;
+  background: none;
+  border: 1px solid #d1d1e4;
+}
+.btnSecondary {
+  color: #ffffff;
+  background-color: #4c85ff;
+}
+
+.btnRed {
+  color: #d43f3f;
+  background-color: #ffd7d7;
+}
+.inline {
+  color: #adb3cb;
+  text-transform: uppercase;
+  background: none;
+}
 .btn:hover {
   background-color: #dbe6ff;
 }

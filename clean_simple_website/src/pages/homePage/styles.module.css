@@ -2,5 +2,44 @@
   background-image: url("../../assets/hero\ image.png");
   background-size: cover;
   background-position: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+}
+.block {
+  padding-top: 92px;
+  padding-bottom: 212px;
+  max-width: 581px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+}
+.block button {
+  background: none;
+  border: none;
+}
+.block h1 {
+  padding-top: 1rem;
+  padding-bottom: 1.75rem;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 60px;
+  text-align: center;
+  color: #3d4f9f;
+}
+.blockTitle {
+  font-weight: 500;
+}
+.block p {
+  width: 31.375rem;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 29px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: #8d96bd;
+  padding-bottom: 1.25rem;
 }

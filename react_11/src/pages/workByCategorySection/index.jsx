@@ -52,20 +52,22 @@ function WorkByCategorySection() {
   ];
   return (
     <section className={styles.category}>
-      <h2>Работа по категориям</h2>
-      <div className={styles.cardContainer}>
-        {iconsList.map((item, index) => {
-          return (
-            <WorkByCategoryCard
-              key={index}
-              icon={item.icon}
-              title={item.title}
-            />
-          );
-        })}
-        <div className={styles.card}>
-          <img src={Icon10}></img>
-          <h4>{"Больше категорий"}</h4>
+      <div className={styles.container}>
+        <h2>Работа по категориям</h2>
+        <div className={styles.cardContainer}>
+          {iconsList.map((item, index) => {
+            return (
+              <WorkByCategoryCard
+                key={index}
+                icon={item.icon}
+                title={item.title}
+              />
+            );
+          })}
+          <div className={styles.cardLink}>
+            <img src={Icon10}></img>
+            <h4>{"Больше категорий"}</h4>
+          </div>
         </div>
       </div>
     </section>

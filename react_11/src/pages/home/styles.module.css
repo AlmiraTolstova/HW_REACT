@@ -1,0 +1,25 @@
+.home {
+  background-image: url("../../assets/main.png");
+  background-size: cover;
+  background-position: center;
+  height: 43.4375rem;
+}
+.homeContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 107.5rem;
+  padding: 1.875rem 1rem 1.875rem 1rem;
+}
+.title {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 75px;
+  color: rgba(0, 0, 0, 0.85);
+  padding: 8.1875rem 0rem 1rem;
+}
+.title span {
+  display: block;
+}

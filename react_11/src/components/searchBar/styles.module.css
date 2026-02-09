@@ -1,0 +1,72 @@
+.searchBar {
+  display: flex;
+  align-items: center;
+  max-width: 70.75rem;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #dcdcdc;
+  height: 6.5625rem;
+  filter: drop-shadow(6px 5px 9px rgba(0, 0, 0, 0.35));
+}
+
+.searchField {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 2.1875rem 1.875rem;
+}
+
+.searchField input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.searchIcon {
+  width: 28px;
+  height: 22px;
+  margin-right: 12px;
+  opacity: 0.6;
+  display: block;
+  transform: rotate(10deg);
+}
+.locationIcon {
+  width: 22px;
+  height: 31px;
+  margin-right: 12px;
+  opacity: 0.6;
+  display: block;
+}
+
+.divider {
+  width: 1px;
+  height: 32px;
+  background: #e0e0e0;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.searchButton {
+  background: #243b53;
+  color: white;
+  border: none;
+  padding: 0 70px;
+  height: 100vh;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.search-button:hover {
+  background: #1b2f45;
+}

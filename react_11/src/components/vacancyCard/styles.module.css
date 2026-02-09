@@ -1,0 +1,60 @@
+.card {
+  width: 28.06rem;
+  height: 21.875rem;
+  background-color: white;
+  border: 1px solid red;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.15));
+  padding: 2.5rem 50px 2.5rem 2.875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cardTitle {
+  display: flex;
+  /* padding-bottom: 2.5rem; */
+}
+.cardTitle h6 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(141, 141, 141, 0.8);
+}
+.card h5 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.8);
+  max-width: 17rem;
+}
+.cardGeo img {
+  width: 14px;
+  opacity: 50%;
+  margin-right: 14px;
+}
+.cardGeo span {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: rgba(141, 141, 141, 0.8);
+}
+.cardCompanyDate {
+  display: flex;
+}
+.cardCompanyDate img {
+  margin-right: 10px;
+  max-width: 70px;
+}
+.cardCompanyDate span {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: rgba(141, 141, 141, 0.8);
+}

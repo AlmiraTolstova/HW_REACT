@@ -1,0 +1,20 @@
+.container {
+  max-width: 107.5rem;
+  padding: 4.625rem 1rem 4.0625rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container h5 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(105, 105, 105, 0.8);
+}
+.logosContainer {
+  display: flex;
+  gap: 3.5rem;
+  align-items: center;
+}

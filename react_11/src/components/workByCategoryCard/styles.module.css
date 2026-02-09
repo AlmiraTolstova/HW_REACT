@@ -3,4 +3,14 @@
   height: 12.375rem;
   background-color: white;
   border: 1px solid red;
+  padding: 61px 127px 41px 28px;
+}
+.card h4 {
+  padding-top: 20px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(0, 0, 0, 0.8);
 }

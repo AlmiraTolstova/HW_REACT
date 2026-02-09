@@ -3,11 +3,42 @@
 }
 
 .container {
+  margin: auto;
+  max-width: 107.5rem;
+  padding: 107px 1rem 72px 1rem;
+}
+.container h2 {
+  width: 203px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 33px;
+  color: rgba(0, 0, 0, 0.85);
+  padding-bottom: 43px;
 }
 
 .cardContainer {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 5.75rem;
+  row-gap: 27px;
   column-gap: 1.7rem;
+  justify-content: space-between;
+}
+.cardLink {
+  width: 16.875rem;
+  height: 12.375rem;
+
+  padding: 61px 127px 41px 28px;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+}
+.cardLink h4 {
+  padding-top: 20px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(0, 0, 0, 0.65);
 }

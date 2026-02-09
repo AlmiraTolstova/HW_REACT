@@ -1,0 +1,36 @@
+.footer {
+  background-color: #52606d;
+}
+.footerContainer {
+  max-width: 107.5rem;
+  padding: 3.5rem 1rem 3.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.footerContainer h3 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 26px;
+  color: #ffffff;
+  padding-bottom: 3.5rem;
+}
+.footerLine {
+  border: 1px solid #465461;
+  margin: 3rem 0rem 3.375rem;
+}
+.footerLogos {
+  padding: 0rem 1rem 0rem 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.footerLogo {
+  /* width: 111px;
+  height: 40px; */
+  object-fit: contain;
+}
+.footerIcons {
+  margin-top: 1.875rem;
+  display: flex;
+}

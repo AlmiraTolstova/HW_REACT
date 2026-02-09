@@ -1,0 +1,39 @@
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: none;
+  font-family: "Raleway";
+  font-style: normal;
+}
+
+/* PRIMARY */
+.primary {
+  background: transparent;
+  font-weight: 400;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.primary:hover {
+  background: #eff1f3;
+}
+
+/* SECONDARY */
+.secondary {
+  background: #ffff;
+  font-weight: 600;
+  line-height: 18px;
+  color: #274059;
+}
+
+.secondary:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,28 @@
+header {
+  background-color: #cde7ff;
+}
+
+.container {
+  margin: auto;
+  display: flex;
+  max-width: 107.5rem;
+  /* border: 1px solid red; */
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
+  justify-content: space-between;
+}
+
+.container img {
+  padding-right: 6.8125rem;
+}
+.containerBlock1 {
+  display: flex;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    max-width: 87rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

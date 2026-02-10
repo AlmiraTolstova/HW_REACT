@@ -1,0 +1,25 @@
+.button {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 50px;
+  gap: 10px;
+  background: #274059;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+.button:hover {
+  background: #2f2b44;
+}
+
+.button:active {
+  transform: scale(0.98);
+}

@@ -8,14 +8,12 @@
   height: 6.5625rem;
   filter: drop-shadow(6px 5px 9px rgba(0, 0, 0, 0.35));
 }
-
 .searchField {
   display: flex;
   align-items: center;
   flex: 1;
   padding: 2.1875rem 1.875rem;
 }
-
 .searchField input {
   border: none;
   outline: none;
@@ -27,7 +25,6 @@
   line-height: 21px;
   color: #000000;
 }
-
 .searchIcon {
   width: 28px;
   height: 22px;
@@ -43,14 +40,12 @@
   opacity: 0.6;
   display: block;
 }
-
 .divider {
   width: 1px;
   height: 32px;
   background: #e0e0e0;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
-
 .searchButton {
   background: #243b53;
   color: white;
@@ -59,14 +54,84 @@
   height: 100vh;
   cursor: pointer;
   transition: background 0.2s;
-
   font-family: "Raleway";
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
   line-height: 26px;
 }
-
 .search-button:hover {
   background: #1b2f45;
+}
+
+/* большие телефоны */
+@media (min-width: 376px) and (max-width: 767px) {
+  .searchBar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+    filter: none;
+  }
+  .searchField {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #dcdcdc;
+  }
+  .searchField input {
+    font-size: 16px;
+  }
+  .divider {
+    display: none;
+  }
+  .searchButton {
+    width: 100%;
+    height: 3.5rem;
+    padding: 0;
+    font-size: 18px;
+  }
+  .searchIcon {
+    width: 22px;
+    height: 18px;
+  }
+  .locationIcon {
+    width: 18px;
+    height: 26px;
+  }
+}
+
+/* маленькие телефоны */
+@media (max-width: 375px) {
+  .searchBar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+    filter: none;
+  }
+  .searchField {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #dcdcdc;
+  }
+  .searchField input {
+    font-size: 16px;
+  }
+  .divider {
+    display: none;
+  }
+  .searchButton {
+    width: 100%;
+    height: 3.5rem;
+    padding: 0;
+    font-size: 18px;
+  }
+  .searchIcon {
+    width: 22px;
+    height: 18px;
+  }
+  .locationIcon {
+    width: 18px;
+    height: 26px;
+  }
 }

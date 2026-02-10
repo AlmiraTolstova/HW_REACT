@@ -26,11 +26,22 @@
   justify-content: space-between;
 }
 .footerLogo {
-  /* width: 111px;
-  height: 40px; */
   object-fit: contain;
 }
 .footerIcons {
   margin-top: 1.875rem;
   display: flex;
+}
+
+/* большие телефоны */
+@media (min-width: 376px) and (max-width: 767px) {
+  .footerLogos {
+    flex-direction: column;
+  }
+}
+/* маленькие телефоны */
+@media (max-width: 375px) {
+  .footerLogos {
+    flex-direction: column;
+  }
 }

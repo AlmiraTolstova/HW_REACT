@@ -1,16 +1,13 @@
 header {
   background-color: #cde7ff;
 }
-
 .container {
   margin: auto;
   display: flex;
   max-width: 107.5rem;
-  /* border: 1px solid red; */
   padding: 1.875rem 1rem 1.875rem 1rem;
   justify-content: space-between;
 }
-
 .container img {
   padding-right: 6.8125rem;
 }
@@ -18,10 +15,29 @@ header {
   display: flex;
 }
 
-@media (max-width: 1440px) {
+/* ноутбуки */
+@media (max-width: 1024px) {
   .container {
     max-width: 87rem;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+}
+/* планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container img {
+    padding-right: 4rem;
+  }
+}
+/* большие телефоны */
+@media (min-width: 376px) and (max-width: 767px) {
+  .container img {
+    padding-right: 0.5rem;
+  }
+}
+/* маленькие телефоны */
+@media (max-width: 375px) {
+  .container img {
+    padding-right: 0rem;
   }
 }

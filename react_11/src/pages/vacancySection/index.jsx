@@ -2,8 +2,8 @@ import Sony from "../../assets/vacancyLogos/Sony.svg";
 import Facebook from "../../assets/vacancyLogos/facebook.svg";
 import Cola from "../../assets/vacancyLogos/Cola.svg";
 import styles from "./styles.module.css";
-
 import VacancyCard from "../../components/vacancyCard";
+import Button from "../../components/button";
 
 function VacancySection() {
   const vacancyList = [
@@ -83,6 +83,7 @@ function VacancySection() {
             );
           })}
         </div>
+        <Button children={"Все вакансии"} />
       </div>
     </section>
   );

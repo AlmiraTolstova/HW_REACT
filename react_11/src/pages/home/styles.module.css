@@ -23,3 +23,17 @@
 .title span {
   display: block;
 }
+
+/* большие телефоны */
+@media (min-width: 376px) and (max-width: 767px) {
+  .title {
+    padding: 5rem 0rem 3rem;
+  }
+}
+
+/* маленькие телефоны */
+@media (max-width: 375px) {
+  .title {
+    padding: 5rem 0rem 3rem;
+  }
+}

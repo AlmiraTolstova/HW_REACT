@@ -18,3 +18,39 @@
   gap: 3.5rem;
   align-items: center;
 }
+
+/* планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .logosContainer {
+    gap: 1rem;
+  }
+}
+
+/* большие телефоны */
+@media (min-width: 376px) and (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+  .container h5 {
+    padding-bottom: 2rem;
+  }
+  .logosContainer {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+/* маленькие телефоны */
+@media (max-width: 375px) {
+  .container {
+    flex-direction: column;
+  }
+  .container h5 {
+    padding-bottom: 1rem;
+  }
+  .logosContainer {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

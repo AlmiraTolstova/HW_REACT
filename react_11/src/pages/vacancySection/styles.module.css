@@ -4,7 +4,7 @@
 .container {
   margin: auto;
   max-width: 107.5rem;
-  padding: 0rem 1rem 0rem 1rem;
+  padding: 0rem 1rem 9rem 1rem;
 }
 .container h2 {
   padding: 3.875rem 0rem 0.75rem;
@@ -27,8 +27,7 @@
 .cardsContainer {
   display: flex;
   flex-wrap: wrap;
-  /* column-gap: 11.6rem; */
   justify-content: space-between;
   row-gap: 2.5rem;
-  padding-bottom: 19.0625rem;
+  padding-bottom: 5rem;
 }

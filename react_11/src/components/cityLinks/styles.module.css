@@ -11,3 +11,27 @@
   line-height: 26px;
   color: #d0e8ff;
 }
+/* планшеты */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navCities {
+    flex-wrap: wrap;
+  }
+}
+
+/* большие телефоны */
+@media (min-width: 376px) and (max-width: 767px) {
+  .navCities {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* маленькие телефоны */
+@media (max-width: 375px) {
+  .navCities {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}

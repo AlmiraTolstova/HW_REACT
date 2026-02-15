@@ -1,0 +1,34 @@
+.container {
+  width: 446px;
+  border: 3px solid #1ed760;
+  padding: 36px 56px 40px 56px;
+  border-radius: 65px;
+  display: flex;
+  gap: 18px;
+}
+/* кнопка */
+.btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* SVG */
+.icon {
+  transition: transform 0.3s ease;
+}
+
+/* path внутри SVG */
+.icon path {
+  transition: fill 0.3s ease;
+}
+
+/* 🔥 hover эффект */
+.btn:hover .icon {
+  transform: translateY(-14px);
+}
+
+.btn:hover .icon path {
+  fill: #1181f1;
+}

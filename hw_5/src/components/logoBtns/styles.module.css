@@ -1,34 +1,43 @@
 .container {
-  width: 446px;
+  width: 27.875rem;
   border: 3px solid #1ed760;
-  padding: 36px 56px 40px 56px;
-  border-radius: 65px;
+  padding: 2.25rem 3.5rem 2.5rem 3.5rem;
+  border-radius: 4.0625rem;
   display: flex;
-  gap: 18px;
+  gap: 1.125rem;
 }
-/* кнопка */
 .btn {
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
 }
-
-/* SVG */
 .icon {
   transition: transform 0.3s ease;
 }
 
-/* path внутри SVG */
 .icon path {
   transition: fill 0.3s ease;
 }
 
-/* 🔥 hover эффект */
 .btn:hover .icon {
   transform: translateY(-14px);
 }
-
 .btn:hover .icon path {
   fill: #1181f1;
+}
+
+@media (max-width: 425px) {
+  .container {
+    padding: 1rem 1rem 1rem 1rem;
+    width: 24rem;
+  }
+}
+@media (max-width: 375px) {
+  .container {
+    padding: 1rem 0rem 1rem 0rem;
+    width: 22rem;
+    gap: 0.3rem;
+    justify-content: center;
+  }
 }

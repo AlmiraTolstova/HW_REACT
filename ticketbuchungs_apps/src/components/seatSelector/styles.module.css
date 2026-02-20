@@ -1,0 +1,38 @@
+.seatSelector {
+  margin-bottom: 20px;
+}
+
+.seatSelectorTitle {
+  margin-bottom: 10px;
+}
+
+.seatSelectorGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.seat {
+  padding: 10px 0;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: #e0e0e0;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.seat:hover {
+  background-color: #d6d6d6;
+}
+
+.seat:active {
+  transform: scale(0.97);
+}
+
+.seatSelected {
+  background-color: #4caf50;
+  color: #fff;
+}

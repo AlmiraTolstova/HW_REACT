@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EventDetails from "../eventDetails";
 import SeatSelector from "../seatSelector";
+import styles from "./styles.module.css";
 
 const EventBooking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -16,7 +17,7 @@ const EventBooking = () => {
   };
 
   return (
-    <div>
+    <div className={styles.eventBooking}>
       <EventDetails
         title="Концерт Imagine Dragons"
         date="23.04.2026"
@@ -29,8 +30,10 @@ const EventBooking = () => {
         onSeatToggle={handleSeatToggle}
       />
 
-      <h3>Выбранные места:</h3>
-      <p>{selectedSeats.length > 0 ? selectedSeats.join(", ") : "Нет"}</p>
+      <div className={styles.eventBookingSelected}>
+        <h3>Выбранные места:</h3>
+        <p>{selectedSeats.length > 0 ? selectedSeats.join(", ") : "Нет"}</p>
+      </div>
     </div>
   );
 };

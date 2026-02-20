@@ -1,0 +1,13 @@
+.eventDetails {
+  margin-bottom: 20px;
+}
+
+.eventDetailsTitle {
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
+.eventDetailsInfo {
+  margin: 4px 0;
+  color: #666;
+}

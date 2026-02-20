@@ -1,24 +1,27 @@
+import styles from "./styles.module.css";
+
 const SeatSelector = ({ seats, selectedSeats, onSeatToggle }) => {
   return (
-    <div>
-      <h3>Выберите места</h3>
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {seats.map((seat) => (
-          <li key={seat}>
+    <div className={styles.seatSelector}>
+      <h3 className={styles.seatSelectorTitle}>Выберите места</h3>
+
+      <div className={styles.seatSelectorGrid}>
+        {seats.map((seat) => {
+          const isSelected = selectedSeats.includes(seat);
+
+          return (
             <button
+              key={seat}
+              className={`${styles.seat} ${
+                isSelected ? styles.seatSelected : ""
+              }`}
               onClick={() => onSeatToggle(seat)}
-              style={{
-                margin: "5px",
-                backgroundColor: selectedSeats.includes(seat)
-                  ? "green"
-                  : "lightgray",
-              }}
             >
               {seat}
             </button>
-          </li>
-        ))}
-      </ul>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-export const eventsData = [
+export const eventData = [
   {
     id: 237632,
     date: new Date("2026-03-21"),
@@ -111,4 +111,4 @@ export const eventsData = [
   },
 ];
 
-export default eventsData;
+export default eventData;

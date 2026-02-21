@@ -47,6 +47,9 @@ const EventBooking = () => {
               title={item.title}
               date={selectedDate}
               location={item.location}
+              seats={item.seats}
+              selectedSeats={selectedSeats}
+              onSeatToggle={handleSeatToggle}
             />
           );
         })
@@ -54,11 +57,11 @@ const EventBooking = () => {
         <div></div>
       )}
 
-      <SeatSelector
+      {/* <SeatSelector
         seats={availableSeats}
         selectedSeats={selectedSeats}
         onSeatToggle={handleSeatToggle}
-      />
+      /> */}
 
       <div className={styles.eventBookingSelected}>
         <h3>Выбранные места:</h3>

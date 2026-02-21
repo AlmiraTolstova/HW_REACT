@@ -6,18 +6,16 @@ const SeatSelector = ({ seats, selectedSeats, onSeatToggle }) => {
       <h3 className={styles.seatSelectorTitle}>Выберите места</h3>
 
       <div className={styles.seatSelectorGrid}>
-        {seats.map((seat) => {
-          const isSelected = selectedSeats.includes(seat);
-
+        {seats.map((seat, index) => {
           return (
             <button
-              key={seat}
+              key={index}
               className={`${styles.seat} ${
-                isSelected ? styles.seatSelected : ""
+                seat.isSelected ? styles.seatSelected : ""
               }`}
-              onClick={() => onSeatToggle(seat)}
+              // onClick={() => onSeatToggle(seat)}
             >
-              {seat}
+              {index}
             </button>
           );
         })}

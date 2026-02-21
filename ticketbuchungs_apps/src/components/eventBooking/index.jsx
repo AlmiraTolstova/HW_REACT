@@ -2,6 +2,7 @@ import { useState } from "react";
 import EventDetails from "../eventDetails";
 import SeatSelector from "../seatSelector";
 import styles from "./styles.module.css";
+import { DatePicker } from "antd";
 
 const EventBooking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -16,8 +17,13 @@ const EventBooking = () => {
     );
   };
 
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
+
   return (
     <div className={styles.eventBooking}>
+      <DatePicker onChange={onChange} />
       <EventDetails
         title="Концерт Imagine Dragons"
         date="23.04.2026"

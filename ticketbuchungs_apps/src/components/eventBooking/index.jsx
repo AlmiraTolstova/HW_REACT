@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EventDetails from "../eventDetails";
 import SeatSelector from "../seatSelector";
 import styles from "./styles.module.css";
 import { DatePicker } from "antd";
+import eventData from "../../data/eventData";
 
 const EventBooking = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [eventsOnDate, setEventsOnDate] = useState([{ events: [] }]);
+  //useEffect(() => {}, [eventsOnDate]);
 
   const availableSeats = ["A1", "A2", "A3", "B1", "B2", "B3"];
 
@@ -18,17 +22,37 @@ const EventBooking = () => {
   };
 
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
+    // console.log(
+    //   new Date(date),
+    //   dateString,
+    //   new Date("2026-03-21"),
+    //   new Date(date).getDate() == new Date("2026-03-21").getDate(),
+    // );
+    setSelectedDate(dateString);
+    setEventsOnDate(
+      eventData.filter((item) => {
+        return item.date.getDate() === new Date(date).getDate();
+      }),
+    );
   };
 
   return (
     <div className={styles.eventBooking}>
       <DatePicker onChange={onChange} />
-      <EventDetails
-        title="Концерт Imagine Dragons"
-        date="23.04.2026"
-        location="Kazan"
-      />
+      {eventsOnDate.length > 0 ? (
+        eventsOnDate[0].events.map((item, index) => {
+          return (
+            <EventDetails
+              key={index}
+              title={item.title}
+              date={selectedDate}
+              location={item.location}
+            />
+          );
+        })
+      ) : (
+        <div></div>
+      )}
 
       <SeatSelector
         seats={availableSeats}

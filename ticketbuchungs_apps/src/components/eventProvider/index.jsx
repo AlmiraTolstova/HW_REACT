@@ -33,25 +33,19 @@ function EventProvider({ children }) {
 
   function occupySeat(seat, item) {
     const foundSeat = seats.find((selSeat) => {
-      return (selSeat.seat === seat.label) & (selSeat.eventName === item.title);
+      return selSeat.seat === seat.label && selSeat.eventName === item.title;
     });
 
     if (foundSeat) {
-      let tempSeatsList = seats;
-      setSeats(
-        tempSeatsList.filter((selSeat) => {
-          return (
-            (selSeat.label === seat.label) & (selSeat.eventName === item.title)
-          );
-        }),
-      );
-    } else {
-      let tempSeatsList = seats;
-      tempSeatsList.push({
-        seat: seat.label,
-        eventName: item.title,
+      const tempSeatsList = seats.filter((selSeat) => {
+        return !(
+          selSeat.seat === foundSeat.seat &&
+          selSeat.eventName === foundSeat.eventName
+        );
       });
       setSeats(tempSeatsList);
+    } else {
+      setSeats([...seats, { seat: seat.label, eventName: item.title }]);
     }
     setDefEventData((prevData) => {
       return prevData.map((day) => ({
@@ -77,7 +71,6 @@ function EventProvider({ children }) {
   return (
     <div>
       <EventContext.Provider
-        // value={{ seats, setSeats, toggleSeat, selectedSeats }}
         value={{
           selectedDate,
           setSelectedDate,

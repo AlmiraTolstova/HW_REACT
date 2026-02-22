@@ -7,7 +7,7 @@ import eventData from "../../data/eventData";
 import EventContext from "../../context/eventContext";
 
 const EventBooking = () => {
-  const [selectedSeats, setSelectedSeats] = useState([]);
+  // const [selectedSeats, setSelectedSeats] = useState([]);
   const { selectedDate, setSelectedDate } = useContext(EventContext);
   const { selectedDateString, setSelectedDateString } =
     useContext(EventContext);

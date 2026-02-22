@@ -24,9 +24,9 @@
     transform 0.1s ease;
 }
 
-.seat:hover {
+/* .seat:hover {
   background-color: #d6d6d6;
-}
+} */
 
 .seat:active {
   transform: scale(0.97);

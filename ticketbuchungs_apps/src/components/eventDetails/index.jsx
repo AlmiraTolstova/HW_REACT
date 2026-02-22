@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./styles.module.css";
 import { Modal } from "antd";
 import SeatSelector from "../seatSelector";
+import EventContext from "../../context/eventContext";
 
-const EventDetails = ({
-  title,
-  date,
-  location,
-  seats,
-  selectedSeats,
-  onSeatToggle,
-}) => {
+const EventDetails = ({ title, date, location, seats, item }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setSeats } = useContext(EventContext);
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -22,10 +18,17 @@ const EventDetails = ({
 
   return (
     <div>
-      <div onClick={() => setIsModalOpen(true)} className={styles.eventDetails}>
+      <div className={styles.eventDetails}>
         <h2 className={styles.eventDetailsTitle}>{title}</h2>
         <p className={styles.eventDetailsInfo}>Дата: {date}</p>
         <p className={styles.eventDetailsInfo}>Место: {location}</p>
+        <button
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          Buy a ticket
+        </button>
       </div>
       <Modal
         title={title}
@@ -34,11 +37,7 @@ const EventDetails = ({
         onOk={() => handleOk()}
         onCancel={handleCancel}
       >
-        <SeatSelector
-          seats={seats}
-          selectedSeats={selectedSeats}
-          onSeatToggle={onSeatToggle}
-        />
+        <SeatSelector item={item} />
       </Modal>
     </div>
   );

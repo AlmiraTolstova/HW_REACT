@@ -9,7 +9,7 @@ function ListItems() {
 
   useEffect(() => {
     console.log("компонент обновлен");
-  }, [items]);
+  }, []);
 
   function adddItem() {
     setItems([...items, inputValue]);

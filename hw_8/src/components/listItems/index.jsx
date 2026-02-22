@@ -1,10 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
 
 import { useState } from "react";
 
 function ListItems() {
   const [items, setItems] = useState([]);
   const [inputValue, setInputValue] = useState("");
+
+  useEffect(() => {
+    console.log("компонент обновлен");
+  }, [items]);
 
   function adddItem() {
     setItems([...items, inputValue]);

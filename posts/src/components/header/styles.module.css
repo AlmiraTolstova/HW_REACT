@@ -1,0 +1,60 @@
+.header {
+  background-color: #3f5cc0;
+  display: flex;
+}
+.container {
+  border: 1px solid red;
+  width: 103.75rem;
+  margin: auto;
+  padding: 2.375rem 0rem 2.375rem;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  margin-right: 23rem;
+}
+.links {
+  text-decoration: none;
+  color: #090808;
+  margin-right: 7.5625rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* mobile */
+@media (min-width: 320px) and (max-width: 767px) {
+  .container {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .links {
+    margin-right: 0.5rem;
+    font-size: 10px;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+/* tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .links {
+    margin-right: 3rem;
+  }
+  .logo {
+    margin-right: 5rem;
+  }
+}
+
+/* desktop */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .logo {
+    margin-right: 5rem;
+  }
+}

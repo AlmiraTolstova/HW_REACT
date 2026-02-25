@@ -1,4 +1,4 @@
-import Header from "../../header";
+import Header from "../../components/header";
 import styles from "./styles.module.css";
 
 function HomePage() {

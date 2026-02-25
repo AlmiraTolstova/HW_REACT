@@ -1,12 +1,14 @@
 import "./App.css";
-import Header from "./components/header";
-import HomePage from "./components/pages/homePage";
+
 import PostForm from "./components/postForm";
+import PostList from "./components/postList";
+import HomePage from "./pages/homePage";
 
 function App() {
   return (
     <>
       <HomePage></HomePage>
+      <PostList></PostList>
       <PostForm></PostForm>
     </>
   );

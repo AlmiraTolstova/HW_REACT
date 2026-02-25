@@ -1,0 +1,11 @@
+.postContainer {
+  width: 814px;
+  background-color: #3f5cc0;
+  border: 1px solid black;
+  margin-bottom: 14px;
+}
+
+.postImg {
+  width: 42px;
+  height: 42px;
+}

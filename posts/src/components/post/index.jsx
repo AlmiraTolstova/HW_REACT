@@ -1,13 +1,13 @@
 import styles from "./styles.module.css";
 
-function Post({ logo, title, text, id }) {
+function Post({ logo, title, text, id, funkDeletePost }) {
   return (
-    <div>
-      <img src={logo}></img>
+    <div className={styles.postContainer}>
+      <img className={styles.postImg} src={logo}></img>
       <h2>{title}</h2>
       <p>{text}</p>
       <span>{id}</span>
-      <button>Удалить</button>
+      <button onClick={() => funkDeletePost(id)}>Удалить</button>
     </div>
   );
 }

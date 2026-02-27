@@ -3,18 +3,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import PersonLogo from "../../assets/person.svg";
 
-const POSTS_URL = "ttps://699eb2fe78dda56d396b07cc.mockapi.io/posts";
+const POSTS_URL = "https://699eb2fe78dda56d396b07cc.mockapi.io/posts";
 
-function PostForm() {
+function PostForm({ createPost }) {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      await axios.post(POSTS_URL, data);
-      reset();
-    } catch (error) {
-      console.error(error);
-    }
+    await createPost(data);
+    reset();
   };
 
   return (
@@ -35,7 +31,7 @@ function PostForm() {
 
           <label>
             <span>Текст поста</span>
-            <textarea placeholder="Введите текст..." {...register("content")} />
+            <textarea placeholder="Введите текст..." {...register("text")} />
           </label>
 
           <button type="submit">Публикация</button>

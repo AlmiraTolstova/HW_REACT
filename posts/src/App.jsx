@@ -1,13 +1,11 @@
 import "./App.css";
-import Header from "./components/header";
-import HomePage from "./components/pages/homePage";
-import PostForm from "./components/postForm";
+
+import HomePage from "./pages/homePage";
 
 function App() {
   return (
     <>
       <HomePage></HomePage>
-      <PostForm></PostForm>
     </>
   );
 }

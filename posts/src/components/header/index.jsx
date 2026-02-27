@@ -7,8 +7,8 @@ function Header({ links }) {
       <div className={styles.container}>
         <img className={styles.logo} src={Logo} alt="Logo"></img>
         <nav>
-          {links.map((link) => (
-            <a className={styles.links} key={link.path} href={link.path}>
+          {links.map((link, index) => (
+            <a className={styles.links} key={index} href={link.path}>
               {link.label}
             </a>
           ))}

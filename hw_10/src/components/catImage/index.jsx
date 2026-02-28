@@ -29,7 +29,9 @@ function CatImage() {
   return (
     <div className={styles.catCard}>
       <img src={catData.url}></img>
-      <button onClick={getCat}>Load new Image</button>
+      <button className={styles.blueButton} onClick={getCat}>
+        Load new Image
+      </button>
     </div>
   );
 }

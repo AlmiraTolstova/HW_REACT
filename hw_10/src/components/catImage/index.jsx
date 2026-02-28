@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import styles from "./styles.module.css";
 
 function CatImage() {
   const CAT_API = "https://api.thecatapi.com/v1/images/search";
@@ -26,9 +27,9 @@ function CatImage() {
     getCat();
   }, []);
   return (
-    <div>
+    <div className={styles.catCard}>
       <img src={catData.url}></img>
-      <button onClick={getCat}>New cat</button>
+      <button onClick={getCat}>Load new Image</button>
     </div>
   );
 }

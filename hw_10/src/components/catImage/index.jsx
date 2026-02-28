@@ -21,14 +21,14 @@ function CatImage() {
       });
   }
 
-  const [catData, setCatData] = useState([]);
+  const [catData, setCatData] = useState(null);
 
   useEffect(() => {
     getCat();
   }, []);
   return (
     <div className={styles.catCard}>
-      <img src={catData.url}></img>
+      {catData && <img src={catData.url} />}
       <button className={styles.blueButton} onClick={getCat}>
         Load new Image
       </button>

@@ -11,7 +11,7 @@ export function RegistrationForm() {
     reset,
     formState: { errors, isValid, isValidating },
   } = useForm({
-    mode: "onChange" | "onBlur",
+    mode: "onBlur",
   });
 
   const password = watch("password");
@@ -24,14 +24,32 @@ export function RegistrationForm() {
         params: { username },
       });
 
+      // если массив не пустой — username занят
       return data.length === 0 ? true : "This username is not available";
-    } catch {
+    } catch (error) {
+      // если 404 — значит пользователь НЕ найден → имя свободно
+      if (error.response?.status === 404) {
+        return true;
+      }
+
       return "Username validation error";
     }
   };
 
+  async function createUser(userData) {
+    try {
+      const { data } = await axios.post(USERS_URL, userData);
+      console.log("User created:", data);
+      return data;
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw error;
+    }
+  }
+
   const onSubmit = (data) => {
     console.log("Form submitted:", data);
+    createUser(data);
     reset();
   };
   return (

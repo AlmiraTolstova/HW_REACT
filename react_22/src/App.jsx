@@ -1,9 +1,13 @@
-import { useState } from "react";
-
 import "./App.css";
+import MainComponent from "./components/mainComponent";
+import UserProvider from "./components/userProvider";
 
 function App() {
-  return <></>;
+  return (
+    <UserProvider>
+      <MainComponent />
+    </UserProvider>
+  );
 }
 
 export default App;

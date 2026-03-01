@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-const USERS_URL = "";
+const USERS_URL = "https://699eb2fe78dda56d396b07cc.mockapi.io/users";
 
 export function RegistrationForm() {
   const {

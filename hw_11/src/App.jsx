@@ -1,13 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-
 import "./App.css";
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import MainPage from "./pages/mainPage";
+import ArticleListPage from "./pages/articlesListPage";
+import ArticlePage from "./pages/articlePage";
 
 function App() {
   return (
     <div>
-      <Routes></Routes>
+      <Routes>
+        <Route path="/" element={<MainPage></MainPage>}></Route>
+        <Route
+          path="/articleslist"
+          element={<ArticleListPage></ArticleListPage>}
+        ></Route>
+        <Route path="/article" element={<ArticlePage></ArticlePage>}></Route>
+      </Routes>
     </div>
   );
 }

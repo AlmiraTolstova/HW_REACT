@@ -1,7 +1,12 @@
+import { useNavigate, useParams } from "react-router-dom";
+
 function ArticlePage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   return (
     <div>
-      <h1>Страница отдельной статьи</h1>
+      <h1>Страница отдельной статьи {id}</h1>
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -13,6 +18,13 @@ function ArticlePage() {
         rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
         ipsum dolor sit amet.
       </p>
+      <button
+        onClick={() => {
+          navigate("/articleslist");
+        }}
+      >
+        Back to the List
+      </button>
     </div>
   );
 }

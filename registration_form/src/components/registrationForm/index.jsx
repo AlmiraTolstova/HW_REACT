@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-const USERS_URL = "";
+const USERS_URL = "https://699eb2fe78dda56d396b07cc.mockapi.io/users";
 
 export function RegistrationForm() {
   const {
@@ -11,7 +11,7 @@ export function RegistrationForm() {
     reset,
     formState: { errors, isValid, isValidating },
   } = useForm({
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   const password = watch("password");
@@ -24,18 +24,36 @@ export function RegistrationForm() {
         params: { username },
       });
 
+      // если массив не пустой — username занят
       return data.length === 0 ? true : "This username is not available";
-    } catch {
+    } catch (error) {
+      // если 404 — значит пользователь НЕ найден → имя свободно
+      if (error.response?.status === 404) {
+        return true;
+      }
+
       return "Username validation error";
     }
   };
 
+  async function createUser(userData) {
+    try {
+      const { data } = await axios.post(USERS_URL, userData);
+      console.log("User created:", data);
+      return data;
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw error;
+    }
+  }
+
   const onSubmit = (data) => {
     console.log("Form submitted:", data);
+    createUser(data);
     reset();
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form style={{ width: "300px" }} onSubmit={handleSubmit(onSubmit)}>
       <label>
         Username
         <input
@@ -52,6 +70,123 @@ export function RegistrationForm() {
         />
         {errors.username && <p>{errors.username.message}</p>}
       </label>
+
+      <label>
+        Email
+        <input
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^\S+@\S+\.\S+$/,
+              message: "Invalid email format",
+            },
+          })}
+        />
+        {errors.email && <p>{errors.email.message}</p>}
+      </label>
+
+      <label>
+        First name
+        <input
+          {...register("firstName", {
+            required: "First name is required",
+            minLength: { value: 2, message: "Minimum 2 characters" },
+            pattern: {
+              value: /^[A-Za-zА-Яа-я]+$/,
+              message: "Only letters allowed",
+            },
+          })}
+        />
+        {errors.firstName && <p>{errors.firstName.message}</p>}
+      </label>
+
+      <label>
+        Last name
+        <input
+          {...register("lastName", {
+            required: "Last name is required",
+            minLength: { value: 2, message: "Minimum 2 characters" },
+            pattern: {
+              value: /^[A-Za-zА-Яа-я]+$/,
+              message: "Only letters allowed",
+            },
+          })}
+        />
+        {errors.lastName && <p>{errors.lastName.message}</p>}
+      </label>
+
+      <label>
+        Password
+        <input
+          type="password"
+          {...register("password", {
+            required: "Password is required",
+            minLength: { value: 6, message: "Minimum 6 characters" },
+            validate: (value) =>
+              /[A-Z]/.test(value) && /\d/.test(value)
+                ? true
+                : "Must contain uppercase letter and number",
+          })}
+        />
+        {errors.password && <p>{errors.password.message}</p>}
+      </label>
+
+      <label>
+        Confirm password
+        <input
+          type="password"
+          {...register("confirmPassword", {
+            required: "Confirmation is required",
+            validate: (value) => value === password || "Passwords do not match",
+          })}
+        />
+        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+      </label>
+
+      <label>
+        Age
+        <input
+          type="number"
+          {...register("age", {
+            required: "Age is required",
+            min: { value: 18, message: "Minimum age is 18" },
+            max: { value: 100, message: "Maximum age is 100" },
+          })}
+        />
+        {errors.age && <p>{errors.age.message}</p>}
+      </label>
+
+      <label>
+        Phone
+        <input
+          placeholder="+65XXXXXX XX-XX"
+          {...register("phone", {
+            required: "Phone is required",
+            validate: (value) => {
+              const digits = value.replace(/\D/g, "");
+              return digits.length === 12
+                ? true
+                : "Must contain 10 digits after +65";
+            },
+          })}
+        />
+        {errors.phone && <p>{errors.phone.message}</p>}
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          {...register("agreement", {
+            required: "You must accept the terms",
+          })}
+        />
+        I agree with the rules
+        {errors.agreement && <p>{errors.agreement.message}</p>}
+      </label>
+
+      <button type="submit" disabled={!isValid || isValidating}>
+        {isValidating ? "Checking..." : "Register"}
+      </button>
     </form>
   );
 }

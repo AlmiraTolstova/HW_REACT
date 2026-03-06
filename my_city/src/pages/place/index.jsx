@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { districtsData } from "../../data.js";
 const Place = () => {
   const { districtId, placeId } = useParams();
+
   // Ищем район
   const district = districtsData.find((d) => d.id === districtId);
   // Если район не найден - 404

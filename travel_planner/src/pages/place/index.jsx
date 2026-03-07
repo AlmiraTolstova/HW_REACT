@@ -1,10 +1,10 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { districtsData } from "../../data.js";
+import { initialCategories } from "../../data.js";
 const Place = () => {
-  const { districtId, placeId } = useParams();
+  const { categoryId, placeId } = useParams();
 
   // Ищем район
-  const district = districtsData.find((d) => d.id === districtId);
+  const district = initialCategories.find((d) => d.id === categoryId);
   // Если район не найден - 404
   if (!district) {
     return <Navigate to="/404" replace />;
@@ -20,7 +20,7 @@ const Place = () => {
           Извините, достопримечательность с таким названием не существует в этом
           районе.
         </p>
-        <Link to={`/districts/${districtId}`} className="back-button">
+        <Link to={`/categories/${categoryId}`} className="back-button">
           Вернуться к району
         </Link>
       </div>
@@ -29,7 +29,7 @@ const Place = () => {
   return (
     <div className="place-page">
       <div className="place-header">
-        <Link to={`/districts/${districtId}`} className="back-link">
+        <Link to={`/categories/${categoryId}`} className="back-link">
           ← Назад к району
         </Link>
       </div>
@@ -40,7 +40,7 @@ const Place = () => {
         <div className="place-meta">
           <div className="meta-item">
             <span className="meta-label">Район:</span>
-            <Link to={`/districts/${districtId}`} className="meta-value">
+            <Link to={`/categories/${categoryId}`} className="meta-value">
               {district.name}
             </Link>
           </div>

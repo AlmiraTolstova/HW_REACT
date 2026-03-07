@@ -1,23 +1,25 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { districtsData } from "../../data.js";
-function District() {
-  const { districtId } = useParams();
-  const district = districtsData.find((district) => district.id === districtId);
+import { initialCategories } from "../../data.js";
+function Category() {
+  const { categoryId } = useParams();
+  const district = initialCategories.find(
+    (district) => district.id === categoryId,
+  );
   return (
     <div className="district-page">
       <div className="district-header">
         <Link to="/districts" className="back-link">
-          ← Назад к районам
+          ← Назад к категориям
         </Link>
         <h1>{district.name}</h1>
         <p className="district-description">{district.description}</p>
       </div>
       <div className="places-section">
-        <h2>Достопримечательности района</h2>
+        <h2>Достопримечательности категории</h2>
         <div className="places-grid">
           {district.places.map((place) => (
             <Link
-              to={`/districts/${districtId}/places/${place.id}`}
+              to={`/categories/${categoryId}/places/${place.id}`}
               key={place.id}
               className="place-card"
             >
@@ -34,4 +36,4 @@ function District() {
     </div>
   );
 }
-export default District;
+export default Category;

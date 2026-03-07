@@ -4,7 +4,7 @@ function Layout() {
     <div className="layout">
       <header className="header">
         <div className="container">
-          <h1 className="logo">🏙️ Мой город</h1>
+          <h1 className="logo">🏙️ Travel planner</h1>
           <nav className="nav">
             <NavLink
               to="/"
@@ -16,12 +16,12 @@ function Layout() {
               Главная
             </NavLink>
             <NavLink
-              to="/districts"
+              to="/categories"
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
               }
             >
-              Районы
+              Категории
             </NavLink>
           </nav>
         </div>
@@ -33,7 +33,7 @@ function Layout() {
       </main>
       <footer className="footer">
         <div className="container">
-          <p>© 2026 Мой город. Все права защищены.</p>
+          <p>© 2026 Travel planner. Все права защищены.</p>
         </div>
       </footer>
     </div>

@@ -2,11 +2,12 @@ import "./App.css";
 import { Routes, Route, Navigate, Router, useLocation } from "react-router-dom";
 import Layout from "./components/layout";
 import Home from "./pages/home";
-import Districts from "./pages/districts";
-import District from "./pages/district";
+
 import Place from "./pages/place";
 import NotFound from "./pages/notFound";
 import { useEffect } from "react";
+import Categories from "./pages/categories";
+import Category from "./pages/category";
 
 function App() {
   const location = useLocation();
@@ -26,13 +27,13 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout></Layout>}>
         <Route index element={<Home></Home>}></Route>
-        <Route path="districts" element={<Districts></Districts>}></Route>
+        <Route path="categories" element={<Categories></Categories>}></Route>
         <Route
-          path="districts/:districtId"
-          element={<District></District>}
+          path="categories/:categoryId"
+          element={<Category></Category>}
         ></Route>
         <Route
-          path="districts/:districtId/places/:placeId"
+          path="categories/:categoryId/places/:placeId"
           element={<Place></Place>}
         ></Route>
         <Route

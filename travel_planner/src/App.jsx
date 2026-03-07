@@ -8,6 +8,7 @@ import NotFound from "./pages/notFound";
 import { useEffect } from "react";
 import Categories from "./pages/categories";
 import Category from "./pages/category";
+import Favorites from "./pages/favorites";
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
           path="categories/:categoryId/places/:placeId"
           element={<Place></Place>}
         ></Route>
+        <Route path="favorites" element={<Favorites></Favorites>}></Route>
         <Route
           path="home"
           element={<Navigate to="/" replace></Navigate>}

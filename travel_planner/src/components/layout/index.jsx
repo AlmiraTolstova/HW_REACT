@@ -23,6 +23,14 @@ function Layout() {
             >
               Категории
             </NavLink>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              Избранное
+            </NavLink>
           </nav>
         </div>
       </header>

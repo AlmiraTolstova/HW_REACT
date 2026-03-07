@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-import { initialCategories } from "../../data.js";
+import { useContext } from "react";
+import StoreContext from "../../context/storeContext";
 function Categories() {
+  const { CategoriesPlaces } = useContext(StoreContext);
   return (
     <div className="districts">
       <h1>Районы города</h1>
@@ -8,7 +10,7 @@ function Categories() {
         Выберите район, чтобы узнать о его достопримечательностях
       </p>
       <div className="districts-grid">
-        {initialCategories.map((category) => (
+        {CategoriesPlaces.map((category) => (
           <Link
             to={`/categories/${category.id}`}
             key={category.id}

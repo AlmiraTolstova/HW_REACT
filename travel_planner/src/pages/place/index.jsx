@@ -1,10 +1,13 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { initialCategories } from "../../data.js";
+import { useContext } from "react";
+import StoreContext from "../../context/storeContext";
+
 const Place = () => {
   const { categoryId, placeId } = useParams();
+  const { CategoriesPlaces } = useContext(StoreContext);
 
   // Ищем район
-  const district = initialCategories.find((d) => d.id === categoryId);
+  const district = CategoriesPlaces.find((d) => d.id === categoryId);
   // Если район не найден - 404
   if (!district) {
     return <Navigate to="/404" replace />;

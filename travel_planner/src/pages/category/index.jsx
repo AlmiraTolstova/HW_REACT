@@ -1,8 +1,12 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { initialCategories } from "../../data.js";
+import { useContext } from "react";
+import StoreContext from "../../context/storeContext";
+
 function Category() {
   const { categoryId } = useParams();
-  const district = initialCategories.find(
+  const { CategoriesPlaces } = useContext(StoreContext);
+
+  const district = CategoriesPlaces.find(
     (district) => district.id === categoryId,
   );
   return (

@@ -7,7 +7,7 @@ import { Spin } from "antd";
 
 const Place = () => {
   const { categoryId, placeId } = useParams();
-  const { CategoriesPlaces, favorites, setFavorites } =
+  const { CategoriesPlaces, setCategoriesPlaces, favorites, setFavorites } =
     useContext(StoreContext);
 
   const [loading, setLoading] = useState(true);
@@ -40,6 +40,32 @@ const Place = () => {
       setFavorites(newFavorites);
     }
   }
+
+  function handleCheckBox(value, item) {
+    console.log(value, item.text);
+    setCategoriesPlaces((prev) =>
+      prev.map((category) =>
+        category.id === categoryId
+          ? {
+              ...category,
+              places: category.places.map((p) =>
+                p.id === placeId
+                  ? {
+                      ...p,
+                      todos: p.todos.map((todo) =>
+                        todo.id === item.id
+                          ? { ...todo, completed: !todo.completed }
+                          : todo,
+                      ),
+                    }
+                  : p,
+              ),
+            }
+          : category,
+      ),
+    );
+  }
+
   // Если место не найдено - показываем сообщение
   if (!place) {
     return (
@@ -69,9 +95,25 @@ const Place = () => {
               <div className="place-emoji-large">{place.image}</div>
               <h1>{place.name}</h1>
               <p className="place-full-description">{place.description}</p>
+              <ul>
+                {place.todos.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      {item.text}
+                      <input
+                        type="checkbox"
+                        checked={item.completed}
+                        onChange={(e) => {
+                          handleCheckBox(e.target.checked, item);
+                        }}
+                      ></input>
+                    </li>
+                  );
+                })}
+              </ul>
               <div className="place-meta">
                 <div className="meta-item">
-                  <span className="meta-label">Район:</span>
+                  <span className="meta-label">Категория:</span>
                   <Link to={`/categories/${categoryId}`} className="meta-value">
                     {district.name}
                   </Link>

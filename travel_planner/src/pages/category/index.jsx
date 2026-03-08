@@ -12,7 +12,7 @@ function Category() {
   return (
     <div className="district-page">
       <div className="district-header">
-        <Link to="/districts" className="back-link">
+        <Link to="/categories" className="back-link">
           ← Назад к категориям
         </Link>
         <h1>{district.name}</h1>

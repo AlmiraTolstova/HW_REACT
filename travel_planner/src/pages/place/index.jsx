@@ -79,7 +79,10 @@ const Place = () => {
                         ...p.todos,
                         {
                           id: p.todos.length + 1,
-                          text: taskDescription,
+                          text:
+                            taskDescription === ""
+                              ? "Исследовать место"
+                              : taskDescription,
                           completed: false,
                         },
                       ],
@@ -91,6 +94,26 @@ const Place = () => {
       ),
     );
     setTaskDescription("");
+  }
+
+  function handleDelTask(task) {
+    setCategoriesPlaces((prev) =>
+      prev.map((category) => {
+        if (category.id !== categoryId) return category;
+
+        return {
+          ...category,
+          places: category.places.map((p) => {
+            if (p.id !== placeId) return p;
+
+            return {
+              ...p,
+              todos: p.todos.filter((item) => item.id !== task.id),
+            };
+          }),
+        };
+      }),
+    );
   }
 
   // Если место не найдено - показываем сообщение
@@ -134,7 +157,13 @@ const Place = () => {
                           handleCheckBox(e.target.checked, item);
                         }}
                       ></input>
-                      <button>Удалить задачу</button>
+                      <button
+                        onClick={() => {
+                          handleDelTask(item);
+                        }}
+                      >
+                        Удалить задачу
+                      </button>
                     </li>
                   );
                 })}

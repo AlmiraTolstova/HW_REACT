@@ -11,7 +11,7 @@ const Place = () => {
     useContext(StoreContext);
 
   const [loading, setLoading] = useState(true);
-
+  const [taskDescription, setTaskDescription] = useState("");
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -42,7 +42,6 @@ const Place = () => {
   }
 
   function handleCheckBox(value, item) {
-    console.log(value, item.text);
     setCategoriesPlaces((prev) =>
       prev.map((category) =>
         category.id === categoryId
@@ -63,6 +62,57 @@ const Place = () => {
             }
           : category,
       ),
+    );
+  }
+
+  function handleNewTask() {
+    setCategoriesPlaces((prev) =>
+      prev.map((category) =>
+        category.id === categoryId
+          ? {
+              ...category,
+              places: category.places.map((p) =>
+                p.id === placeId
+                  ? {
+                      ...p,
+                      todos: [
+                        ...p.todos,
+                        {
+                          id: p.todos.length + 1,
+                          text:
+                            taskDescription === ""
+                              ? "Исследовать место"
+                              : taskDescription,
+                          completed: false,
+                        },
+                      ],
+                    }
+                  : p,
+              ),
+            }
+          : category,
+      ),
+    );
+    setTaskDescription("");
+  }
+
+  function handleDelTask(task) {
+    setCategoriesPlaces((prev) =>
+      prev.map((category) => {
+        if (category.id !== categoryId) return category;
+
+        return {
+          ...category,
+          places: category.places.map((p) => {
+            if (p.id !== placeId) return p;
+
+            return {
+              ...p,
+              todos: p.todos.filter((item) => item.id !== task.id),
+            };
+          }),
+        };
+      }),
     );
   }
 
@@ -107,10 +157,27 @@ const Place = () => {
                           handleCheckBox(e.target.checked, item);
                         }}
                       ></input>
+                      <button
+                        onClick={() => {
+                          handleDelTask(item);
+                        }}
+                      >
+                        Удалить задачу
+                      </button>
                     </li>
                   );
                 })}
               </ul>
+              <div>
+                <input
+                  placeholder="новая задача"
+                  value={taskDescription}
+                  onChange={(e) => {
+                    setTaskDescription(e.target.value);
+                  }}
+                ></input>
+                <button onClick={handleNewTask}>Добавить задачу</button>
+              </div>
               <div className="place-meta">
                 <div className="meta-item">
                   <span className="meta-label">Категория:</span>

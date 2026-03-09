@@ -11,13 +11,15 @@ function ArticleListPage() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Страница списка статей</h1>
-      <ul>
+
+      <ul className="article-list">
         {articles.map((item) => {
           return (
-            <li key={item.id}>
+            <li className="article-item" key={item.id}>
               {item.title}
+
               <button
                 onClick={() => {
                   handleClick(item.id);

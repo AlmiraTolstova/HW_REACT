@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "./actions";
+import { LOGIN, LOGOUT } from "../actions";
 
 const initialState = {
   user: null,
@@ -8,6 +8,7 @@ const initialState = {
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
+      console.log(action.payload);
       return {
         ...state,
         user: action.payload,

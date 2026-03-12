@@ -4,7 +4,7 @@ import { editNote } from "../../redux/actions";
 import Button from "../ui/button";
 import Form from "../ui/form";
 
-function EditNoteForm({ note, setIsEditing }) {
+function EditNoteForm({ note, setEdit }) {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(note.title);
@@ -15,7 +15,7 @@ function EditNoteForm({ note, setIsEditing }) {
 
     dispatch(editNote(note.id, title, text));
 
-    setIsEditing(false);
+    setEdit(false);
   };
 
   return (
@@ -25,7 +25,7 @@ function EditNoteForm({ note, setIsEditing }) {
       <input value={text} onChange={(e) => setText(e.target.value)} />
 
       <Button type="submit">Save</Button>
-      <Button onClick={() => setIsEditing(false)}>Cancel</Button>
+      <Button onClick={() => setEdit(false)}>Cancel</Button>
     </Form>
   );
 }

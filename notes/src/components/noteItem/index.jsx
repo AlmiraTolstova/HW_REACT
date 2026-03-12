@@ -14,7 +14,7 @@ function NoteItem({ note }) {
   };
 
   if (edit) {
-    return <EditNoteForm note={note} setEdit={edit}></EditNoteForm>;
+    return <EditNoteForm note={note} setEdit={setEdit}></EditNoteForm>;
   }
   return (
     <div>

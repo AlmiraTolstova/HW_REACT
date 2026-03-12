@@ -19,6 +19,7 @@ const todoReducer = (state = initialState, action) => {
       };
 
     case EDIT_NOTE:
+      console.log(action.payload);
       return {
         ...state,
         todos: state.todos.map((note) =>

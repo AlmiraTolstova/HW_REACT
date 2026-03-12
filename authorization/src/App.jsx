@@ -1,12 +1,24 @@
 import "./App.css";
 import LoginForm from "./components/loginForm";
+import UserProfile from "./components/userProfile";
+import { connect } from "react-redux";
 
-function App() {
+function App({ isAuthenticated }) {
   return (
     <div>
-      <LoginForm></LoginForm>
+      {isAuthenticated === true ? (
+        <UserProfile></UserProfile>
+      ) : (
+        <LoginForm></LoginForm>
+      )}
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps)(App);

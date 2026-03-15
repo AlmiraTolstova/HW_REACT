@@ -1,71 +1,12 @@
-import { Flex, Space, Table, Tag } from "antd";
+import { Flex, Space, Table, Tag, Modal } from "antd";
+
 import { connect, useDispatch } from "react-redux";
 import {
   removeBook,
   toggleAvailability,
   updateBookInfo,
 } from "../../redux/actions/bookActions";
-
-const columns = [
-  {
-    title: "Title",
-    dataIndex: "title",
-    key: "title",
-  },
-  {
-    title: "Author",
-    dataIndex: "author",
-    key: "author",
-  },
-  {
-    title: "Year",
-    dataIndex: "year",
-    key: "year",
-  },
-  {
-    title: "Availablity",
-    key: "isAvailable",
-    dataIndex: "isAvailable",
-    render: (_, { record }) => (
-      <Space size="medium">
-        <p>{record.name}</p>
-      </Space>
-    ),
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (_, record) => (
-      <Space size="medium">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["kawaii"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
+import { useState } from "react";
 
 function BooksList({
   books,
@@ -75,10 +16,119 @@ function BooksList({
   toggleAvailability,
 }) {
   const dispatch = useDispatch();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [year, setYear] = useState("");
+  const [id, setId] = useState("");
+
+  const setModalData = (data) => {
+    setIsModalOpen(true);
+    if (data) {
+      setTitle(data.title);
+      setAuthor(data.author);
+      setYear(data.year);
+      setId(data.id);
+    }
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    updateBookInfo({
+      id: id,
+      title: title,
+      author: author,
+      year: year,
+    });
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const columns = [
+    {
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "Author",
+      dataIndex: "author",
+      key: "author",
+    },
+    {
+      title: "Year",
+      dataIndex: "year",
+      key: "year",
+    },
+    {
+      title: "Availablity",
+      key: "isAvailable",
+      dataIndex: "isAvailable",
+      render: (_, record) => (
+        <Space size="medium">
+          {console.log(record)}
+          <Tag color={record.isAvailable ? "green" : "red"}>
+            {record.isAvailable ? "Available" : "Unavailable"}
+          </Tag>
+        </Space>
+      ),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space size="medium">
+          <button onClick={() => toggleAvailability(record.id)}>
+            To lend {record.title}
+          </button>
+          <button
+            onClick={() => removeBook(record.id)}
+            disabled={record.isAvailable ? false : true}
+          >
+            Delete
+          </button>
+          <button onClick={() => setModalData(record)}>Edit </button>
+        </Space>
+      ),
+    },
+  ];
+
   return (
     <div>
       <h2>Books list</h2>
-      <Table columns={columns} dataSource={books} />
+      <Table columns={columns} dataSource={books} rowKey="id" />
+      <Modal
+        title="Basic Modal"
+        closable={{ "aria-label": "Custom Close Button" }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <input
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          value={title}
+        ></input>
+        <input
+          onChange={(e) => {
+            setAuthor(e.target.value);
+          }}
+          value={author}
+        ></input>
+        <input
+          onChange={(e) => {
+            setYear(e.target.value);
+          }}
+          value={year}
+        ></input>
+      </Modal>
     </div>
   );
 }

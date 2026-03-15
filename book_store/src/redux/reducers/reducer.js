@@ -6,7 +6,22 @@ import {
 } from "../actions/bookActions";
 
 const initialState = {
-  books: [],
+  books: [
+    {
+      id: 1,
+      title: "Harry Potter",
+      author: "J. K. Rowling",
+      year: 1967,
+      isAvailable: true,
+    },
+    {
+      id: 2,
+      title: "1984",
+      author: "George Orwell",
+      year: 1949,
+      isAvailable: true,
+    },
+  ],
   lastUpdated: null,
 };
 

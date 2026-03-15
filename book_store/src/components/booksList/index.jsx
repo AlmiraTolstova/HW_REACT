@@ -2,11 +2,12 @@ import { Flex, Space, Table, Tag, Modal } from "antd";
 
 import { connect, useDispatch } from "react-redux";
 import {
+  calculateStatistic,
   removeBook,
   toggleAvailability,
   updateBookInfo,
 } from "../../redux/actions/bookActions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { bookLendToReader } from "../../redux/actions/readersActions";
 
 function BooksList({
@@ -17,7 +18,12 @@ function BooksList({
   updateBookInfo,
   toggleAvailability,
   bookLendToReader,
+  calculateStatistic,
 }) {
+  useEffect(() => {
+    calculateStatistic();
+  }, [calculateStatistic]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalLend, setIsModalLend] = useState(false);
 
@@ -186,6 +192,7 @@ const mapDispatchToProps = (dispatch) => {
     updateBookInfo: (data) => dispatch(updateBookInfo(data)),
     toggleAvailability: (data) => dispatch(toggleAvailability(data)),
     bookLendToReader: (data) => dispatch(bookLendToReader(data)),
+    calculateStatistic: () => dispatch(calculateStatistic()),
   };
 };
 

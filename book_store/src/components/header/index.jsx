@@ -6,6 +6,9 @@ function Header() {
       <Link style={{ marginLeft: "30px" }} to="/readers">
         Readers list
       </Link>
+      <Link style={{ marginLeft: "30px" }} to="/dashboard">
+        Dashboard
+      </Link>
     </div>
   );
 }

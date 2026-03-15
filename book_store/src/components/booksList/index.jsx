@@ -15,8 +15,6 @@ function BooksList({
   updateBookInfo,
   toggleAvailability,
 }) {
-  const dispatch = useDispatch();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -101,7 +99,6 @@ function BooksList({
 
   return (
     <div>
-      <h2>Books list</h2>
       <Table columns={columns} dataSource={books} rowKey="id" />
       <Modal
         title="Basic Modal"

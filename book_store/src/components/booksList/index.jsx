@@ -7,20 +7,31 @@ import {
   updateBookInfo,
 } from "../../redux/actions/bookActions";
 import { useState } from "react";
+import { bookLendToReader } from "../../redux/actions/readersActions";
 
 function BooksList({
   books,
+  readers,
   lastUpdated,
   removeBook,
   updateBookInfo,
   toggleAvailability,
+  bookLendToReader,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalLend, setIsModalLend] = useState(false);
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
   const [id, setId] = useState("");
+
+  const [bookId, setBookId] = useState("");
+  // проверяем, если список читателей не пустой, то по умолчанию
+  // выбираем первого читателя как значение по умолчанию
+  const [readerId, setReaderId] = useState(
+    readers.length === 0 ? "" : readers[0].id,
+  );
 
   const setModalData = (data) => {
     setIsModalOpen(true);
@@ -48,6 +59,19 @@ function BooksList({
     setIsModalOpen(false);
   };
 
+  const showModalLend = (bookId) => {
+    setBookId(bookId);
+    setIsModalLend(true);
+  };
+
+  const handleLendOk = () => {
+    setIsModalLend(false);
+    bookLendToReader({ bookId: bookId, readerId: readerId });
+  };
+  const handleLendCancel = () => {
+    setIsModalLend(false);
+  };
+
   const columns = [
     {
       title: "Title",
@@ -70,7 +94,6 @@ function BooksList({
       dataIndex: "isAvailable",
       render: (_, record) => (
         <Space size="medium">
-          {console.log(record)}
           <Tag color={record.isAvailable ? "green" : "red"}>
             {record.isAvailable ? "Available" : "Unavailable"}
           </Tag>
@@ -82,9 +105,7 @@ function BooksList({
       key: "action",
       render: (_, record) => (
         <Space size="medium">
-          <button onClick={() => toggleAvailability(record.id)}>
-            To lend {record.title}
-          </button>
+          <button onClick={() => showModalLend(record.id)}>To lend</button>
           <button
             onClick={() => removeBook(record.id)}
             disabled={record.isAvailable ? false : true}
@@ -126,6 +147,27 @@ function BooksList({
           value={year}
         ></input>
       </Modal>
+
+      <Modal
+        title="Basic Modal"
+        closable={{ "aria-label": "Custom Close Button" }}
+        open={isModalLend}
+        onOk={handleLendOk}
+        onCancel={handleLendCancel}
+      >
+        <div>
+          <p>Select reader:</p>
+          <select onChange={(e) => setReaderId(e.target.value)}>
+            {readers.map((reader) => {
+              return (
+                <option key={reader.id} value={reader.id}>
+                  {reader.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </Modal>
     </div>
   );
 }
@@ -133,6 +175,7 @@ function BooksList({
 const mapStateToProps = (state) => {
   return {
     books: state.books,
+    readers: state.readers,
     lastUpdated: state.lastUpdated,
   };
 };
@@ -142,6 +185,7 @@ const mapDispatchToProps = (dispatch) => {
     removeBook: (data) => dispatch(removeBook(data)),
     updateBookInfo: (data) => dispatch(updateBookInfo(data)),
     toggleAvailability: (data) => dispatch(toggleAvailability(data)),
+    bookLendToReader: (data) => dispatch(bookLendToReader(data)),
   };
 };
 

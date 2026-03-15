@@ -9,7 +9,7 @@ const readers = [
     id: 2,
     name: "Michael Smith",
     email: "michael.smith@example.com",
-    borrowedBooks: [3],
+    borrowedBooks: [],
   },
   {
     id: 3,

@@ -3,7 +3,7 @@ import { addBook } from "../../redux/actions/bookActions";
 import { useState } from "react";
 import { Modal } from "antd";
 
-function Toolbar({ addBook }) {
+function Toolbar({ addBook, state }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -32,7 +32,7 @@ function Toolbar({ addBook }) {
   return (
     <div>
       <button onClick={showModal}>Add book</button>
-
+      <button onClick={() => console.log(state)}>Reducer to console</button>
       <Modal
         title="Add book"
         open={isModalOpen}
@@ -63,6 +63,7 @@ function Toolbar({ addBook }) {
 const mapStateToProps = (state) => {
   return {
     books: state.books,
+    state: state,
     lastUpdated: state.lastUpdated,
   };
 };

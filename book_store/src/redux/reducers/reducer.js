@@ -16,7 +16,7 @@ import readers from "../../mockData/mockReaders";
 const initialState = {
   books: books,
   lastUpdated: null,
-  readers: [readers],
+  readers: readers,
 };
 
 function booksReducer(state = initialState, action) {
@@ -122,7 +122,88 @@ function booksReducer(state = initialState, action) {
             email: action.payload.author ?? reader.email,
           };
         }),
-        lastUpdated: new Date().toISOString(),
+      };
+    }
+
+    case BOOK_LEND_TO_READER: {
+      console.log(action.payload);
+      const book = state.books.find((b) => b.id === action.payload.bookId);
+
+      const reader = state.readers.find(
+        (r) => String(r.id) === action.payload.readerId,
+      );
+
+      if (!book) {
+        console.log("Book not found");
+        return state;
+      }
+
+      if (!reader) {
+        console.log("Reader not found");
+        return state;
+      }
+
+      if (!book.isAvailable) {
+        console.log("Book is not available");
+        return state;
+      }
+
+      return {
+        ...state,
+
+        books: state.books.map((book) =>
+          book.id === action.payload.bookId
+            ? { ...book, isAvailable: false }
+            : book,
+        ),
+
+        readers: state.readers.map((reader) =>
+          String(reader.id) === action.payload.readerId
+            ? {
+                ...reader,
+                borrowedBooks: [...reader.borrowedBooks, action.payload.bookId],
+              }
+            : reader,
+        ),
+      };
+    }
+
+    case BOOK_RETURN_FROM_READER: {
+      const reader = state.readers.find(
+        (r) => r.id === action.payload.readerId,
+      );
+
+      let reader_book = undefined;
+      if (reader) {
+        reader_book = reader.borrowedBooks.find(
+          (b) => b === action.payload.bookId,
+        );
+      }
+
+      if (!reader_book) {
+        console.log("Book not found");
+        return state;
+      }
+
+      return {
+        ...state,
+
+        books: state.books.map((book) =>
+          book.id === action.payload.bookId
+            ? { ...book, isAvailable: true }
+            : book,
+        ),
+
+        readers: state.readers.map((reader) =>
+          reader.id === action.payload.readerId
+            ? {
+                ...reader,
+                borrowedBooks: reader.borrowedBooks.filter(
+                  (item) => item !== action.payload.bookId,
+                ),
+              }
+            : reader,
+        ),
       };
     }
 

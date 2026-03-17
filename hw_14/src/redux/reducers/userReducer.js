@@ -5,18 +5,11 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_FILTER": {
-      let tempList = [];
-      if (state.filterString === "") {
-        tempList = [];
-      }
-      tempList = state.userList.filter((item) =>
-        item.includes(state.filterString),
-      );
+    case "SET_USER_INFO": {
       return {
         ...state,
-        filterString: action.payload,
-        filteredUsersList: tempList,
+        name: action.payload.name,
+        status: action.payload.status,
       };
     }
     default:

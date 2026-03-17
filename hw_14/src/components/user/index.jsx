@@ -2,7 +2,13 @@ import { connect } from "react-redux";
 import { setUserInfoAction } from "../../redux/actions/userActions";
 
 function User({ setUserInfoAction, name, status }) {
-  return <div></div>;
+  return (
+    <div>
+      <h2>User Information</h2>
+      <p>Name:{name}</p>
+      <p>Status:{status}</p>
+    </div>
+  );
 }
 const mapStateToProps = (state) => {
   return {

@@ -1,7 +1,14 @@
 import "./App.css";
+import User from "./components/user";
+import UserForm from "./components/userForm";
 
 function App() {
-  return <></>;
+  return (
+    <div>
+      <User></User>
+      <UserForm></UserForm>
+    </div>
+  );
 }
 
 export default App;

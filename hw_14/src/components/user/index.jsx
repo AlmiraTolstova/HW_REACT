@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
 import { setUserInfoAction } from "../../redux/actions/userActions";
+import styles from "./styles.module.css";
 
 function User({ setUserInfoAction, name, status }) {
   return (
-    <div>
-      <h2>User Information</h2>
-      <p>Name:{name}</p>
-      <p>Status:{status}</p>
+    <div className={styles.container}>
+      <h2 className={styles.title}>User Information</h2>
+      <p className={styles.text}>Name:{name}</p>
+      <p className={styles.text}>Status:{status}</p>
     </div>
   );
 }

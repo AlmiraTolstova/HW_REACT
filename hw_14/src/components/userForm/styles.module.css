@@ -1,0 +1,36 @@
+.container {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: #eef6ff;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

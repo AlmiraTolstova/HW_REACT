@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { setUserInfoAction } from "../../redux/actions/userActions";
+import styles from "./styles.module.css";
 
 function UserForm({ setUserInfoAction }) {
   const [username, setUsername] = useState("");
@@ -21,28 +22,36 @@ function UserForm({ setUserInfoAction }) {
     setUserStatus("");
   }
   return (
-    <div>
-      <h2>Edit User Information</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Edit User Information</h2>
       <form onSubmit={(e) => formSubmit(e)}>
-        <label>
-          Name:
-          <input
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          ></input>
-        </label>
-        <label>
-          Status:
-          <input
-            value={userStatus}
-            onChange={(e) => {
-              setUserStatus(e.target.value);
-            }}
-          ></input>
-        </label>
-        <button type="submit">Save</button>
+        <div className={styles.formGroup}>
+          <label>
+            Name:
+            <input
+              className={styles.input}
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            ></input>
+          </label>
+        </div>
+        <div className={styles.formGroup}>
+          <label>
+            Status:
+            <input
+              className={styles.input}
+              value={userStatus}
+              onChange={(e) => {
+                setUserStatus(e.target.value);
+              }}
+            ></input>
+          </label>
+        </div>
+        <button className={styles.button} type="submit">
+          Save
+        </button>
       </form>
     </div>
   );

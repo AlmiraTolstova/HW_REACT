@@ -57,6 +57,15 @@ function ProfilePlayground() {
                 width: profileSettings.avatarSize,
                 height: profileSettings.avatarSize,
                 transition: "0.3s",
+                bgcolor:
+                  profileSettings.buttonColor === "primary"
+                    ? "#1976d2"
+                    : profileSettings.buttonColor === "secondary"
+                      ? "#9c27b0"
+                      : profileSettings.buttonColor === "success"
+                        ? "#2e7d32"
+                        : "#d32f2f",
+                color: "white",
               }}
             >
               {profileSettings.name[0]}

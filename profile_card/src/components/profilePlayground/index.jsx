@@ -61,17 +61,22 @@ function ProfilePlayground() {
             >
               {profileSettings.name[0]}
             </Avatar>
-
             <Typography variant="h6">
               {profileSettings.isOnline ? "● " : "○ "}
               {profileSettings.name} {profileSettings.surname}
             </Typography>
-
             <Typography color={profileSettings.isOnline ? "green" : "gray"}>
               {profileSettings.isOnline ? "Онлайн" : "Офлайн"}
             </Typography>
-
-            <Chip label={profileSettings.profession} sx={{ mt: 1 }} />
+            <Chip
+              label={profileSettings.profession}
+              sx={{ mt: 1 }}
+              color={
+                profileSettings.isOnline
+                  ? profileSettings.buttonColor
+                  : "default"
+              }
+            />{" "}
           </CardContent>
 
           <CardActions>

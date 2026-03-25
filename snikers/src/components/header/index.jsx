@@ -30,7 +30,7 @@ const StyledNavLink = styled(NavLink)(({ isActive }) => ({
   lineHeight: 18,
 }));
 
-export default function Header() {
+function Header() {
   return (
     <StyledAppBar position="static">
       <Toolbar>
@@ -55,3 +55,5 @@ export default function Header() {
     </StyledAppBar>
   );
 }
+
+export default Header;

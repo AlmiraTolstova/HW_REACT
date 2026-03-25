@@ -35,3 +35,32 @@ export function TwitterIcon(props) {
     </SvgIcon>
   );
 }
+
+export function LightPlusIcon(props) {
+  return (
+    <svg width={39} height={39} viewBox="0 0 39 39" fill="none" {...props}>
+      <circle cx={19.5} cy={19.5} r={18.5} fill="#E9E9E9" fillOpacity={0.5} />
+      <circle cx={19.5} cy={19.5} r={19} stroke="#686666" strokeOpacity={0.5} />
+      <line x1={19.5} y1={14} x2={19.5} y2={25} stroke="black" />
+      <line x1={14} y1={19.5} x2={25} y2={19.5} stroke="black" />
+    </svg>
+  );
+}
+
+export function DarkPlusIcon(props) {
+  return (
+    <SvgIcon {...props} viewBox="0 0 43 43">
+      <circle cx="21.5" cy="21.5" r="18.5" fill="#03060F" />
+      <circle
+        cx="21.5"
+        cy="21.5"
+        r="20"
+        stroke="#2A2B30"
+        strokeOpacity="0.2"
+        strokeWidth="3"
+      />
+      <line x1="21.5" y1="16" x2="21.5" y2="27" stroke="white" />
+      <line x1="16" y1="21.5" x2="27" y2="21.5" stroke="white" />
+    </SvgIcon>
+  );
+}

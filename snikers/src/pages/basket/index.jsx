@@ -5,6 +5,7 @@ import { Card, CardMedia, Typography, Box, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import { Divider } from "@mui/material";
+import { TrashIcon } from "../../components/icons";
 
 function Basket() {
   const { cartData, deleteFromCart } = useContext(ProductsContext);
@@ -12,7 +13,14 @@ function Basket() {
   return (
     <div>
       <h2>Корзина</h2>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          display: "flex",
+          //   margin: "0 auto",
+          maxWidth: "1420px",
+          width: "100%",
+        }}
+      >
         <Box
         // sx={{
         //   display: "flex",
@@ -25,12 +33,16 @@ function Basket() {
             <Box key={item.id}>
               <Card
                 sx={{
-                  width: 386,
-                  borderRadius: "30px",
+                  display: "flex",
+                  width: 903,
+                  borderRadius: "10px",
                   p: 4,
                   boxShadow: "none",
-                  border: "2px solid #E5E5E5",
-                  position: "relative",
+                  //   position: "relative",
+                  backgroundColor: "#FAFAFA",
+                  mb: 6,
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
                 {/* Изображение */}
@@ -39,19 +51,27 @@ function Basket() {
                   image={item.image}
                   alt="Nike Air Zoom Pegasus"
                   sx={{
-                    width: "100%",
+                    maxWidth: "197px",
                     objectFit: "contain",
-                    mb: 3,
+                    // mb: 3,
                   }}
                 />
-
+                <Divider
+                  orientation="vertical"
+                  sx={{
+                    border: "1px solid rgba(0, 0, 0, 0.5)",
+                    height: 98,
+                  }}
+                ></Divider>
                 {/* Название */}
                 <Typography
                   sx={{
                     fontFamily: "Montserrat, sans-serif",
-                    fontSize: 32,
-                    fontWeight: 500,
-                    mb: 4,
+                    fontSize: 24,
+                    fontWeight: 400,
+                    fontStyle: "normal",
+                    maxWidth: 288,
+                    lineHeight: "29px",
                   }}
                 >
                   {item.name}
@@ -62,8 +82,12 @@ function Basket() {
                   <Typography
                     sx={{
                       fontFamily: "Montserrat, sans-serif",
-                      color: "#9D9D9E",
-                      fontSize: 16,
+                      color: "#666666",
+                      fontSize: 14,
+                      fontStyle: "normal",
+                      fontWeight: 500,
+                      lineHeight: "17px",
+                      textTransform: "uppercase",
                     }}
                   >
                     Цена:
@@ -72,37 +96,28 @@ function Basket() {
                   <Typography
                     sx={{
                       fontFamily: "Montserrat, sans-serif",
-                      fontSize: 40,
+                      fontSize: 24,
                       fontWeight: 700,
+                      fontStyle: "normal",
+                      lineHeight: "29px",
                     }}
                   >
-                    {item.price}€
+                    {item.price} €
                   </Typography>
                 </Box>
 
                 {/* Кнопка + */}
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    right: 30,
-                    bottom: 30,
-                    width: 70,
-                    height: 70,
-                    backgroundColor: "#0A0F1F",
-                    color: "white",
-                    border: "6px solid #E5E5E5",
-                    "&:hover": {
-                      backgroundColor: "#111",
-                    },
-                  }}
+                <TrashIcon
                   onClick={() => deleteFromCart(item.id)}
+                  sx={{ width: 76, height: 76 }}
                 >
-                  <DeleteForeverOutlinedIcon sx={{ fontSize: 32 }} />
-                </IconButton>
+                  {/* <DeleteForeverOutlinedIcon sx={{ fontSize: 32 }} /> */}
+                </TrashIcon>
               </Card>
             </Box>
           ))}
         </Box>
+
         <Card>
           <Typography>Итого</Typography>
           {cartData.map((item) => {

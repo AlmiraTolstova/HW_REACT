@@ -28,6 +28,11 @@ const StyledNavLink = styled(NavLink)(({ isActive }) => ({
   fontWeight: isActive ? 600 : 400,
   fontSize: 15,
   lineHeight: 18,
+
+  "&.active": {
+    color: "#FFFFFF",
+    fontWeight: 600,
+  },
 }));
 
 function Header() {
@@ -44,11 +49,25 @@ function Header() {
           <Logo>Сникер - магазин</Logo>
 
           <Box>
-            <StyledNavLink to="/" end>
+            <StyledNavLink
+              to="/"
+              end
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               Главная
             </StyledNavLink>
-            <StyledNavLink to="/basket">Корзина</StyledNavLink>
-            <StyledNavLink to="/contacts">Контакты</StyledNavLink>
+            <StyledNavLink
+              to="/basket"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Корзина
+            </StyledNavLink>
+            <StyledNavLink
+              to="/contacts"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Контакты
+            </StyledNavLink>
           </Box>
         </Container>
       </Toolbar>

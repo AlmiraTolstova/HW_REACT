@@ -27,6 +27,7 @@ function Home() {
       />
 
       <Typography
+        variant="h2"
         sx={{
           fontFamily: "Montserrat",
           fontWeight: 700,
@@ -43,7 +44,6 @@ function Home() {
       <Grid container spacing={6}>
         {products.map((item) => {
           const isInCart = cartData.some((cartItem) => cartItem.id === item.id);
-
           return (
             <Grid size={4} key={item.id}>
               <ProductCard

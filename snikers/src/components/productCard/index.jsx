@@ -1,6 +1,7 @@
 import { Card, CardMedia, Typography, Box } from "@mui/material";
 import { LightPlusIcon, DarkPlusIcon } from "../icons";
 import { styled } from "@mui/system";
+import { useState } from "react";
 
 const StyledCard = styled(Card)({
   maxWidth: "386px",
@@ -38,33 +39,51 @@ const PriceValue = styled(Typography)({
   fontSize: "24px",
 });
 
-const PlusButton = styled(Box)({
-  position: "absolute",
-  right: 30,
-  bottom: 30,
-  cursor: "pointer",
-});
-
-function ProductCard({ item, addToCart, isInCart }) {
+function ProductCard({ item, addToCart }) {
   return (
-    <StyledCard>
-      <ProductImage component="img" image={item.image} alt={item.name} />
+    <StyledCard sx={{ height: 393 }}>
+      <ProductImage
+        sx={{ height: 127, objectFit: "cover" }}
+        component="img"
+        image={item.image}
+        alt={item.name}
+      />
 
       <ProductTitle>{item.name}</ProductTitle>
 
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Box>
           <PriceLabel>Цена:</PriceLabel>
           <PriceValue>{item.price} €</PriceValue>
         </Box>
 
-        <PlusButton onClick={() => !isInCart && addToCart(item)}>
-          {isInCart ? (
-            <DarkPlusIcon sx={{ fontSize: 40 }} />
-          ) : (
-            <LightPlusIcon sx={{ fontSize: 40 }} />
-          )}
-        </PlusButton>
+        <LightPlusIcon
+          sx={{
+            width: 48,
+            height: 48,
+            color: "#F4F4F4",
+
+            cursor: "pointer",
+
+            "&:hover .icon-bg": {
+              fill: "black",
+            },
+
+            "&:hover .icon-line": {
+              stroke: "white",
+            },
+            "& .icon-bg, & .icon-line": {
+              transition: "0.5s",
+            },
+          }}
+          onClick={() => addToCart(item)}
+        ></LightPlusIcon>
       </Box>
     </StyledCard>
   );

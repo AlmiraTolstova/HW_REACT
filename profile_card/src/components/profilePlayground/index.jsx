@@ -25,6 +25,7 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
+import Modal from "@mui/material/Modal";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -69,7 +70,23 @@ function ProfilePlayground() {
     avatarImage: null,
     openPopper: false,
     messageForUser: false,
+    openModal: false,
+    requestSent: false,
+    requestCanceled: false,
   });
+
+  const ModalhandleOpen = () => {
+    setProfileSettings({
+      ...profileSettings,
+      openModal: true,
+    });
+  };
+  const ModalhandleClose = () => {
+    setProfileSettings({
+      ...profileSettings,
+      openModal: false,
+    });
+  };
 
   const handleClick = () => {
     setProfileSettings({
@@ -105,6 +122,34 @@ function ProfilePlayground() {
     });
   };
 
+  const sendRequestHandleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      requestSent: true,
+    });
+    setTimeout(() => {
+      setProfileSettings({
+        ...profileSettings,
+        openModal: false,
+        requestSent: false,
+      });
+    }, 2000);
+  };
+
+  const RequestCanceledHandleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      requestCanceled: true,
+    });
+    setTimeout(() => {
+      setProfileSettings({
+        ...profileSettings,
+        openModal: false,
+        requestCanceled: false,
+      });
+    }, 2000);
+  };
+
   const action = (
     <React.Fragment>
       <Button color="secondary" size="small" onClick={handleClose}>
@@ -136,6 +181,18 @@ function ProfilePlayground() {
       </IconButton>
     </React.Fragment>
   );
+
+  const styleModal = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   const handleAvatarUpload = (event) => {
     const file = event.target.files[0];
@@ -234,10 +291,51 @@ function ProfilePlayground() {
               variant="outlined"
               color={profileSettings.buttonColor}
               size={profileSettings.buttonSize}
+              onClick={ModalhandleOpen}
             >
               Предложить работу
             </Button>
           </CardActions>
+
+          <Modal
+            open={profileSettings.openModal}
+            onClose={ModalhandleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={styleModal}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {`Хочешь предложить работу ${profileSettings.name} ${profileSettings.surname}`}
+              </Typography>
+              <Button
+                onClick={sendRequestHandleClick}
+                disabled={profileSettings.requestCanceled}
+              >
+                Ok
+              </Button>
+              <Button
+                onClick={RequestCanceledHandleClick}
+                disabled={profileSettings.requestSent}
+              >
+                Cancel
+              </Button>
+              {profileSettings.requestSent ? (
+                <Alert sx={{ width: "100%" }} severity="success">
+                  Заявка отправлена! {profileSettings.name}{" "}
+                  {profileSettings.surname} получит предложение
+                </Alert>
+              ) : (
+                <Box />
+              )}
+              {profileSettings.requestCanceled ? (
+                <Alert sx={{ width: "100%" }} severity="warning">
+                  Отправка отменена
+                </Alert>
+              ) : (
+                <Box />
+              )}
+            </Box>
+          </Modal>
 
           {profileSettings.showAlert && (
             <Box>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
@@ -19,6 +19,43 @@ import Switch from "@mui/material/Switch";
 import Checkbox from "@mui/material/Checkbox";
 import Alert from "@mui/material/Alert";
 import Chip from "@mui/material/Chip";
+import CloudUploadSharpIcon from "@mui/icons-material/CloudUploadSharp";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+import Snackbar from "@mui/material/Snackbar";
+import CloseIcon from "@mui/icons-material/Close";
+import Modal from "@mui/material/Modal";
+import Tooltip from "@mui/material/Tooltip";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#44b700",
+    color: "#44b700",
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    "&::after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      borderRadius: "50%",
+      animation: "ripple 1.2s infinite ease-in-out",
+      border: "1px solid currentColor",
+      content: '""',
+    },
+  },
+  "@keyframes ripple": {
+    "0%": {
+      transform: "scale(.8)",
+      opacity: 1,
+    },
+    "100%": {
+      transform: "scale(2.4)",
+      opacity: 0,
+    },
+  },
+}));
 
 function ProfilePlayground() {
   const [profileSettings, setProfileSettings] = useState({
@@ -31,7 +68,146 @@ function ProfilePlayground() {
     cardVariant: "elevation",
     showAlert: false,
     profession: "Разработчик",
+    avatarImage: null,
+    openPopper: false,
+    messageForUser: false,
+    openModal: false,
+    requestSent: false,
+    requestCanceled: false,
+    btnProposition: "Предложить проект",
   });
+
+  const ModalhandleOpen = () => {
+    setProfileSettings({
+      ...profileSettings,
+      openModal: true,
+    });
+  };
+  const ModalhandleClose = () => {
+    setProfileSettings({
+      ...profileSettings,
+      openModal: false,
+    });
+  };
+
+  const handleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      openPopper: true,
+    });
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setProfileSettings({
+      ...profileSettings,
+      openPopper: false,
+    });
+  };
+
+  const sendMessageHandleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      messageForUser: true,
+    });
+  };
+
+  const sendMessageHandleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setProfileSettings({
+      ...profileSettings,
+      messageForUser: false,
+    });
+  };
+
+  const sendRequestHandleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      requestSent: true,
+    });
+    setTimeout(() => {
+      setProfileSettings({
+        ...profileSettings,
+        openModal: false,
+        requestSent: false,
+      });
+    }, 2000);
+  };
+
+  const RequestCanceledHandleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      requestCanceled: true,
+    });
+    setTimeout(() => {
+      setProfileSettings({
+        ...profileSettings,
+        openModal: false,
+        requestCanceled: false,
+      });
+    }, 2000);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        CLOSE
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  const action2 = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={sendMessageHandleClose}>
+        CLOSE
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={sendMessageHandleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  const styleModal = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const handleAvatarUpload = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+
+      setProfileSettings({
+        ...profileSettings,
+        avatarImage: imageUrl,
+      });
+    }
+  };
 
   return (
     <Stack direction="row" spacing={4} sx={{ p: 4 }}>
@@ -52,24 +228,40 @@ function ProfilePlayground() {
           }}
         >
           <CardContent>
-            <Avatar
-              sx={{
-                width: profileSettings.avatarSize,
-                height: profileSettings.avatarSize,
-                transition: "0.3s",
-                bgcolor:
-                  profileSettings.buttonColor === "primary"
-                    ? "#1976d2"
-                    : profileSettings.buttonColor === "secondary"
-                      ? "#9c27b0"
-                      : profileSettings.buttonColor === "success"
-                        ? "#2e7d32"
-                        : "#d32f2f",
-                color: "white",
-              }}
+            <IconButton component="label">
+              <input
+                hidden
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarUpload}
+              />
+              <CloudUploadSharpIcon></CloudUploadSharpIcon>
+            </IconButton>
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant={profileSettings.isOnline ? "dot" : "standard"}
             >
-              {profileSettings.name[0]}
-            </Avatar>
+              <Avatar
+                src={profileSettings.avatarImage}
+                sx={{
+                  width: profileSettings.avatarSize,
+                  height: profileSettings.avatarSize,
+                  transition: "0.3s",
+                  bgcolor:
+                    profileSettings.buttonColor === "primary"
+                      ? "#1976d2"
+                      : profileSettings.buttonColor === "secondary"
+                        ? "#9c27b0"
+                        : profileSettings.buttonColor === "success"
+                          ? "#2e7d32"
+                          : "#d32f2f",
+                  color: "white",
+                }}
+              >
+                {profileSettings.name[0]}
+              </Avatar>
+            </StyledBadge>
             <Typography variant="h6">
               {profileSettings.isOnline ? "● " : "○ "}
               {profileSettings.name} {profileSettings.surname}
@@ -89,28 +281,100 @@ function ProfilePlayground() {
           </CardContent>
 
           <CardActions>
-            <Button
-              variant="contained"
-              color={profileSettings.buttonColor}
-              size={profileSettings.buttonSize}
-            >
-              Написать
-            </Button>
-            <Button
-              variant="outlined"
-              color={profileSettings.buttonColor}
-              size={profileSettings.buttonSize}
-            >
-              Предложить работу
-            </Button>
+            <Tooltip title="Нажми, чтобы написать сообщение">
+              <Button
+                variant="contained"
+                color={profileSettings.buttonColor}
+                size={profileSettings.buttonSize}
+                onClick={sendMessageHandleClick}
+              >
+                Написать
+              </Button>
+            </Tooltip>
+            <Tooltip title="Нажми, чтобы отправить предложение">
+              <Button
+                variant="outlined"
+                color={profileSettings.buttonColor}
+                size={profileSettings.buttonSize}
+                onClick={ModalhandleOpen}
+              >
+                {profileSettings.btnProposition}
+              </Button>
+            </Tooltip>
           </CardActions>
 
+          <Modal
+            open={profileSettings.openModal}
+            onClose={ModalhandleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={styleModal}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {`Хочешь предложить работу ${profileSettings.name} ${profileSettings.surname}`}
+              </Typography>
+              <Button
+                onClick={sendRequestHandleClick}
+                disabled={profileSettings.requestCanceled}
+              >
+                Ok
+              </Button>
+              <Button
+                onClick={RequestCanceledHandleClick}
+                disabled={profileSettings.requestSent}
+              >
+                Cancel
+              </Button>
+              {profileSettings.requestSent ? (
+                <Alert sx={{ width: "100%" }} severity="success">
+                  Заявка отправлена! {profileSettings.name}{" "}
+                  {profileSettings.surname} получит предложение
+                </Alert>
+              ) : (
+                <Box />
+              )}
+              {profileSettings.requestCanceled ? (
+                <Alert sx={{ width: "100%" }} severity="warning">
+                  Отправка отменена
+                </Alert>
+              ) : (
+                <Box />
+              )}
+            </Box>
+          </Modal>
+
           {profileSettings.showAlert && (
-            <Alert sx={{ m: 2 }} severity="info">
-              Идет поиск стажеров
-            </Alert>
+            <Box>
+              <Alert sx={{ width: "100%" }} severity="info">
+                Идет поиск стажеров
+              </Alert>
+              <Alert sx={{ width: "100%" }} severity="info">
+                Не забудь загрузить аватарку!
+                <Button onClick={handleClick}>Понятно</Button>
+              </Alert>
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="success">Отлично! MUI работает</Alert>
+                <Alert severity="info">Попробуй изменить цвет кнопок</Alert>
+                <Alert severity="warning">Не забывай про атрибуты</Alert>
+                <Alert severity="error">Ошибок нет, все отлично!</Alert>
+              </Stack>
+            </Box>
           )}
         </Card>
+        <Snackbar
+          open={profileSettings.openPopper}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          message="Спасибо, что прочитал!"
+          action={action}
+        />
+        <Snackbar
+          open={profileSettings.messageForUser}
+          autoHideDuration={3000}
+          onClose={sendMessageHandleClose}
+          message={`Напиши сообщение для ${profileSettings.name} ${profileSettings.surname}`}
+          action={action2}
+        />
       </Box>
 
       {/* --------SETTINGS CARD------- */}
@@ -155,12 +419,30 @@ function ProfilePlayground() {
 
             <Select
               value={profileSettings.profession}
-              onChange={(e) =>
+              onChange={(e) => {
+                let tempText = "Предложить проект";
+                switch (e.target.value) {
+                  case "Разработчик":
+                    tempText = "Предложить проект";
+                    break;
+                  case "Дизайнер":
+                    tempText = "Предложить заказ";
+                    break;
+                  case "Менеджер":
+                    tempText = "Предложить вакансию";
+                    break;
+                  case "Аналитик":
+                    tempText = "Предложить стажировку";
+                    break;
+                  default:
+                    tempText = "Предложить проект";
+                }
                 setProfileSettings({
                   ...profileSettings,
                   profession: e.target.value,
-                })
-              }
+                  btnProposition: tempText,
+                });
+              }}
             >
               <MenuItem value="Разработчик">Разработчик</MenuItem>
               <MenuItem value="Дизайнер">Дизайнер</MenuItem>

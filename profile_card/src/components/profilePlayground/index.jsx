@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
@@ -23,6 +23,8 @@ import CloudUploadSharpIcon from "@mui/icons-material/CloudUploadSharp";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
+import Snackbar from "@mui/material/Snackbar";
+import CloseIcon from "@mui/icons-material/Close";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -65,7 +67,42 @@ function ProfilePlayground() {
     showAlert: false,
     profession: "Разработчик",
     avatarImage: null,
+    openPopper: false,
   });
+
+  const handleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      openPopper: true,
+    });
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setProfileSettings({
+      ...profileSettings,
+      openPopper: false,
+    });
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   const handleAvatarUpload = (event) => {
     const file = event.target.files[0];
@@ -169,11 +206,24 @@ function ProfilePlayground() {
           </CardActions>
 
           {profileSettings.showAlert && (
-            <Alert sx={{ m: 2 }} severity="info">
-              Идет поиск стажеров
-            </Alert>
+            <Box>
+              <Alert sx={{ m: 2 }} severity="info">
+                Идет поиск стажеров
+              </Alert>
+              <Alert sx={{ m: 2 }} severity="info">
+                Не забудь загрузить аватарку!
+                <Button onClick={handleClick}>Понятно</Button>
+              </Alert>
+            </Box>
           )}
         </Card>
+        <Snackbar
+          open={profileSettings.openPopper}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          message="Спасибо, что прочитал!"
+          action={action}
+        />
       </Box>
 
       {/* --------SETTINGS CARD------- */}

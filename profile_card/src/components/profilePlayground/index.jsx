@@ -68,6 +68,7 @@ function ProfilePlayground() {
     profession: "Разработчик",
     avatarImage: null,
     openPopper: false,
+    messageForUser: false,
   });
 
   const handleClick = () => {
@@ -81,23 +82,55 @@ function ProfilePlayground() {
     if (reason === "clickaway") {
       return;
     }
-
     setProfileSettings({
       ...profileSettings,
       openPopper: false,
     });
   };
 
+  const sendMessageHandleClick = () => {
+    setProfileSettings({
+      ...profileSettings,
+      messageForUser: true,
+    });
+  };
+
+  const sendMessageHandleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setProfileSettings({
+      ...profileSettings,
+      messageForUser: false,
+    });
+  };
+
   const action = (
     <React.Fragment>
       <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
+        CLOSE
       </Button>
       <IconButton
         size="small"
         aria-label="close"
         color="inherit"
         onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  const action2 = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={sendMessageHandleClose}>
+        CLOSE
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={sendMessageHandleClose}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
@@ -193,6 +226,7 @@ function ProfilePlayground() {
               variant="contained"
               color={profileSettings.buttonColor}
               size={profileSettings.buttonSize}
+              onClick={sendMessageHandleClick}
             >
               Написать
             </Button>
@@ -229,6 +263,13 @@ function ProfilePlayground() {
           onClose={handleClose}
           message="Спасибо, что прочитал!"
           action={action}
+        />
+        <Snackbar
+          open={profileSettings.messageForUser}
+          autoHideDuration={3000}
+          onClose={sendMessageHandleClose}
+          message={`Напиши сообщение для ${profileSettings.name} ${profileSettings.surname}`}
+          action={action2}
         />
       </Box>
 

@@ -19,6 +19,8 @@ import Switch from "@mui/material/Switch";
 import Checkbox from "@mui/material/Checkbox";
 import Alert from "@mui/material/Alert";
 import Chip from "@mui/material/Chip";
+import CloudUploadSharpIcon from "@mui/icons-material/CloudUploadSharp";
+import IconButton from "@mui/material/IconButton";
 
 function ProfilePlayground() {
   const [profileSettings, setProfileSettings] = useState({
@@ -31,7 +33,21 @@ function ProfilePlayground() {
     cardVariant: "elevation",
     showAlert: false,
     profession: "Разработчик",
+    avatarImage: null,
   });
+
+  const handleAvatarUpload = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+
+      setProfileSettings({
+        ...profileSettings,
+        avatarImage: imageUrl,
+      });
+    }
+  };
 
   return (
     <Stack direction="row" spacing={4} sx={{ p: 4 }}>
@@ -52,7 +68,17 @@ function ProfilePlayground() {
           }}
         >
           <CardContent>
+            <IconButton component="label">
+              <input
+                hidden
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarUpload}
+              />
+              <CloudUploadSharpIcon></CloudUploadSharpIcon>
+            </IconButton>
             <Avatar
+              src={profileSettings.avatarImage}
               sx={{
                 width: profileSettings.avatarSize,
                 height: profileSettings.avatarSize,

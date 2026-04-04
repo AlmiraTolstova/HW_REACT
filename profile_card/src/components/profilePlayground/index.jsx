@@ -26,6 +26,7 @@ import { styled } from "@mui/material/styles";
 import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 import Modal from "@mui/material/Modal";
+import Tooltip from "@mui/material/Tooltip";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -280,22 +281,26 @@ function ProfilePlayground() {
           </CardContent>
 
           <CardActions>
-            <Button
-              variant="contained"
-              color={profileSettings.buttonColor}
-              size={profileSettings.buttonSize}
-              onClick={sendMessageHandleClick}
-            >
-              Написать
-            </Button>
-            <Button
-              variant="outlined"
-              color={profileSettings.buttonColor}
-              size={profileSettings.buttonSize}
-              onClick={ModalhandleOpen}
-            >
-              {profileSettings.btnProposition}
-            </Button>
+            <Tooltip title="Нажми, чтобы написать сообщение">
+              <Button
+                variant="contained"
+                color={profileSettings.buttonColor}
+                size={profileSettings.buttonSize}
+                onClick={sendMessageHandleClick}
+              >
+                Написать
+              </Button>
+            </Tooltip>
+            <Tooltip title="Нажми, чтобы отправить предложение">
+              <Button
+                variant="outlined"
+                color={profileSettings.buttonColor}
+                size={profileSettings.buttonSize}
+                onClick={ModalhandleOpen}
+              >
+                {profileSettings.btnProposition}
+              </Button>
+            </Tooltip>
           </CardActions>
 
           <Modal

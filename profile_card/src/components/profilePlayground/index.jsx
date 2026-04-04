@@ -21,6 +21,37 @@ import Alert from "@mui/material/Alert";
 import Chip from "@mui/material/Chip";
 import CloudUploadSharpIcon from "@mui/icons-material/CloudUploadSharp";
 import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    backgroundColor: "#44b700",
+    color: "#44b700",
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    "&::after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      borderRadius: "50%",
+      animation: "ripple 1.2s infinite ease-in-out",
+      border: "1px solid currentColor",
+      content: '""',
+    },
+  },
+  "@keyframes ripple": {
+    "0%": {
+      transform: "scale(.8)",
+      opacity: 1,
+    },
+    "100%": {
+      transform: "scale(2.4)",
+      opacity: 0,
+    },
+  },
+}));
 
 function ProfilePlayground() {
   const [profileSettings, setProfileSettings] = useState({
@@ -77,25 +108,31 @@ function ProfilePlayground() {
               />
               <CloudUploadSharpIcon></CloudUploadSharpIcon>
             </IconButton>
-            <Avatar
-              src={profileSettings.avatarImage}
-              sx={{
-                width: profileSettings.avatarSize,
-                height: profileSettings.avatarSize,
-                transition: "0.3s",
-                bgcolor:
-                  profileSettings.buttonColor === "primary"
-                    ? "#1976d2"
-                    : profileSettings.buttonColor === "secondary"
-                      ? "#9c27b0"
-                      : profileSettings.buttonColor === "success"
-                        ? "#2e7d32"
-                        : "#d32f2f",
-                color: "white",
-              }}
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant={profileSettings.isOnline ? "dot" : "standard"}
             >
-              {profileSettings.name[0]}
-            </Avatar>
+              <Avatar
+                src={profileSettings.avatarImage}
+                sx={{
+                  width: profileSettings.avatarSize,
+                  height: profileSettings.avatarSize,
+                  transition: "0.3s",
+                  bgcolor:
+                    profileSettings.buttonColor === "primary"
+                      ? "#1976d2"
+                      : profileSettings.buttonColor === "secondary"
+                        ? "#9c27b0"
+                        : profileSettings.buttonColor === "success"
+                          ? "#2e7d32"
+                          : "#d32f2f",
+                  color: "white",
+                }}
+              >
+                {profileSettings.name[0]}
+              </Avatar>
+            </StyledBadge>
             <Typography variant="h6">
               {profileSettings.isOnline ? "● " : "○ "}
               {profileSettings.name} {profileSettings.surname}

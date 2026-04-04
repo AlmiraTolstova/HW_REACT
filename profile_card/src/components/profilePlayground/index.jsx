@@ -207,13 +207,19 @@ function ProfilePlayground() {
 
           {profileSettings.showAlert && (
             <Box>
-              <Alert sx={{ m: 2 }} severity="info">
+              <Alert sx={{ width: "100%" }} severity="info">
                 Идет поиск стажеров
               </Alert>
-              <Alert sx={{ m: 2 }} severity="info">
+              <Alert sx={{ width: "100%" }} severity="info">
                 Не забудь загрузить аватарку!
                 <Button onClick={handleClick}>Понятно</Button>
               </Alert>
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="success">Отлично! MUI работает</Alert>
+                <Alert severity="info">Попробуй изменить цвет кнопок</Alert>
+                <Alert severity="warning">Не забывай про атрибуты</Alert>
+                <Alert severity="error">Ошибок нет, все отлично!</Alert>
+              </Stack>
             </Box>
           )}
         </Card>

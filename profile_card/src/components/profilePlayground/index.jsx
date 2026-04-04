@@ -73,6 +73,7 @@ function ProfilePlayground() {
     openModal: false,
     requestSent: false,
     requestCanceled: false,
+    btnProposition: "Предложить проект",
   });
 
   const ModalhandleOpen = () => {
@@ -293,7 +294,7 @@ function ProfilePlayground() {
               size={profileSettings.buttonSize}
               onClick={ModalhandleOpen}
             >
-              Предложить работу
+              {profileSettings.btnProposition}
             </Button>
           </CardActions>
 
@@ -413,12 +414,30 @@ function ProfilePlayground() {
 
             <Select
               value={profileSettings.profession}
-              onChange={(e) =>
+              onChange={(e) => {
+                let tempText = "Предложить проект";
+                switch (e.target.value) {
+                  case "Разработчик":
+                    tempText = "Предложить проект";
+                    break;
+                  case "Дизайнер":
+                    tempText = "Предложить заказ";
+                    break;
+                  case "Менеджер":
+                    tempText = "Предложить вакансию";
+                    break;
+                  case "Аналитик":
+                    tempText = "Предложить стажировку";
+                    break;
+                  default:
+                    tempText = "Предложить проект";
+                }
                 setProfileSettings({
                   ...profileSettings,
                   profession: e.target.value,
-                })
-              }
+                  btnProposition: tempText,
+                });
+              }}
             >
               <MenuItem value="Разработчик">Разработчик</MenuItem>
               <MenuItem value="Дизайнер">Дизайнер</MenuItem>

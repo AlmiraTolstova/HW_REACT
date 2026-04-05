@@ -1,10 +1,12 @@
+import styles from "./styles.module.css";
+
 function UserList({ userArr }) {
   return (
-    <div>
+    <div className={styles.userList}>
       {userArr.map((item) => {
         return (
-          <div key={item.id}>
-            <p>{item.name}</p>
+          <div className={styles.userCard} key={item.id}>
+            <p className={styles.userName}>{item.name}</p>
           </div>
         );
       })}

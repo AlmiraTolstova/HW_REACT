@@ -63,9 +63,34 @@ const playerSlice = createSlice({
         state.repeatMode = "none";
       }
     },
+    setPlaybackRate(state, action) {
+      const allowed = [0.5, 0.75, 1, 1.25, 1.5];
+
+      if (allowed.includes(action.payload)) {
+        state.playbackRate = action.payload;
+      }
+    },
+    seekForward(state, action) {
+      const seconds = action.payload;
+
+      state.currentTime = Math.min(state.currentTime + seconds, state.maxTime);
+    },
+    seekBackward(state, action) {
+      const seconds = action.payload;
+
+      state.currentTime = Math.max(state.currentTime - seconds, 0);
+    },
   },
 });
 
-export const { playPause, setTime, changeVolume, toggleMute, nextRepeatMode } =
-  playerSlice.actions;
+export const {
+  playPause,
+  setTime,
+  changeVolume,
+  toggleMute,
+  nextRepeatMode,
+  setPlaybackRate,
+  seekForward,
+  seekBackward,
+} = playerSlice.actions;
 export default playerSlice.reducer;

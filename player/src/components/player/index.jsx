@@ -5,6 +5,9 @@ import {
   changeVolume,
   toggleMute,
   nextRepeatMode,
+  setPlaybackRate,
+  seekForward,
+  seekBackward,
 } from "../../redux/slices/playerSlice";
 
 import Button from "@mui/material/Button";
@@ -18,6 +21,10 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import RepeatOneIcon from "@mui/icons-material/RepeatOne";
 import RepeatOnIcon from "@mui/icons-material/RepeatOn";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 function Player() {
   const dispatch = useDispatch();
@@ -38,14 +45,19 @@ function Player() {
   //   nextRepeatMode
   const repeatMode = useSelector((state) => state.player.repeatMode);
 
+  const playbackRate = useSelector((state) => state.player.playbackRate);
+
   return (
     <Box>
       <Button variant="contained" onClick={() => dispatch(playPause())}>
         {isPlaying ? "Pause" : "Play"}
       </Button>
 
-      <Box>
-        <Typography variant="h5"> setTime </Typography>
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h5" sx={{ mr: 2 }}>
+          {" "}
+          setTime{" "}
+        </Typography>
         <Slider
           value={currentTime}
           min={0}
@@ -53,8 +65,11 @@ function Player() {
           onChange={(event, value) => dispatch(setTime(value))}
         ></Slider>
       </Box>
-      <Box>
-        <Typography variant="h5"> changeVolume </Typography>
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h5" sx={{ mr: 2 }}>
+          {" "}
+          changeVolume{" "}
+        </Typography>
         <Slider
           value={volume}
           min={0}
@@ -62,20 +77,82 @@ function Player() {
           onChange={(e, value) => dispatch(changeVolume(value))}
         />
       </Box>
-      <Box>
-        <Typography variant="h5"> toggleMute </Typography>
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h5" sx={{ mr: 2 }}>
+          {" "}
+          toggleMute{" "}
+        </Typography>
         <IconButton onClick={() => dispatch(toggleMute())}>
           {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
         </IconButton>
       </Box>
 
-      <Box>
-        <Typography variant="h5">nextRepeatMode</Typography>
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h5" sx={{ mr: 2 }}>
+          nextRepeatMode
+        </Typography>
         <IconButton onClick={() => dispatch(nextRepeatMode())}>
           {repeatMode === "none" && <RepeatIcon />}
           {repeatMode === "one" && <RepeatOneIcon />}
           {repeatMode === "all" && <RepeatOnIcon />}
         </IconButton>
+      </Box>
+
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h5" sx={{ mr: 2 }}>
+          Playback Rate
+        </Typography>
+
+        <FormControl>
+          <InputLabel id="rate-label">Speed</InputLabel>
+
+          <Select
+            labelId="rate-label"
+            value={playbackRate}
+            label="Speed"
+            onChange={(e) => dispatch(setPlaybackRate(Number(e.target.value)))}
+          >
+            <MenuItem value={0.5}>0.5x</MenuItem>
+            <MenuItem value={0.75}>0.75x</MenuItem>
+            <MenuItem value={1}>1x</MenuItem>
+            <MenuItem value={1.25}>1.25x</MenuItem>
+            <MenuItem value={1.5}>1.5x</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <Box>
+        <Typography variant="h5">Seek Backward</Typography>
+
+        <Stack direction="row" spacing={2}>
+          <Button variant="outlined" onClick={() => dispatch(seekBackward(5))}>
+            -5s
+          </Button>
+
+          <Button variant="outlined" onClick={() => dispatch(seekBackward(10))}>
+            -10s
+          </Button>
+
+          <Button variant="outlined" onClick={() => dispatch(seekBackward(30))}>
+            -30s
+          </Button>
+        </Stack>
+      </Box>
+      <Box>
+        <Typography variant="h5">Seek Forward</Typography>
+
+        <Stack direction="row" spacing={2}>
+          <Button variant="outlined" onClick={() => dispatch(seekForward(5))}>
+            +5s
+          </Button>
+
+          <Button variant="outlined" onClick={() => dispatch(seekForward(10))}>
+            +10s
+          </Button>
+
+          <Button variant="outlined" onClick={() => dispatch(seekForward(30))}>
+            +30s
+          </Button>
+        </Stack>
       </Box>
     </Box>
   );

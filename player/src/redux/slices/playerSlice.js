@@ -30,18 +30,23 @@ const playerSlice = createSlice({
     },
     changeVolume(state, action) {
       let vol = action.payload;
+
       if (vol < 0) vol = 0;
       if (vol > 100) vol = 100;
-      state.volume = vol;
-      if (vol === 0) {
-        state.isMuted = true;
-      } else if (state.isMuted) {
-        state.isMuted = false;
+
+      if (vol !== 0) {
+        state.previousVolume = vol;
       }
+
+      state.volume = vol;
+      state.isMuted = vol === 0;
     },
     toggleMute(state) {
       if (!state.isMuted) {
-        state.previousVolume = state.volume;
+        if (state.volume !== 0) {
+          state.previousVolume = state.volume;
+        }
+
         state.volume = 0;
         state.isMuted = true;
       } else {
@@ -49,9 +54,18 @@ const playerSlice = createSlice({
         state.isMuted = false;
       }
     },
+    nextRepeatMode(state) {
+      if (state.repeatMode === "none") {
+        state.repeatMode = "one";
+      } else if (state.repeatMode === "one") {
+        state.repeatMode = "all";
+      } else {
+        state.repeatMode = "none";
+      }
+    },
   },
 });
 
-export const { playPause, setTime, changeVolume, toggleMute } =
+export const { playPause, setTime, changeVolume, toggleMute, nextRepeatMode } =
   playerSlice.actions;
 export default playerSlice.reducer;

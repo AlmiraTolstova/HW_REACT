@@ -4,6 +4,7 @@ import {
   setTime,
   changeVolume,
   toggleMute,
+  nextRepeatMode,
 } from "../../redux/slices/playerSlice";
 
 import Button from "@mui/material/Button";
@@ -14,6 +15,9 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import RepeatIcon from "@mui/icons-material/Repeat";
+import RepeatOneIcon from "@mui/icons-material/RepeatOne";
+import RepeatOnIcon from "@mui/icons-material/RepeatOn";
 
 function Player() {
   const dispatch = useDispatch();
@@ -30,6 +34,9 @@ function Player() {
 
   //   toggleMute
   const isMuted = useSelector((state) => state.player.isMuted);
+
+  //   nextRepeatMode
+  const repeatMode = useSelector((state) => state.player.repeatMode);
 
   return (
     <Box>
@@ -59,6 +66,15 @@ function Player() {
         <Typography variant="h5"> toggleMute </Typography>
         <IconButton onClick={() => dispatch(toggleMute())}>
           {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+        </IconButton>
+      </Box>
+
+      <Box>
+        <Typography variant="h5">nextRepeatMode</Typography>
+        <IconButton onClick={() => dispatch(nextRepeatMode())}>
+          {repeatMode === "none" && <RepeatIcon />}
+          {repeatMode === "one" && <RepeatOneIcon />}
+          {repeatMode === "all" && <RepeatOnIcon />}
         </IconButton>
       </Box>
     </Box>

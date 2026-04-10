@@ -3,6 +3,7 @@ import {
   playPause,
   setTime,
   changeVolume,
+  toggleMute,
 } from "../../redux/slices/playerSlice";
 
 import Button from "@mui/material/Button";
@@ -10,6 +11,9 @@ import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 
 function Player() {
   const dispatch = useDispatch();
@@ -23,6 +27,9 @@ function Player() {
 
   // changeVolume
   const volume = useSelector((state) => state.player.volume);
+
+  //   toggleMute
+  const isMuted = useSelector((state) => state.player.isMuted);
 
   return (
     <Box>
@@ -41,13 +48,18 @@ function Player() {
       </Box>
       <Box>
         <Typography variant="h5"> changeVolume </Typography>
-
         <Slider
           value={volume}
           min={0}
           max={100}
           onChange={(e, value) => dispatch(changeVolume(value))}
         />
+      </Box>
+      <Box>
+        <Typography variant="h5"> toggleMute </Typography>
+        <IconButton onClick={() => dispatch(toggleMute())}>
+          {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+        </IconButton>
       </Box>
     </Box>
   );

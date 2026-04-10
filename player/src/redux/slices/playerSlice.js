@@ -39,8 +39,19 @@ const playerSlice = createSlice({
         state.isMuted = false;
       }
     },
+    toggleMute(state) {
+      if (!state.isMuted) {
+        state.previousVolume = state.volume;
+        state.volume = 0;
+        state.isMuted = true;
+      } else {
+        state.volume = state.previousVolume;
+        state.isMuted = false;
+      }
+    },
   },
 });
 
-export const { playPause, setTime, changeVolume } = playerSlice.actions;
+export const { playPause, setTime, changeVolume, toggleMute } =
+  playerSlice.actions;
 export default playerSlice.reducer;

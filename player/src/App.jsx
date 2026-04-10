@@ -1,12 +1,15 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { reset } from "./redux/slices/userSlice";
+import Player from "./components/player";
 
 function App() {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
-  const userData = userSelector((state) => state.user.data);
-  const count = userSelector((state) => state.user.count);
+  const userData = useSelector((state) => state.user.data);
+  const count = useSelector((state) => state.user.count);
+  const volume = useSelector((state) => state.player.volume);
+  const user = useSelector((state) => state.user.data);
 
   function logout() {
     dispatch(reset());
@@ -14,7 +17,8 @@ function App() {
 
   return (
     <div>
-      <h1>app</h1>
+      <h1>Player</h1>
+      <Player></Player>
     </div>
   );
 }

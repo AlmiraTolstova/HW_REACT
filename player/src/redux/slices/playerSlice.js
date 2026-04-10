@@ -1,0 +1,25 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  isPlaying: false,
+  currentTime: 0,
+  maxTime: 180,
+  volume: 50,
+  isMuted: false,
+  previousVolume: 50,
+  playbackRate: 1,
+  repeatMode: "none",
+};
+
+const playerSlice = createSlice({
+  name: "player",
+  initialState,
+  reducers: {
+    playPause(state) {
+      state.isPlaying = !state.isPlaying;
+    },
+  },
+});
+
+export const { playPause } = playerSlice.actions;
+export default playerSlice.reducer;

@@ -1,4 +1,4 @@
-import { ListItem, ListItemText, Button, Box } from "@mui/material";
+import { ListItem, ListItemText, Button, Box, Divider } from "@mui/material";
 import { toggleTodo, deleteTodo } from "../../redux/slices/todoSlice";
 import { useDispatch } from "react-redux";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,7 +25,7 @@ function TodoItem({ todo }) {
             onClick={handleToggle}
             startIcon={<CheckIcon />}
           >
-            Complete
+            {todo.completed ? "Undo" : "Complete"}
           </Button>
 
           <Button
@@ -39,14 +39,18 @@ function TodoItem({ todo }) {
         </Box>
       }
     >
-      <ListItemText
-        primary={todo.text}
-        onClick={handleToggle}
-        sx={{
-          cursor: "pointer",
-          textDecoration: todo.completed ? "line-through" : "none",
-        }}
-      />
+      <Box sx={{ width: "100%" }}>
+        <ListItemText
+          primary={todo.text}
+          onClick={handleToggle}
+          sx={{
+            cursor: "pointer",
+            textDecoration: todo.completed ? "line-through" : "none",
+          }}
+        />
+
+        <Divider sx={{ mt: 4 }} />
+      </Box>
     </ListItem>
   );
 }

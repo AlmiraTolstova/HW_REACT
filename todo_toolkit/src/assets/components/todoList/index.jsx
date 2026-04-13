@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
-import { Box, Typography, List } from "@mui/material";
+import { Box, Typography, List, Card } from "@mui/material";
 import TodoItem from "../todoItem";
 
 function TodoList() {
   const todos = useSelector((state) => state.todos);
 
   return (
-    <Box>
-      <Typography variant="h3" gutterBottom>
+    <Card sx={{ textAlign: "center", mt: 4, p: 2 }}>
+      <Typography variant="h4" gutterBottom>
         Todo List
       </Typography>
 
@@ -16,7 +16,7 @@ function TodoList() {
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </List>
-    </Box>
+    </Card>
   );
 }
 

@@ -36,7 +36,7 @@ function TodoForm() {
         onChange={(e) => setText(e.target.value)}
       />
 
-      <Button fullWidth type="submit" variant="contained">
+      <Button fullWidth type="submit" variant="contained" color="success">
         Add Todo
       </Button>
     </Box>

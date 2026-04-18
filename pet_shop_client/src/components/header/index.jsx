@@ -8,6 +8,9 @@ import {
   Link,
 } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+// import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
+import styles from "./styles.module.css";
 
 function Header() {
   return (
@@ -38,14 +41,12 @@ function Header() {
               color: "#fff",
               fontWeight: "bold",
             }}
-          >
-            {/* 🐶 */}
-          </Box>
+          ></Box>
         </Box>
 
         {/* Center: Navigation */}
         <Box sx={{ display: "flex", gap: 4 }}>
-          <Link href="#" underline="hover" to="/">
+          {/* <Link href="#" underline="hover" to="/">
             Main Page
           </Link>
           <Link href="#" underline="hover" to="/categories">
@@ -56,11 +57,51 @@ function Header() {
           </Link>
           <Link href="#" underline="hover" to="/sales">
             All sales
-          </Link>
+          </Link> */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+            to="/"
+          >
+            Main Page
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+            to="/categoriespage"
+          >
+            Categories
+          </NavLink>{" "}
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+            to="/allproductspage"
+          >
+            All products
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+            to="/allsalespage"
+          >
+            All Sales
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+            }
+            to="/notfoundpage"
+          >
+            NotFoundPage
+          </NavLink>
         </Box>
 
         {/* Right: Cart */}
-        <IconButton color="inherit">
+        <IconButton color="inherit" component={NavLink} to="/basketpage">
           <ShoppingBagOutlinedIcon />
         </IconButton>
       </Toolbar>

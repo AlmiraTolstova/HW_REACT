@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getDiscount } from "../../redux/slices/homeSlice";
+import { getDiscount, resetDiscountStatus } from "../../redux/slices/homeSlice";
 import Snackbar from "@mui/material/Snackbar";
 import { useState } from "react";
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect } from "react";
+import { Status } from "../../utils/Status";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
@@ -35,10 +36,6 @@ function DiscountForm() {
 
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -48,8 +45,11 @@ function DiscountForm() {
   };
 
   useEffect(() => {
-    handleClick();
-  }, [discount]);
+    if (discountStatus === Status.DONE) {
+      setOpen(true);
+      dispatch(resetDiscountStatus());
+    }
+  }, [discountStatus, dispatch]);
 
   const action = (
     <React.Fragment>

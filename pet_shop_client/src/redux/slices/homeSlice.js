@@ -32,6 +32,8 @@ const homeSlice = createSlice({
     categoriesErrorMessage: "",
     discontFormData: { userName: "", phone: "", email: "" },
     productsList: [],
+    productsSalesList: [],
+    productsSalesShortList: [],
     productsListStatus: Status.NO_STATUS,
     productsListErrorMessage: "",
     discountStatus: Status.NO_STATUS,
@@ -42,8 +44,8 @@ const homeSlice = createSlice({
     setDiscontFormData: (state, action) => {
       state.discontFormData = action.payload;
     },
-    resetDiscount: (state) => {
-      state.discount = "";
+    resetDiscountStatus: (state) => {
+      state.discountStatus = Status.NO_STATUS;
     },
   },
   extraReducers: (builder) => {
@@ -66,6 +68,20 @@ const homeSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.productsListStatus = Status.DONE;
         state.productsList = action.payload;
+        let salesProducts = [];
+        salesProducts = action.payload.filter(
+          (item) => item.discont_price !== null,
+        );
+        salesProducts.map((product) => {
+          product["discount_percentage"] = Math.round(
+            ((product["price"] - product["discont_price"]) / product["price"]) *
+              100,
+          );
+        });
+        state.productsSalesList = salesProducts;
+        state.productsSalesShortList = [...salesProducts]
+          .sort((a, b) => b["discount_percentage"] - a["discount_percentage"])
+          .slice(0, 4);
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.productsListStatus = Status.ERROR;
@@ -79,7 +95,6 @@ const homeSlice = createSlice({
       .addCase(getDiscount.fulfilled, (state, action) => {
         state.discountStatus = Status.DONE;
         state.discount = action.payload;
-        console.log(action.payload);
       })
       .addCase(getDiscount.rejected, (state, action) => {
         state.discountStatus = Status.ERROR;
@@ -88,5 +103,5 @@ const homeSlice = createSlice({
   },
 });
 
-export const { resetState, logout } = homeSlice.actions;
+export const { resetState, logout, resetDiscountStatus } = homeSlice.actions;
 export default homeSlice.reducer;

@@ -7,6 +7,7 @@ import AllProductsPage from "./pages/allProductsPage";
 import AllSalesPage from "./pages/allSalesPage";
 import BasketPage from "./pages/basketPage";
 import NotFoundPage from "./pages/notFoundPage";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/basketpage" element={<BasketPage />}></Route>
           <Route path="/notfoundpage" element={<NotFoundPage />}></Route>
         </Routes>
+        <Footer></Footer>
       </Router>
     </div>
   );

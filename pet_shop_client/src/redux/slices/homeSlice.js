@@ -18,6 +18,12 @@ export const getProducts = createAsyncThunk("home/get_products", async () => {
   return response.data;
 });
 
+//-------------получение скидки----------------------//
+export const getDiscount = createAsyncThunk("home/get_discount", async () => {
+  const response = await axios.get(API.Home.getDiscount(), {});
+  return response.data;
+});
+
 const homeSlice = createSlice({
   name: "home",
   initialState: {
@@ -28,10 +34,16 @@ const homeSlice = createSlice({
     productsList: [],
     productsListStatus: Status.NO_STATUS,
     productsListErrorMessage: "",
+    discountStatus: Status.NO_STATUS,
+    discountErrorMessage: "",
+    discount: "",
   },
   reducers: {
     setDiscontFormData: (state, action) => {
       state.discontFormData = action.payload;
+    },
+    resetDiscount: (state) => {
+      state.discount = "";
     },
   },
   extraReducers: (builder) => {
@@ -58,6 +70,20 @@ const homeSlice = createSlice({
       .addCase(getProducts.rejected, (state, action) => {
         state.productsListStatus = Status.ERROR;
         state.productsListErrorMessage = action.payload.message;
+      });
+
+    builder
+      .addCase(getDiscount.pending, (state) => {
+        state.discountStatus = Status.LOADING;
+      })
+      .addCase(getDiscount.fulfilled, (state, action) => {
+        state.discountStatus = Status.DONE;
+        state.discount = action.payload;
+        console.log(action.payload);
+      })
+      .addCase(getDiscount.rejected, (state, action) => {
+        state.discountStatus = Status.ERROR;
+        state.discountErrorMessage = action.payload.message;
       });
   },
 });

@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import BtnNavigation from "../btnNavigation";
 
 const contentStyle = {
   margin: 0,
@@ -34,9 +35,13 @@ function CategoriesSlider() {
       <Button onClick={() => console.log(categories)}>
         reducer to console
       </Button>
-      <Typography variant="h2">Categories</Typography>
-      <Divider></Divider>
-      <Button>All categories </Button>
+      <Box>
+        <Typography variant="h2">Categories</Typography>
+        <Divider></Divider>
+        <Button>All categories </Button>
+        <BtnNavigation>All categories</BtnNavigation>
+      </Box>
+
       <Spin
         indicator={<LoadingOutlined spin />}
         size="large"

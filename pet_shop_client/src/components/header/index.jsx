@@ -8,9 +8,9 @@ import {
   Link,
 } from "@mui/material";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-// import { NavLink } from "react-router";
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
+import BasketIcon from "../icons";
 
 function Header() {
   return (
@@ -18,9 +18,11 @@ function Header() {
       position="static"
       elevation={0}
       sx={{
-        backgroundColor: "#f5f5f5",
-        color: "#333",
-        px: 4,
+        backgroundColor: "#FFFFFF",
+        color: "#282828",
+        pt: "1.875rem",
+        pb: "1.75rem",
+        border: "1px solid red",
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -31,33 +33,14 @@ function Header() {
             src="./src/assets/logo.png"
             alt="logo"
             sx={{
-              width: 70,
-              height: 70,
-              borderRadius: "50%",
-              backgroundColor: "#2563eb",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontWeight: "bold",
+              width: "70px",
+              height: "70px",
             }}
           ></Box>
         </Box>
 
         {/* Center: Navigation */}
         <Box sx={{ display: "flex", gap: 4 }}>
-          {/* <Link href="#" underline="hover" to="/">
-            Main Page
-          </Link>
-          <Link href="#" underline="hover" to="/categories">
-            Categories
-          </Link>
-          <Link href="#" underline="hover" to="/products">
-            All products
-          </Link>
-          <Link href="#" underline="hover" to="/sales">
-            All sales
-          </Link> */}
           <NavLink
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
@@ -102,7 +85,7 @@ function Header() {
 
         {/* Right: Cart */}
         <IconButton color="inherit" component={NavLink} to="/basketpage">
-          <ShoppingBagOutlinedIcon />
+          <BasketIcon count={""} size={28} />
         </IconButton>
       </Toolbar>
     </AppBar>

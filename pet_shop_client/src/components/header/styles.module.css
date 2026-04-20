@@ -1,15 +1,16 @@
 .nav {
   display: flex;
   justify-content: center;
-  background-color: #007bff;
-  padding: 1rem;
 }
 .navLink {
-  color: rgb(133, 37, 37);
-  margin: 0 1rem;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 130%;
+  color: #282828;
   text-decoration: none;
 }
 .navLink.active {
-  font-weight: bold;
-  text-decoration: underline;
+  color: #0d50ff;
 }

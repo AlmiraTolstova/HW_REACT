@@ -5,6 +5,8 @@ import { getCategories, getProducts } from "../../redux/slices/homeSlice";
 import DiscountForm from "../../components/discountForm";
 import { Button } from "@mui/material";
 import SalesList from "../../components/salesList";
+import AddToCartButton from "../../components/btnCard";
+import MainBanner from "../../components/mainBanner";
 
 function Home() {
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ function Home() {
       <Button onClick={() => console.log(productsSalesShortList)}>
         reducer
       </Button>
+      <MainBanner></MainBanner>
       <CategoriesSlider></CategoriesSlider>
       <DiscountForm></DiscountForm>
       <SalesList saleslist={productsSalesShortList}></SalesList>

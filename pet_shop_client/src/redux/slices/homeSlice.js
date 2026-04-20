@@ -39,6 +39,7 @@ const homeSlice = createSlice({
     discountStatus: Status.NO_STATUS,
     discountErrorMessage: "",
     discount: "",
+    productsLocalList: [],
   },
   reducers: {
     setDiscontFormData: (state, action) => {
@@ -46,6 +47,11 @@ const homeSlice = createSlice({
     },
     resetDiscountStatus: (state) => {
       state.discountStatus = Status.NO_STATUS;
+    },
+    setProductsLocalList: (state, action) => {
+      console.log(action.payload);
+
+      state.productsLocalList = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -103,5 +109,6 @@ const homeSlice = createSlice({
   },
 });
 
-export const { resetState, logout, resetDiscountStatus } = homeSlice.actions;
+export const { resetState, logout, resetDiscountStatus, setProductsLocalList } =
+  homeSlice.actions;
 export default homeSlice.reducer;

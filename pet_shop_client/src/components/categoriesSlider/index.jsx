@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
-import { Carousel, Divider } from "antd";
+import { Carousel } from "antd";
+import Divider from "@mui/material/Divider";
 import { useDispatch, useSelector } from "react-redux";
 import { Flex, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -10,6 +11,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import BtnNavigation from "../btnNavigation";
+import styles from "./styles.module.css";
 
 const contentStyle = {
   margin: 0,
@@ -30,13 +33,36 @@ function CategoriesSlider() {
   };
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2 }}>
       <Button onClick={() => console.log(categories)}>
         reducer to console
       </Button>
-      <Typography variant="h2">Categories</Typography>
-      <Divider></Divider>
-      <Button>All categories </Button>
+      <Box
+        sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: "5rem" }}
+      >
+        <Typography
+          sx={{
+            fontFamily: "Montserrat",
+            fontStyle: "normal",
+            fontWeight: 700,
+            fontSize: "64px",
+            lineHeight: "110%",
+            color: "#282828",
+          }}
+          variant="h2"
+        >
+          Categories
+        </Typography>
+        <Divider
+          sx={{
+            flexGrow: 1,
+            maxWidth: "900px",
+            ml: "32px",
+          }}
+        ></Divider>
+        <BtnNavigation>All categories</BtnNavigation>
+      </Box>
+
       <Spin
         indicator={<LoadingOutlined spin />}
         size="large"
@@ -57,18 +83,34 @@ function CategoriesSlider() {
                 handleClick(item);
               }}
             >
-              <Card sx={{ maxWidth: 345, mx: "auto" }}>
+              <Box sx={{ maxWidth: "316px", mx: "auto", mb: "6.625rem" }}>
                 <CardMedia
-                  sx={{ height: 140 }}
+                  sx={{
+                    height: "350px",
+                    backgroundSize: "contain",
+                    borderRadius: "12px",
+                  }}
                   image={"http://localhost:3333" + item.image}
                   title={item.title}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    sx={{
+                      fontFamily: "Montserrat",
+                      fontStyle: "normal",
+                      fontWeight: 500,
+                      fontSize: "20px",
+                      lineHeight: "130%",
+                      textAlign: "center",
+                      color: "#282828",
+                    }}
+                  >
                     {item.title}
                   </Typography>
                 </CardContent>
-              </Card>
+              </Box>
             </Box>
           ))}
         </Carousel>

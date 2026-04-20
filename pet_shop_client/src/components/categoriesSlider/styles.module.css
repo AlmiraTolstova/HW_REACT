@@ -1,0 +1,14 @@
+:global(.ant-carousel .slick-prev),
+:global(.ant-carousel .slick-next) {
+  top: 38%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+:global(.ant-carousel .slick-prev) {
+  left: 10px;
+}
+
+:global(.ant-carousel .slick-next) {
+  right: 10px;
+}

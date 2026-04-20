@@ -2,15 +2,16 @@ import { Box, Card, Typography, CardMedia, CardContent } from "@mui/material";
 import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function CategoriesList({ categorieslist }) {
+function ProductsList({ productslist }) {
   const navigate = useNavigate();
   const handleClick = (item) => {
-    navigate(`/allproductspage/${item.id}`);
+    console.log(item);
+    navigate(`/productcard/${item.id}`);
   };
 
   return (
     <Box sx={{ display: "flex" }}>
-      {categorieslist.map((item) => {
+      {productslist.map((item) => {
         return (
           <Box
             key={item.id}
@@ -35,4 +36,4 @@ function CategoriesList({ categorieslist }) {
   );
 }
 
-export default CategoriesList;
+export default ProductsList;

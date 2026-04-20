@@ -9,6 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 const contentStyle = {
   margin: 0,
@@ -23,6 +24,11 @@ function CategoriesSlider() {
   const { categories, categoriesStatus } = useSelector(
     (state) => state.homeSlice,
   );
+  const navigate = useNavigate();
+  const handleClick = (item) => {
+    navigate(`/allproductspage/${item.id}`);
+  };
+
   return (
     <Box>
       <Button onClick={() => console.log(categories)}>
@@ -45,7 +51,12 @@ function CategoriesSlider() {
           dots={false}
         >
           {categories.map((item) => (
-            <div key={item.id}>
+            <Box
+              key={item.id}
+              onClick={() => {
+                handleClick(item);
+              }}
+            >
               <Card sx={{ maxWidth: 345, mx: "auto" }}>
                 <CardMedia
                   sx={{ height: 140 }}
@@ -58,20 +69,8 @@ function CategoriesSlider() {
                   </Typography>
                 </CardContent>
               </Card>
-            </div>
+            </Box>
           ))}
-          {/* <div>
-            <h3 style={contentStyle}>1</h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>2</h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>3</h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>4</h3>
-          </div> */}
         </Carousel>
       </Spin>
     </Box>

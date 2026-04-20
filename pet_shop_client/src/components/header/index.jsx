@@ -78,7 +78,7 @@ function Header() {
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
-            to="/allproductspage"
+            to={`/allproductspage/-1`}
           >
             All products
           </NavLink>

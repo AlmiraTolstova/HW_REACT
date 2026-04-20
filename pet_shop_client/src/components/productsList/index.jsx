@@ -2,7 +2,7 @@ import { Box, Card, Typography, CardMedia, CardContent } from "@mui/material";
 import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function ProductsList({ productslist }) {
+function ProductsList({ productslist, type_id }) {
   const navigate = useNavigate();
   const handleClick = (item) => {
     console.log(item);
@@ -26,6 +26,13 @@ function ProductsList({ productslist }) {
                 title={item.title}
               />
               <CardContent>
+                {type_id === "allsales" ? (
+                  <Typography sx={{ backgroundColor: "blue" }}>
+                    -{item.discount_percentage}%
+                  </Typography>
+                ) : (
+                  <Typography></Typography>
+                )}
                 <Typography>{item.title}</Typography>
               </CardContent>
             </Card>

@@ -61,7 +61,7 @@ function Header() {
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
-            to={`/allproductspage/-1`}
+            to={`/allproductspage/allproducts`}
           >
             All products
           </NavLink>
@@ -69,7 +69,7 @@ function Header() {
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
-            to="/allsalespage"
+            to={`/allproductspage/allsales`}
           >
             All Sales
           </NavLink>
@@ -85,7 +85,7 @@ function Header() {
 
         {/* Right: Cart */}
         <IconButton color="inherit" component={NavLink} to="/basketpage">
-          <BasketIcon count={""} size={28} />
+          <BasketIcon count={5} size={28} />
         </IconButton>
       </Toolbar>
     </AppBar>

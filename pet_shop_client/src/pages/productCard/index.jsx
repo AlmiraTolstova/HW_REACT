@@ -5,9 +5,18 @@ import { useEffect } from "react";
 import { Spin } from "antd";
 import { Status } from "../../utils/Status";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Box, Card, Typography, CardMedia, CardContent } from "@mui/material";
+import {
+  Box,
+  Card,
+  Typography,
+  CardMedia,
+  CardContent,
+  Button,
+  Input,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import BtnCard from "../../components/btnCard";
 
 const localBreadCrumps = [
   {
@@ -38,12 +47,36 @@ function ProductCard() {
       <Typography>ProductCard</Typography>
       <Card>
         <CardMedia
-          sx={{ height: 140 }}
+          sx={{ height: "400px", width: "400px" }}
           image={"http://localhost:3333" + selectedProduct.image}
           title={selectedProduct.title}
         />
         <CardContent>
           <Typography variant="h5"> Categories</Typography>
+          <Typography variant="h5"> {selectedProduct.title}</Typography>
+          <Typography variant="h5"> {selectedProduct.price}$</Typography>
+          {selectedProduct.discont_price !== null ? (
+            <Typography>{selectedProduct.discont_price}$</Typography>
+          ) : (
+            <Box></Box>
+          )}
+          {selectedProduct.discount_percentage ? (
+            <Typography sx={{ backgroundColor: "blue", width: "50px" }}>
+              -{selectedProduct.discount_percentage}%
+            </Typography>
+          ) : (
+            <Box></Box>
+          )}
+          <Box sx={{ display: "flex" }}>
+            <Button variant="contained" sx={{ width: "50px" }}>
+              -
+            </Button>
+            <Input sx={{ width: "50px" }}></Input>
+            <Button variant="contained" sx={{ width: "50px" }}>
+              +
+            </Button>
+            <BtnCard>Add to cart</BtnCard>
+          </Box>
           <Typography variant="h5">
             Description {selectedProduct.description}
           </Typography>

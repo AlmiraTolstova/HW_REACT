@@ -64,6 +64,13 @@ function ProductCard() {
     dispatch(addProductToBasket(item));
   };
 
+  const orderedProduct =
+    ordersList.products.find(
+      (item) => String(item.id) === String(selectedProduct.id),
+    ) !== undefined
+      ? true
+      : false;
+
   if (!selectedProduct) return <div>Loading...</div>;
   return (
     <div>
@@ -97,6 +104,7 @@ function ProductCard() {
               onClick={handleMinusClick}
               variant="contained"
               sx={{ width: "50px" }}
+              disabled={orderedProduct}
             >
               -
             </Button>
@@ -107,10 +115,13 @@ function ProductCard() {
               onClick={handlePlusClick}
               variant="contained"
               sx={{ width: "50px" }}
+              disabled={orderedProduct}
             >
               +
             </Button>
-            <BtnCard onClick={handleAddToBasketClick}>Add to cart</BtnCard>
+            <BtnCard onClick={handleAddToBasketClick} disabled={orderedProduct}>
+              {orderedProduct ? "Added" : "Add to cart"}
+            </BtnCard>
           </Box>
           <Typography variant="h5">
             Description {selectedProduct.description}

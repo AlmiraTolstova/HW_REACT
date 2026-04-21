@@ -23,7 +23,7 @@ const BtnCard = styled(Button)(({ theme }) => ({
 
   // disabled = Added
   "&.Mui-disabled": {
-    backgroundColor: "#white",
+    backgroundColor: "white",
     color: "#282828",
     border: "1px solid #282828",
   },

@@ -26,7 +26,7 @@ function ProductsList({ productslist, type_id }) {
                 title={item.title}
               />
               <CardContent>
-                {type_id === "allsales" ? (
+                {item.discount_percentage ? (
                   <Typography sx={{ backgroundColor: "blue" }}>
                     -{item.discount_percentage}%
                   </Typography>

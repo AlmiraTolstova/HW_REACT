@@ -49,15 +49,15 @@ const basketSlice = createSlice({
     addProductToBasket: (state, action) => {
       const product = action.payload;
 
-      const exists = state.products.find((p) => p.id === product.id);
+      const exists = state.ordersList.products.find((p) => p.id === product.id);
 
       if (!exists) {
-        state.products.push({ ...product, count: 1 });
+        state.ordersList.products.push({ ...product });
       }
     },
     delProductFromBasket: (state, action) => {
       state.products = [
-        ...state.products.filter(
+        ...state.ordersList.products.filter(
           (item) => String(item.id) !== String(action.payload),
         ),
       ];
@@ -65,14 +65,14 @@ const basketSlice = createSlice({
     plusProductInBasket: (state, action) => {
       const productId = action.payload;
 
-      const existingProduct = state.products.find(
+      const existingProduct = state.ordersList.products.find(
         (item) => item.id === productId,
       );
 
       if (existingProduct) {
         existingProduct.count += 1;
       } else {
-        state.products.push({
+        state.ordersList.products.push({
           id: productId,
           count: 1,
         });
@@ -81,14 +81,16 @@ const basketSlice = createSlice({
     minusProductInBasket: (state, action) => {
       const id = action.payload;
 
-      const product = state.products.find((p) => p.id === id);
+      const product = state.ordersList.products.find((p) => p.id === id);
 
       if (!product) return;
 
       product.count -= 1;
 
       if (product.count <= 0) {
-        state.products = state.products.filter((p) => p.id !== id);
+        state.ordersList.products = state.ordersList.products.filter(
+          (p) => p.id !== id,
+        );
       }
     },
   },

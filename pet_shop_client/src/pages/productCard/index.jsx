@@ -17,6 +17,8 @@ import {
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import BtnCard from "../../components/btnCard";
+import { getProducts } from "../../redux/slices/homeSlice";
+import { addProductToBasket } from "../../redux/slices/basketSlice";
 
 const localBreadCrumps = [
   {
@@ -32,17 +34,40 @@ const localBreadCrumps = [
 function ProductCard() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [count, setCount] = useState(1);
 
   const { productsList } = useSelector((state) => state.homeSlice);
+  const { ordersList } = useSelector((state) => state.basketSlice);
   useEffect(() => {
-    setSelectedProduct(
-      [...productsList].find((item) => String(item.id) === String(id)),
-    );
-  }, [id, productsList]);
+    if (productsList.length === 0) {
+      dispatch(getProducts());
+    }
+  }, [id, productsList, dispatch]);
+
+  const selectedProduct = productsList.find(
+    (item) => String(item.id) === String(id),
+  );
+  const handlePlusClick = () => {
+    setCount(count + 1);
+  };
+  const handleMinusClick = () => {
+    if (count >= 2) {
+      setCount(count - 1);
+    }
+  };
+
+  const handleAddToBasketClick = () => {
+    const item = {
+      id: id,
+      count: count,
+    };
+    dispatch(addProductToBasket(item));
+  };
+
   if (!selectedProduct) return <div>Loading...</div>;
   return (
     <div>
+      <Button onClick={() => console.log(ordersList)}>reducer</Button>
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
       <Typography>ProductCard</Typography>
       <Card>
@@ -68,14 +93,24 @@ function ProductCard() {
             <Box></Box>
           )}
           <Box sx={{ display: "flex" }}>
-            <Button variant="contained" sx={{ width: "50px" }}>
+            <Button
+              onClick={handleMinusClick}
+              variant="contained"
+              sx={{ width: "50px" }}
+            >
               -
             </Button>
-            <Input sx={{ width: "50px" }}></Input>
-            <Button variant="contained" sx={{ width: "50px" }}>
+            <Typography sx={{ width: "50px", backgroundColor: "#9a8585" }}>
+              {count}
+            </Typography>
+            <Button
+              onClick={handlePlusClick}
+              variant="contained"
+              sx={{ width: "50px" }}
+            >
               +
             </Button>
-            <BtnCard>Add to cart</BtnCard>
+            <BtnCard onClick={handleAddToBasketClick}>Add to cart</BtnCard>
           </Box>
           <Typography variant="h5">
             Description {selectedProduct.description}

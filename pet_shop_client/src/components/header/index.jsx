@@ -10,7 +10,8 @@ import {
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
-import BasketIcon from "../icons";
+import BasketIcon from "../icons/basketIcon";
+import logo from "../../assets/logo.png";
 
 function Header() {
   return (
@@ -30,7 +31,7 @@ function Header() {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Box
             component="img"
-            src="./src/assets/logo.png"
+            src={logo}
             alt="logo"
             sx={{
               width: "70px",

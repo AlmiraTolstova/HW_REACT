@@ -1,5 +1,3 @@
-import * as React from "react";
-
 const BasketIcon = ({ count = 0, ...props }) => {
   const showBadge = count > 0;
 

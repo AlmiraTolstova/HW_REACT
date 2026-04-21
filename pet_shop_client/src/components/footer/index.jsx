@@ -17,9 +17,18 @@ const labelStyle = {
 
 function Footer() {
   return (
-    <Box sx={{ px: 6, py: 6, backgroundColor: "#f5f5f5" }}>
+    <Box
+      sx={{
+        px: 6,
+        py: 6,
+        backgroundColor: "#f5f5f5",
+      }}
+    >
       {/* Title */}
-      <Typography variant="h3" sx={{ mb: 4, fontWeight: 700 }}>
+      <Typography
+        variant="h3"
+        sx={{ maxWidth: "85rem", margin: "0 auto", mb: 4, fontWeight: 700 }}
+      >
         Contact
       </Typography>
 
@@ -27,7 +36,15 @@ function Footer() {
       <Grid
         container
         rowSpacing={1}
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        columnSpacing={{
+          xs: 1,
+          sm: 2,
+          md: 3,
+        }}
+        sx={{
+          maxWidth: "85rem",
+          margin: "0 auto",
+        }}
         //alignItems="stretch"
       >
         {/* Phone */}

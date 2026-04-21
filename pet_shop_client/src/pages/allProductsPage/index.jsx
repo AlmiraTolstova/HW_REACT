@@ -95,7 +95,13 @@ function AllProductsPage() {
   }, [dispatch, id, productsList, productsSalesList, categories]);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        maxWidth: "85rem",
+        margin: "0 auto",
+        border: "1px solid green",
+      }}
+    >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
       <ProductSortingFilters></ProductSortingFilters>
       <Button

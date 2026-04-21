@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import FilterSelector from "../filterSelector";
 import CustomCheckbox from "../customCheckbox";
+import PriceRange from "../priceRange";
 
 function ProductSortingFilters() {
   return (
@@ -12,6 +13,13 @@ function ProductSortingFilters() {
         gap: "32px",
       }}
     >
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
+        <PriceRange></PriceRange>
+      </Box>
       <Box
         sx={{
           display: "flex",

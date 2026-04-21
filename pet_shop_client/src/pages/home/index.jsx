@@ -17,6 +17,7 @@ function Home() {
     productsList,
     productsListStatus,
     productsSalesList,
+    discountStatus,
     productsSalesShortList,
   } = useSelector((state) => state.homeSlice);
   useEffect(() => {
@@ -27,9 +28,7 @@ function Home() {
   return (
     <div>
       Home
-      <Button onClick={() => console.log(productsSalesShortList)}>
-        reducer
-      </Button>
+      <Button onClick={() => console.log(discountStatus)}>reducer</Button>
       <MainBanner></MainBanner>
       <CategoriesSlider></CategoriesSlider>
       <DiscountForm></DiscountForm>

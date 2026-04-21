@@ -45,7 +45,12 @@ const localBreadCrumpsAllSales = [
 function AllProductsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [localBreadCrumps, setLocalBreadCrumps] = useState([]);
+  const [localBreadCrumps, setLocalBreadCrumps] = useState([
+    {
+      label: "Main page",
+      path: "/",
+    },
+  ]);
   const { productsList, categories, productsLocalList, productsSalesList } =
     useSelector((state) => state.homeSlice);
   useEffect(() => {
@@ -105,6 +110,9 @@ function AllProductsPage() {
       }}
     >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
+      <Typography variant="h2">
+        {localBreadCrumps[localBreadCrumps.length - 1].label}
+      </Typography>
       <ProductSortingFilters></ProductSortingFilters>
       <Button
         onClick={() => {

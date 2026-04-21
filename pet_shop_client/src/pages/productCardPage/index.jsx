@@ -31,7 +31,7 @@ const localBreadCrumps = [
   },
 ];
 
-function ProductCard() {
+function ProductCardPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [count, setCount] = useState(1);
@@ -132,4 +132,4 @@ function ProductCard() {
   );
 }
 
-export default ProductCard;
+export default ProductCardPage;

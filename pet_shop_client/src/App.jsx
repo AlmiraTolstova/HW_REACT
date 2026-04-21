@@ -7,7 +7,7 @@ import AllProductsPage from "./pages/allProductsPage";
 import BasketPage from "./pages/basketPage";
 import NotFoundPage from "./pages/notFoundPage";
 import Footer from "./components/footer";
-import ProductCard from "./pages/productCard";
+import ProductCardPage from "./pages/productCardPage";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
           ></Route>
           <Route
             path="/productcard/:id"
-            element={<ProductCard></ProductCard>}
+            element={<ProductCardPage></ProductCardPage>}
           ></Route>
           <Route path="/basketpage" element={<BasketPage />}></Route>
           <Route path="/notfoundpage" element={<NotFoundPage />}></Route>

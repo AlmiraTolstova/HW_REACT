@@ -12,7 +12,7 @@ export const getAllOrders = createAsyncThunk("home/get_allorders", async () => {
 //-------------отправка заказа-----------------------//
 export const postOrder = createAsyncThunk(
   "home/post_order",
-  async (getState) => {
+  async (_, { getState }) => {
     const response = await axios.post(
       API.Basket.postOrder(),
       getState().basketSlice.ordersList,
@@ -56,7 +56,7 @@ const basketSlice = createSlice({
       }
     },
     delProductFromBasket: (state, action) => {
-      state.products = [
+      state.ordersList.products = [
         ...state.ordersList.products.filter(
           (item) => String(item.id) !== String(action.payload),
         ),
@@ -125,5 +125,6 @@ export const {
   addProductToBasket,
   delProductFromBasket,
   minusProductInBasket,
+  plusProductInBasket,
 } = basketSlice.actions;
 export default basketSlice.reducer;

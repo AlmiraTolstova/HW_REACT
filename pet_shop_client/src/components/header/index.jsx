@@ -12,8 +12,11 @@ import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
 import BasketIcon from "../icons/basketIcon";
 import logo from "../../assets/logo.png";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const { ordersList } = useSelector((state) => state.basketSlice);
+
   return (
     <AppBar
       position="static"
@@ -86,7 +89,7 @@ function Header() {
 
         {/* Right: Cart */}
         <IconButton color="inherit" component={NavLink} to="/basketpage">
-          <BasketIcon count={5} size={28} />
+          <BasketIcon count={ordersList.products.length} size={28} />
         </IconButton>
       </Toolbar>
     </AppBar>

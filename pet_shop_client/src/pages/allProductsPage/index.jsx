@@ -14,6 +14,7 @@ import { Status } from "../../utils/Status";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import ProductsList from "../../components/productsList";
+import ProductSortingFilters from "../../components/productSortingFilters";
 
 let localBreadCrumpsCategories = [];
 
@@ -96,6 +97,7 @@ function AllProductsPage() {
   return (
     <Box>
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
+      <ProductSortingFilters></ProductSortingFilters>
       <Button
         onClick={() => {
           console.log(productsLocalList);

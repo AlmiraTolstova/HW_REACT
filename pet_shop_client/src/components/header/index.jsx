@@ -10,7 +10,8 @@ import {
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
-import BasketIcon from "../icons";
+import BasketIcon from "../icons/basketIcon";
+import logo from "../../assets/logo.png";
 
 function Header() {
   return (
@@ -30,7 +31,7 @@ function Header() {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Box
             component="img"
-            src="./src/assets/logo.png"
+            src={logo}
             alt="logo"
             sx={{
               width: "70px",
@@ -61,7 +62,7 @@ function Header() {
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
-            to={`/allproductspage/-1`}
+            to={`/allproductspage/allproducts`}
           >
             All products
           </NavLink>
@@ -69,7 +70,7 @@ function Header() {
             className={({ isActive }) =>
               isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
-            to="/allsalespage"
+            to={`/allproductspage/allsales`}
           >
             All Sales
           </NavLink>
@@ -85,7 +86,7 @@ function Header() {
 
         {/* Right: Cart */}
         <IconButton color="inherit" component={NavLink} to="/basketpage">
-          <BasketIcon count={""} size={28} />
+          <BasketIcon count={5} size={28} />
         </IconButton>
       </Toolbar>
     </AppBar>

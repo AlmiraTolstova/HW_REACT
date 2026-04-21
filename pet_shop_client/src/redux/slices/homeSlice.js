@@ -20,7 +20,7 @@ export const getProducts = createAsyncThunk("home/get_products", async () => {
 
 //-------------получение скидки----------------------//
 export const getDiscount = createAsyncThunk("home/get_discount", async () => {
-  const response = await axios.get(API.Home.getDiscount(), {});
+  const response = await axios.post(API.Home.getDiscount(), {});
   return response.data;
 });
 
@@ -49,8 +49,6 @@ const homeSlice = createSlice({
       state.discountStatus = Status.NO_STATUS;
     },
     setProductsLocalList: (state, action) => {
-      console.log(action.payload);
-
       state.productsLocalList = action.payload;
     },
   },

@@ -6,7 +6,7 @@ function MainBanner() {
       sx={{
         position: "relative",
         // height: "37.5rem",
-        backgroundImage: "url('./src/assets/imgMainBanner.png')", // вставь свою картинку
+        backgroundImage: "url('./src/assets/imgMainBanner.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",

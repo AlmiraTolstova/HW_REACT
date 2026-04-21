@@ -5,6 +5,7 @@ import CategoriesList from "../../components/categoriesList";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategories,
+  getProducts,
   setProductsLocalList,
 } from "../../redux/slices/homeSlice";
 import { useEffect } from "react";
@@ -14,40 +15,87 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import ProductsList from "../../components/productsList";
 
-const localBreadCrumps = [
+let localBreadCrumpsCategories = [];
+
+const localBreadCrumpsAllProducts = [
   {
     label: "Main page",
     path: "/",
   },
   {
-    label: "Categories",
-    path: "/categoriespage",
+    label: "All products",
+    path: "/allproductspage/allproducts",
+  },
+];
+
+const localBreadCrumpsAllSales = [
+  {
+    label: "Main page",
+    path: "/",
+  },
+  {
+    label: "All sales",
+    path: "/allproductspage/allsales",
   },
 ];
 
 function AllProductsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-
-  const { productsList, productsListStatus, productsLocalList } = useSelector(
-    (state) => state.homeSlice,
-  );
+  const [localBreadCrumps, setLocalBreadCrumps] = useState([]);
+  const { productsList, categories, productsLocalList, productsSalesList } =
+    useSelector((state) => state.homeSlice);
   useEffect(() => {
-    if (id === "-1") {
-      dispatch(setProductsLocalList(productsList));
-    } else {
-      dispatch(
-        setProductsLocalList(
-          [...productsList].filter((item) => {
-            return String(item.categoryId) === id;
-          }),
-        ),
-      );
+    if (productsList.length === 0) {
+      dispatch(getProducts());
+      dispatch(getCategories());
     }
-  }, [dispatch, id, productsList]);
+    switch (id) {
+      case "allproducts": {
+        dispatch(setProductsLocalList(productsList));
+        setLocalBreadCrumps(localBreadCrumpsAllProducts);
+        break;
+      }
+
+      case "allsales": {
+        dispatch(setProductsLocalList(productsSalesList));
+        setLocalBreadCrumps(localBreadCrumpsAllSales);
+        break;
+      }
+      default: {
+        const selectedCategory = [...categories].find(
+          (cat) => String(cat.id) === String(id),
+        );
+        localBreadCrumpsCategories = [
+          {
+            label: "Main page",
+            path: "/",
+          },
+          {
+            label: "Categories",
+            path: "/categoriespage",
+          },
+        ];
+
+        localBreadCrumpsCategories.push({
+          label: selectedCategory.title,
+          path: `/categoriespage/${selectedCategory.id}`,
+        });
+        dispatch(
+          setProductsLocalList(
+            [...productsList].filter((item) => {
+              return String(item.categoryId) === id;
+            }),
+          ),
+        );
+        setLocalBreadCrumps(localBreadCrumpsCategories);
+      }
+    }
+  }, [dispatch, id, productsList, productsSalesList, categories]);
 
   return (
     <Box>
+      <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
       <Button
         onClick={() => {
           console.log(productsLocalList);
@@ -56,7 +104,10 @@ function AllProductsPage() {
         reducer
       </Button>
       All Products Page Category ID: {id}
-      <ProductsList productslist={productsLocalList}></ProductsList>
+      <ProductsList
+        productslist={productsLocalList}
+        type_id={id}
+      ></ProductsList>
     </Box>
   );
 }

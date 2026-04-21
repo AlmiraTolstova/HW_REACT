@@ -1,6 +1,7 @@
 import { Box, Typography, Grid, IconButton } from "@mui/material";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { InstagramSvg, WhatsAppSvg } from "../icons/sozialIcon/index";
 
 const cardStyle = {
   backgroundColor: "#eaeaea",
@@ -43,10 +44,10 @@ function Footer() {
             <Typography sx={labelStyle}>Socials</Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
               <IconButton>
-                <InstagramIcon />
+                <InstagramSvg sx={{ color: "#282828", fontSize: 43 }} />
               </IconButton>
               <IconButton>
-                <WhatsAppIcon />
+                <WhatsAppSvg sx={{ color: "#282828", fontSize: 43 }} />
               </IconButton>
             </Box>
           </Box>

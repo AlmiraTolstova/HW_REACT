@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const BtnCard = styled(Button)(({ theme }) => ({
+const BtnBanner = styled(Button)(({ theme }) => ({
   borderRadius: "6px",
   textTransform: "none",
   fontFamily: "Montserrat",
@@ -9,24 +9,29 @@ const BtnCard = styled(Button)(({ theme }) => ({
   fontWeight: 600,
   fontSize: "20px",
   lineHeight: "130%",
-  padding: "16px 82px",
-  backgroundColor: "#0D50FF",
-  color: "#FFFFFF",
-
+  //   padding: "16px 180px",
+  backgroundColor: "#ffff",
+  color: "#282828",
+  padding: "16px 32px",
+  width: "100%",
+  maxWidth: "700px",
+  transition: "0.2s ease",
   "&:hover": {
     backgroundColor: "#282828",
+    color: "#ffff",
   },
 
   "&:active": {
-    backgroundColor: "#282828",
+    color: "#0D50FF",
+    backgroundColor: "#F1F3F4",
   },
 
   // disabled = Added
   "&.Mui-disabled": {
-    backgroundColor: "#white",
+    backgroundColor: "#ffff",
     color: "#282828",
     border: "1px solid #282828",
   },
 }));
 
-export default BtnCard;
+export default BtnBanner;

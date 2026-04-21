@@ -3,12 +3,12 @@ import { Box, TextField, Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getDiscount, resetDiscountStatus } from "../../redux/slices/homeSlice";
 import Snackbar from "@mui/material/Snackbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { useEffect } from "react";
 import { Status } from "../../utils/Status";
+import BtnBanner from "../btnBanner";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
@@ -30,17 +30,19 @@ const inputStyle = {
 };
 
 function DiscountForm() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const dispatch = useDispatch();
-  const { discount, discountStatus } = useSelector((state) => state.homeSlice);
+  const { discountStatus } = useSelector((state) => state.homeSlice);
 
   const [open, setOpen] = useState(false);
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
+    if (reason === "clickaway") return;
     setOpen(false);
   };
 
@@ -56,23 +58,22 @@ function DiscountForm() {
       <Button color="secondary" size="small" onClick={handleClose}>
         Close
       </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
+      <IconButton size="small" onClick={handleClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
     </React.Fragment>
   );
 
   const onSubmit = (data) => {
-    dispatch(getDiscount());
+    if (!data.name || !data.phone || !data.email) return;
+    dispatch(getDiscount(data));
   };
+
   return (
     <Box
       sx={{
+        maxWidth: "85rem",
+        margin: "0 auto",
         textAlign: "center",
         pt: 2,
         borderRadius: 4,
@@ -83,21 +84,22 @@ function DiscountForm() {
       <Typography
         sx={{
           fontFamily: "Montserrat",
-          fontStyle: "normal",
           fontWeight: 700,
           fontSize: "64px",
           lineHeight: "110%",
+          pb: "24px",
         }}
         variant="h4"
       >
         5% off on the first order
       </Typography>
+
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
-          p: 6,
+          alignItems: "flex-end",
+          p: "32px 32px 0px 32px",
           gap: 4,
         }}
       >
@@ -107,7 +109,7 @@ function DiscountForm() {
             component="img"
             src="./src/assets/image.png"
             alt="pets-image"
-            sx={{ maxWidth: "100%", height: "auto" }}
+            sx={{ maxWidth: "100%", height: "auto", display: "block" }}
           />
         </Box>
 
@@ -120,44 +122,57 @@ function DiscountForm() {
             display: "flex",
             flexDirection: "column",
             gap: 2,
+            pb: "32px",
           }}
         >
           <TextField
             placeholder="Name"
-            variant="outlined"
-            {...register("name")}
+            {...register("name", {
+              required: "Name is required",
+              minLength: {
+                value: 2,
+                message: "Name must be at least 2 characters",
+              },
+            })}
+            error={!!errors.name}
+            helperText={errors.name?.message}
             sx={inputStyle}
           />
 
           <TextField
             placeholder="Phone number"
-            {...register("phone")}
+            {...register("phone", {
+              required: "Phone is required",
+              pattern: {
+                value: /^[0-9+\-\s()]*$/,
+                message: "Invalid phone number",
+              },
+            })}
+            error={!!errors.phone}
+            helperText={errors.phone?.message}
             sx={inputStyle}
           />
 
           <TextField
             placeholder="Email"
-            {...register("email")}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid email address",
+              },
+            })}
+            error={!!errors.email}
+            helperText={errors.email?.message}
             sx={inputStyle}
           />
 
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              mt: 2,
-              backgroundColor: "#e5e5e5",
-              color: "#333",
-              fontWeight: 600,
-              "&:hover": {
-                backgroundColor: "#d4d4d4",
-              },
-            }}
-          >
+          <BtnBanner fullWidth type="submit">
             Get a discount
-          </Button>
+          </BtnBanner>
         </Box>
       </Box>
+
       <Snackbar
         open={open}
         autoHideDuration={3000}

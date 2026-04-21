@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { Spin } from "antd";
 import { Status } from "../../utils/Status";
 import { LoadingOutlined } from "@ant-design/icons";
+import GridCardsContainer from "../../components/gridCardsContainer";
+import CategoryCard from "../../components/categoryСard";
 
 const localBreadCrumps = [
   {
@@ -38,7 +40,11 @@ function CategoriesPage() {
         size="large"
         spinning={categoriesStatus === Status.LOADING ? true : false}
       >
-        <CategoriesList categorieslist={categories}></CategoriesList>
+        {/* <CategoriesList categorieslist={categories}></CategoriesList> */}
+        <GridCardsContainer
+          objectsList={categories}
+          CardComponent={CategoryCard}
+        ></GridCardsContainer>
       </Spin>
     </div>
   );

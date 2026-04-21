@@ -15,6 +15,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import ProductsList from "../../components/productsList";
 import ProductSortingFilters from "../../components/productSortingFilters";
+import GridCardsContainer from "../../components/gridCardsContainer";
+import ProductCard from "../../components/productCard";
 
 let localBreadCrumpsCategories = [];
 
@@ -112,10 +114,14 @@ function AllProductsPage() {
         reducer
       </Button>
       All Products Page Category ID: {id}
-      <ProductsList
+      <GridCardsContainer
+        objectsList={productsLocalList}
+        CardComponent={ProductCard}
+      ></GridCardsContainer>
+      {/* <ProductsList
         productslist={productsLocalList}
         type_id={id}
-      ></ProductsList>
+      ></ProductsList> */}
     </Box>
   );
 }

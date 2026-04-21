@@ -1,6 +1,8 @@
 import { Box, TextField, Button, Typography } from "@mui/material";
 import Img from "../../assets/404.png";
 import BtnCard from "../../components/btnCard";
+import SortSelect from "../../components/filterSelector";
+import FilterSelector from "../../components/filterSelector";
 function NotFoundPage() {
   return (
     <Box
@@ -50,6 +52,7 @@ function NotFoundPage() {
         to the homepage.
       </Typography>
       <BtnCard sx={{ pl: 7, pr: 7 }}>Go Home</BtnCard>
+      <FilterSelector></FilterSelector>
     </Box>
   );
 }

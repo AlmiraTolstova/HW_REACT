@@ -1,12 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import BtnCard from "../btnCard";
+import Banner from "../../assets/imgMainBanner.png";
 function MainBanner() {
   return (
     <Box
       sx={{
         position: "relative",
         // height: "37.5rem",
-        backgroundImage: "url('./src/assets/imgMainBanner.png')",
+        // backgroundImage: "url('./src/assets/imgMainBanner.png')",
+        backgroundImage: `url(${Banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",

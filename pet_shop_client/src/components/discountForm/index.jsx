@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Status } from "../../utils/Status";
 import BtnBanner from "../btnBanner";
+import Img from "../../assets/image.png";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
@@ -107,7 +108,7 @@ function DiscountForm() {
         <Box sx={{ flex: 1 }}>
           <Box
             component="img"
-            src="./src/assets/image.png"
+            src={Img}
             alt="pets-image"
             sx={{ maxWidth: "100%", height: "auto", display: "block" }}
           />

@@ -37,6 +37,7 @@ function ProductCardPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [count, setCount] = useState(1);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const { productsList } = useSelector((state) => state.homeSlice);
   const { ordersList } = useSelector((state) => state.basketSlice);
@@ -73,6 +74,14 @@ function ProductCardPage() {
       ? true
       : false;
 
+  const maxLength = 400;
+
+  const shortDescription = selectedProduct?.description
+    ? selectedProduct.description.length > maxLength
+      ? selectedProduct.description.slice(0, maxLength) + "..."
+      : selectedProduct.description
+    : "";
+
   if (!selectedProduct) return <div>Loading...</div>;
   return (
     <Box sx={{ maxWidth: "85rem", margin: "0 auto", border: "1px solid red" }}>
@@ -89,13 +98,25 @@ function ProductCardPage() {
         }}
       >
         <Grid size={7} sx={{ border: "2px solid blue" }}>
-          <Card>
+          <Box
+            sx={{
+              width: "548px",
+              height: "572px",
+              borderRadius: "8px",
+              overflow: "hidden",
+            }}
+          >
             <CardMedia
-              sx={{ height: "400px", width: "400px" }}
+              component="img"
               image={"http://localhost:3333" + selectedProduct.image}
-              title={selectedProduct.title}
-            />{" "}
-          </Card>
+              alt={selectedProduct.title}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
         </Grid>
         <Grid size={5} sx={{ border: "2px solid blue" }}>
           <CardContent>
@@ -202,9 +223,49 @@ function ProductCardPage() {
                 {orderedProduct ? "Added" : "Add to cart"}
               </BtnCard>
             </Box>
-            <Typography variant="h5">
-              Description {selectedProduct.description}
+            <Typography
+              sx={{
+                fontFamily: "Montserrat",
+                fontStyle: "normal",
+                fontWeight: 600,
+                fontSize: "20px",
+                lineHeight: "130%",
+                color: "#282828",
+                mt: 4,
+                mb: 2,
+              }}
+              variant="h5"
+            >
+              Description
             </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Montserrat",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "130%",
+                color: "#282828",
+              }}
+            >
+              {isExpanded ? selectedProduct.description : shortDescription}
+            </Typography>
+            {selectedProduct.description.length > maxLength && (
+              <Button
+                onClick={() => setIsExpanded((prev) => !prev)}
+                sx={{
+                  mt: 1,
+                  textTransform: "none",
+                  textDecoration: "underline",
+                  color: "#282828",
+                  fontWeight: 500,
+                  fontSize: "16px",
+                  p: 0,
+                }}
+              >
+                {isExpanded ? "Hide" : "Read more"}
+              </Button>
+            )}
           </CardContent>
         </Grid>
       </Grid>

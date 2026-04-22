@@ -13,12 +13,14 @@ import {
   CardContent,
   Button,
   Input,
+  Grid,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import BtnCard from "../../components/btnCard";
 import { getProducts } from "../../redux/slices/homeSlice";
 import { addProductToBasket } from "../../redux/slices/basketSlice";
+import BtnCounterControls from "../../components/btnCounterControls";
 
 const localBreadCrumps = [
   {
@@ -73,62 +75,140 @@ function ProductCardPage() {
 
   if (!selectedProduct) return <div>Loading...</div>;
   return (
-    <div>
+    <Box sx={{ maxWidth: "85rem", margin: "0 auto", border: "1px solid red" }}>
       <Button onClick={() => console.log(ordersList)}>reducer</Button>
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
-      <Typography>ProductCard</Typography>
-      <Card>
-        <CardMedia
-          sx={{ height: "400px", width: "400px" }}
-          image={"http://localhost:3333" + selectedProduct.image}
-          title={selectedProduct.title}
-        />
-        <CardContent>
-          <Typography variant="h5"> Categories</Typography>
-          <Typography variant="h5"> {selectedProduct.title}</Typography>
-          <Typography variant="h5"> {selectedProduct.price}$</Typography>
-          {selectedProduct.discont_price !== null ? (
-            <Typography>{selectedProduct.discont_price}$</Typography>
-          ) : (
-            <Box></Box>
-          )}
-          {selectedProduct.discount_percentage ? (
-            <Typography sx={{ backgroundColor: "blue", width: "50px" }}>
-              -{selectedProduct.discount_percentage}%
-            </Typography>
-          ) : (
-            <Box></Box>
-          )}
-          <Box sx={{ display: "flex" }}>
-            <Button
-              onClick={handleMinusClick}
-              variant="contained"
-              sx={{ width: "50px" }}
-              disabled={orderedProduct}
+      <Typography>ProductCardPage</Typography>
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={{
+          xs: 1,
+          sm: 2,
+          md: 3,
+        }}
+      >
+        <Grid size={7} sx={{ border: "2px solid blue" }}>
+          <Card>
+            <CardMedia
+              sx={{ height: "400px", width: "400px" }}
+              image={"http://localhost:3333" + selectedProduct.image}
+              title={selectedProduct.title}
+            />{" "}
+          </Card>
+        </Grid>
+        <Grid size={5} sx={{ border: "2px solid blue" }}>
+          <CardContent>
+            <Typography
+              sx={{
+                fontFamily: "Montserrat",
+                fontStyle: "normal",
+                fontWeight: 700,
+                fontSize: "40px",
+                lineHeight: "110%",
+                letterSpacing: "0.03em",
+                color: "#282828",
+                pb: "32px",
+              }}
+              variant="h4"
             >
-              -
-            </Button>
-            <Typography sx={{ width: "50px", backgroundColor: "#9a8585" }}>
-              {count}
+              {selectedProduct.title}
             </Typography>
-            <Button
-              onClick={handlePlusClick}
-              variant="contained"
-              sx={{ width: "50px" }}
-              disabled={orderedProduct}
-            >
-              +
-            </Button>
-            <BtnCard onClick={handleAddToBasketClick} disabled={orderedProduct}>
-              {orderedProduct ? "Added" : "Add to cart"}
-            </BtnCard>
-          </Box>
-          <Typography variant="h5">
-            Description {selectedProduct.description}
-          </Typography>
-        </CardContent>
-      </Card>
-    </div>
+            <Box sx={{ display: "flex", alignItems: "flex-end", pb: "32px" }}>
+              <Typography
+                sx={{
+                  fontFamily: "Montserrat",
+                  fontStyle: "normal",
+                  fontWeight: 700,
+                  fontSize: "64px",
+                  lineHeight: "110%",
+                  color: "#282828",
+                  pr: "32px",
+                }}
+              >
+                {selectedProduct.price}$
+              </Typography>
+              {selectedProduct.discont_price !== null ? (
+                <Typography
+                  sx={{
+                    fontFamily: "Montserrat",
+                    fontStyle: "normal",
+                    fontWeight: 500,
+                    fontSize: "40px",
+                    lineHeight: "130%",
+                    textDecorationLine: "line-through",
+                    color: "#8B8B8B",
+                    pr: 2,
+                  }}
+                >
+                  {selectedProduct.discont_price}$
+                </Typography>
+              ) : (
+                <Box></Box>
+              )}
+              {selectedProduct.discount_percentage ? (
+                <Typography
+                  sx={{
+                    alignSelf: "flex-start",
+                    backgroundColor: "#0D50FF",
+                    p: "4px 8px 4px 8px",
+                    borderRadius: "6px",
+                    fontFamily: "Montserrat",
+                    fontStyle: "normal",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    lineHeight: "130%",
+                    letterSpacing: "0.03em",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  -{selectedProduct.discount_percentage}%
+                </Typography>
+              ) : (
+                <Box></Box>
+              )}
+            </Box>
+            <Box sx={{ display: "flex" }}>
+              {/* <Button
+                onClick={handleMinusClick}
+                variant="outline"
+                sx={{ width: "50px", border: "1px solid #8B8B8B" }}
+                disabled={orderedProduct}
+              >
+                -
+              </Button>
+              <Typography sx={{ width: "50px", backgroundColor: "#9a8585" }}>
+                {count}
+              </Typography>
+              <Button
+                onClick={handlePlusClick}
+                variant="contained"
+                sx={{ width: "50px" }}
+                disabled={orderedProduct}
+              >
+                +
+              </Button> */}
+              <BtnCounterControls
+                count={count}
+                onMinus={handleMinusClick}
+                onPlus={handlePlusClick}
+                disabled={orderedProduct}
+              />
+              <BtnCard
+                sx={{ marginLeft: "30px" }}
+                onClick={handleAddToBasketClick}
+                disabled={orderedProduct}
+              >
+                {orderedProduct ? "Added" : "Add to cart"}
+              </BtnCard>
+            </Box>
+            <Typography variant="h5">
+              Description {selectedProduct.description}
+            </Typography>
+          </CardContent>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

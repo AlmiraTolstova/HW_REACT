@@ -22,24 +22,13 @@ import { getProducts } from "../../redux/slices/homeSlice";
 import { addProductToBasket } from "../../redux/slices/basketSlice";
 import BtnCounterControls from "../../components/btnCounterControls";
 
-const localBreadCrumps = [
-  {
-    label: "Main page",
-    path: "/",
-  },
-  {
-    label: "Categories",
-    path: "",
-  },
-];
-
 function ProductCardPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [count, setCount] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const { productsList } = useSelector((state) => state.homeSlice);
+  const { productsList, categories } = useSelector((state) => state.homeSlice);
   const { ordersList } = useSelector((state) => state.basketSlice);
   useEffect(() => {
     if (productsList.length === 0) {
@@ -50,6 +39,29 @@ function ProductCardPage() {
   const selectedProduct = productsList.find(
     (item) => String(item.id) === String(id),
   );
+  const selectedCategory = categories.find(
+    (item) => String(item.id) === String(selectedProduct.categoryId),
+  );
+
+  const localBreadCrumps = [
+    {
+      label: "Main page",
+      path: "/",
+    },
+    {
+      label: "Categories",
+      path: "/categoriespage",
+    },
+    {
+      label: selectedCategory.title,
+      path: `/allproductspage/${selectedCategory.id}`,
+    },
+    {
+      label: selectedProduct.title,
+      path: ``,
+    },
+  ];
+
   const handlePlusClick = () => {
     setCount(count + 1);
   };
@@ -85,9 +97,7 @@ function ProductCardPage() {
   if (!selectedProduct) return <div>Loading...</div>;
   return (
     <Box sx={{ maxWidth: "85rem", margin: "0 auto", border: "1px solid red" }}>
-      <Button onClick={() => console.log(ordersList)}>reducer</Button>
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
-      <Typography>ProductCardPage</Typography>
       <Grid
         container
         rowSpacing={1}

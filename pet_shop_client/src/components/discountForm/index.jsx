@@ -34,6 +34,7 @@ function DiscountForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -50,7 +51,6 @@ function DiscountForm() {
   useEffect(() => {
     if (discountStatus === Status.DONE) {
       setOpen(true);
-      dispatch(resetDiscountStatus());
     }
   }, [discountStatus, dispatch]);
 
@@ -69,6 +69,12 @@ function DiscountForm() {
     if (!data.name || !data.phone || !data.email) return;
     dispatch(getDiscount(data));
   };
+
+  useEffect(() => {
+    if (discountStatus === Status.DONE) {
+      reset();
+    }
+  }, [discountStatus, reset]);
 
   return (
     <Box
@@ -173,7 +179,9 @@ function DiscountForm() {
             type="submit"
             disabled={discountStatus === Status.DONE ? true : false}
           >
-            Get a discount
+            {discountStatus === Status.DONE
+              ? "Request Submitted"
+              : "Get a discount"}
           </BtnBanner>
         </Box>
       </Box>

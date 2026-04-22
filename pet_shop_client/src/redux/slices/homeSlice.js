@@ -99,6 +99,7 @@ const homeSlice = createSlice({
       .addCase(getDiscount.fulfilled, (state, action) => {
         state.discountStatus = Status.DONE;
         state.discount = action.payload;
+        console.log(state.discountStatus);
       })
       .addCase(getDiscount.rejected, (state, action) => {
         state.discountStatus = Status.ERROR;

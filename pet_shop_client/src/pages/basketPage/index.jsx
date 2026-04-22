@@ -118,22 +118,55 @@ function BasketPage() {
             if (!product) return null;
 
             return (
-              <Card
+              <Box
                 key={item.id}
-                sx={{ display: "flex", gap: 2, p: 2, border: "1px solid red" }}
+                sx={{
+                  display: "flex",
+                  gap: 2,
+                  border: "1px solid #DDDDDD",
+                  borderRadius: "12px",
+                  mb: 2,
+                }}
               >
                 <CardMedia
-                  sx={{ height: 100, width: 100 }}
+                  component="img"
                   image={"http://localhost:3333" + product.image}
-                  title={product.title}
+                  alt={product.title}
+                  sx={{
+                    width: "200px",
+                    objectFit: "cover",
+                    borderRadius: "12px",
+                  }}
                 />
 
-                <Box sx={{ flex: 1 }}>
-                  <CardContent>
-                    <Typography variant="h5">{product.title}</Typography>
-                  </CardContent>
-
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Box sx={{ p: 4 }}>
+                  <Box sx={{ display: "flex", alignItems: "baseline" }}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Montserrat",
+                        fontStyle: "normal",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                        lineHeight: "130%",
+                        color: "#282828",
+                        pb: 4,
+                      }}
+                      variant="h5"
+                    >
+                      {product.title}
+                    </Typography>
+                    <IconButton
+                      onClick={() => dispatch(delProductFromBasket(item.id))}
+                    >
+                      <ClearSharpIcon></ClearSharpIcon>
+                    </IconButton>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "flex-end",
+                    }}
+                  >
                     {/* <Button
                       variant="contained"
                       sx={{ width: 50 }}
@@ -158,25 +191,42 @@ function BasketPage() {
                       onMinus={() => dispatch(minusProductInBasket(item.id))}
                       onPlus={() => dispatch(plusProductInBasket(item.id))}
                     />
-                    <Typography>
+                    <Typography
+                      sx={{
+                        pl: 4,
+                        pr: 2,
+                        fontFamily: "Montserrat",
+                        fontStyle: "normal",
+                        fontWeight: 600,
+                        fontSize: "40px",
+                        lineHeight: "110%",
+                        color: "#282828",
+                      }}
+                    >
                       {product.discont_price !== null
                         ? item.count * product.discont_price
                         : item.count * product.price}
                       $
                     </Typography>
-                    <Typography sx={{ color: "red" }}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Montserrat",
+                        fontStyle: "normal",
+                        fontWeight: 500,
+                        fontSize: "20px",
+                        lineHeight: "130%",
+                        textDecorationLine: "line-through",
+                        color: "#8B8B8B",
+                        alignItems: "flex-end",
+                      }}
+                    >
                       {product.discont_price !== null
                         ? `${item.count * product.price}$`
                         : ""}
                     </Typography>
-                    <IconButton
-                      onClick={() => dispatch(delProductFromBasket(item.id))}
-                    >
-                      <ClearSharpIcon></ClearSharpIcon>
-                    </IconButton>
                   </Box>
                 </Box>
-              </Card>
+              </Box>
             );
           })}
         </Grid>

@@ -34,7 +34,9 @@ function CategoriesSlider() {
   // };
 
   return (
-    <Box sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2 }}>
+    <Box
+      sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2, pb: 11 }}
+    >
       <Button onClick={() => console.log(categories)}>
         reducer to console
       </Button>

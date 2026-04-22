@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import BreadCrumbs from "../../components/breadcrumbs";
 import CategoriesList from "../../components/categoriesList";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,9 +32,23 @@ function CategoriesPage() {
   }, [dispatch]);
 
   return (
-    <div>
+    <Box sx={{ maxWidth: "85rem", margin: "0 auto" }}>
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
-      <Typography variant="h2"> Categories</Typography>
+      <Typography
+        variant="h2"
+        sx={{
+          pb: 5,
+          pt: 5,
+          fontFamily: "Montserrat",
+          fontStyle: "normal",
+          fontWeight: 700,
+          fontSize: "64px",
+          lineHeight: "110%",
+          color: "#282828",
+        }}
+      >
+        Categories
+      </Typography>
       <Spin
         indicator={<LoadingOutlined spin />}
         size="large"
@@ -46,7 +60,7 @@ function CategoriesPage() {
           CardComponent={CategoryCard}
         ></GridCardsContainer>
       </Spin>
-    </div>
+    </Box>
   );
 }
 

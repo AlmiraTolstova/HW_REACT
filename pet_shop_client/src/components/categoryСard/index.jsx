@@ -18,12 +18,22 @@ function CategoryCard({ item }) {
           handleClick(item);
         }}
       >
-        <Box sx={{ maxWidth: "316px", mx: "auto", mb: "6.625rem" }}>
+        <Box
+          sx={{
+            maxWidth: "316px",
+            mx: "auto",
+            // mb: "6.625rem",
+            border: "1px solid red",
+            // height: "392px",
+            height: "100%", // ключевой момент
+          }}
+        >
           <CardMedia
             sx={{
               height: "350px",
               backgroundSize: "contain",
               borderRadius: "12px",
+              border: "1px solid red",
             }}
             image={"http://localhost:3333" + item.image}
             title={item.title}

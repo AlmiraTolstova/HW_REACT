@@ -59,7 +59,7 @@ function SalesList({ saleslist }) {
         }}
       >
         {saleslist?.map((item) => (
-          <ProductCard item={item}></ProductCard>
+          <ProductCard key={item.id} item={item}></ProductCard>
         ))}
       </Box>
     </Box>

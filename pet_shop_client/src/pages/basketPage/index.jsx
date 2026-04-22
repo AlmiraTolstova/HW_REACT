@@ -301,7 +301,6 @@ function BasketPage() {
               </Typography>
             </Box>
             <Box
-              fullWidth
               component="form"
               onSubmit={handleSubmit(onSubmit)}
               sx={{

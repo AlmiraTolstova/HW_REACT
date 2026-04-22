@@ -114,14 +114,7 @@ function AllProductsPage() {
         {localBreadCrumps[localBreadCrumps.length - 1].label}
       </Typography>
       <ProductSortingFilters></ProductSortingFilters>
-      <Button
-        onClick={() => {
-          console.log(productsLocalList);
-        }}
-      >
-        reducer
-      </Button>
-      All Products Page Category ID: {id}
+
       <GridCardsContainer
         objectsList={productsLocalList}
         CardComponent={ProductCard}

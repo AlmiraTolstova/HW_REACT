@@ -1,32 +1,49 @@
 import { Box, Typography } from "@mui/material";
 import FilterSelector from "../filterSelector";
 import CustomCheckbox from "../customCheckbox";
+import PriceRange from "../priceRange";
+
+const containerStyle = {
+  maxWidth: "85rem",
+  margin: "0 auto",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "flex-start",
+  gap: "2.5rem",
+  //   border: "1px solid red",
+  paddingTop: "2.5rem",
+  paddingBottom: "2.5rem",
+};
+
+const flexCenter = {
+  display: "flex",
+  alignItems: "center",
+};
+
+const labelText = {
+  fontFamily: "Montserrat",
+  fontStyle: "normal",
+  fontWeight: 600,
+  fontSize: "20px",
+  lineHeight: "130%",
+  color: "#282828",
+};
 
 function ProductSortingFilters() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        gap: "32px",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-        }}
-      >
-        <Typography>Discounted items</Typography>
-        <CustomCheckbox></CustomCheckbox>
+    <Box sx={containerStyle}>
+      <Box sx={{ display: "flex" }}>
+        <PriceRange />
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-        }}
-      >
-        <Typography>Sorted</Typography>
-        <FilterSelector></FilterSelector>
+
+      <Box sx={flexCenter}>
+        <Typography sx={{ ...labelText, pr: 2 }}>Discounted items</Typography>
+        <CustomCheckbox />
+      </Box>
+
+      <Box sx={flexCenter}>
+        <Typography sx={{ ...labelText, pr: 2 }}>Sorted</Typography>
+        <FilterSelector />
       </Box>
     </Box>
   );

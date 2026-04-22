@@ -17,9 +17,18 @@ const labelStyle = {
 
 function Footer() {
   return (
-    <Box sx={{ px: 6, py: 6, backgroundColor: "#f5f5f5" }}>
+    <Box
+      sx={{
+        px: 6,
+        py: 6,
+        backgroundColor: "#f5f5f5",
+      }}
+    >
       {/* Title */}
-      <Typography variant="h3" sx={{ mb: 4, fontWeight: 700 }}>
+      <Typography
+        variant="h2"
+        sx={{ maxWidth: "85rem", margin: "0 auto", mb: 4, fontWeight: 700 }}
+      >
         Contact
       </Typography>
 
@@ -27,21 +36,33 @@ function Footer() {
       <Grid
         container
         rowSpacing={1}
-        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        columnSpacing={{
+          xs: 1,
+          sm: 2,
+          md: 3,
+        }}
+        sx={{
+          maxWidth: "85rem",
+          margin: "0 auto",
+        }}
         //alignItems="stretch"
       >
         {/* Phone */}
-        <Grid size={6}>
+        <Grid size={7}>
           <Box sx={cardStyle}>
-            <Typography sx={labelStyle}>Phone</Typography>
-            <Typography variant="h4">+49 30 915-88492</Typography>
+            <Typography variant="h5" sx={labelStyle}>
+              Phone
+            </Typography>
+            <Typography>+49 30 915-88492</Typography>
           </Box>
         </Grid>
 
         {/* Socials */}
-        <Grid size={6}>
+        <Grid size={5}>
           <Box sx={cardStyle}>
-            <Typography sx={labelStyle}>Socials</Typography>
+            <Typography variant="h5" sx={labelStyle}>
+              Socials
+            </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>
               <IconButton>
                 <InstagramSvg sx={{ color: "#282828", fontSize: 43 }} />
@@ -54,20 +75,24 @@ function Footer() {
         </Grid>
 
         {/* Address */}
-        <Grid size={6}>
+        <Grid size={7}>
           <Box sx={cardStyle}>
-            <Typography sx={labelStyle}>Address</Typography>
-            <Typography variant="h5">
+            <Typography variant="h5" sx={labelStyle}>
+              Address
+            </Typography>
+            <Typography variant="h6">
               Wallstraße 9-13, 10179 Berlin, Deutschland
             </Typography>
           </Box>
         </Grid>
 
         {/* Working Hours */}
-        <Grid size={6}>
+        <Grid size={5}>
           <Box sx={cardStyle}>
-            <Typography sx={labelStyle}>Working Hours</Typography>
-            <Typography variant="h4">24 hours a day</Typography>
+            <Typography variant="h5" sx={labelStyle}>
+              Working Hours
+            </Typography>
+            <Typography>24 hours a day</Typography>
           </Box>
         </Grid>
       </Grid>

@@ -13,27 +13,30 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import BtnNavigation from "../btnNavigation";
 import styles from "./styles.module.css";
+import CategoryCard from "../categoryСard";
 
-const contentStyle = {
-  margin: 0,
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#f3f5f8",
-};
+// const contentStyle = {
+//   margin: 0,
+//   height: "160px",
+//   color: "#fff",
+//   lineHeight: "160px",
+//   textAlign: "center",
+//   background: "#f3f5f8",
+// };
 
 function CategoriesSlider() {
   const { categories, categoriesStatus } = useSelector(
     (state) => state.homeSlice,
   );
-  const navigate = useNavigate();
-  const handleClick = (item) => {
-    navigate(`/allproductspage/${item.id}`);
-  };
+  // const navigate = useNavigate();
+  // const handleClick = (item) => {
+  //   navigate(`/allproductspage/${item.id}`);
+  // };
 
   return (
-    <Box sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2 }}>
+    <Box
+      sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2, pb: 11 }}
+    >
       <Button onClick={() => console.log(categories)}>
         reducer to console
       </Button>
@@ -77,41 +80,7 @@ function CategoriesSlider() {
           dots={false}
         >
           {categories.map((item) => (
-            <Box
-              key={item.id}
-              onClick={() => {
-                handleClick(item);
-              }}
-            >
-              <Box sx={{ maxWidth: "316px", mx: "auto", mb: "6.625rem" }}>
-                <CardMedia
-                  sx={{
-                    height: "350px",
-                    backgroundSize: "contain",
-                    borderRadius: "12px",
-                  }}
-                  image={"http://localhost:3333" + item.image}
-                  title={item.title}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    sx={{
-                      fontFamily: "Montserrat",
-                      fontStyle: "normal",
-                      fontWeight: 500,
-                      fontSize: "20px",
-                      lineHeight: "130%",
-                      textAlign: "center",
-                      color: "#282828",
-                    }}
-                  >
-                    {item.title}
-                  </Typography>
-                </CardContent>
-              </Box>
-            </Box>
+            <CategoryCard item={item}></CategoryCard>
           ))}
         </Carousel>
       </Spin>

@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Home from "./pages/home";
 import CategoriesPage from "./pages/categoriesPage";
 import AllProductsPage from "./pages/allProductsPage";
-import AllSalesPage from "./pages/allSalesPage";
 import BasketPage from "./pages/basketPage";
 import NotFoundPage from "./pages/notFoundPage";
 import Footer from "./components/footer";
-import ProductCard from "./pages/productCard";
+import ProductCardPage from "./pages/productCardPage";
 
 function App() {
   return (
@@ -27,9 +26,8 @@ function App() {
           ></Route>
           <Route
             path="/productcard/:id"
-            element={<ProductCard></ProductCard>}
+            element={<ProductCardPage></ProductCardPage>}
           ></Route>
-          <Route path="/allsalespage" element={<AllSalesPage />}></Route>
           <Route path="/basketpage" element={<BasketPage />}></Route>
           <Route path="/notfoundpage" element={<NotFoundPage />}></Route>
         </Routes>

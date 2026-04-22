@@ -15,6 +15,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import ProductsList from "../../components/productsList";
 import ProductSortingFilters from "../../components/productSortingFilters";
+import GridCardsContainer from "../../components/gridCardsContainer";
+import ProductCard from "../../components/productCard";
 
 let localBreadCrumpsCategories = [];
 
@@ -43,7 +45,12 @@ const localBreadCrumpsAllSales = [
 function AllProductsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [localBreadCrumps, setLocalBreadCrumps] = useState([]);
+  const [localBreadCrumps, setLocalBreadCrumps] = useState([
+    {
+      label: "Main page",
+      path: "/",
+    },
+  ]);
   const { productsList, categories, productsLocalList, productsSalesList } =
     useSelector((state) => state.homeSlice);
   useEffect(() => {
@@ -95,8 +102,17 @@ function AllProductsPage() {
   }, [dispatch, id, productsList, productsSalesList, categories]);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        maxWidth: "85rem",
+        margin: "0 auto",
+        border: "1px solid green",
+      }}
+    >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
+      <Typography variant="h2">
+        {localBreadCrumps[localBreadCrumps.length - 1].label}
+      </Typography>
       <ProductSortingFilters></ProductSortingFilters>
       <Button
         onClick={() => {
@@ -106,10 +122,14 @@ function AllProductsPage() {
         reducer
       </Button>
       All Products Page Category ID: {id}
-      <ProductsList
+      <GridCardsContainer
+        objectsList={productsLocalList}
+        CardComponent={ProductCard}
+      ></GridCardsContainer>
+      {/* <ProductsList
         productslist={productsLocalList}
         type_id={id}
-      ></ProductsList>
+      ></ProductsList> */}
     </Box>
   );
 }

@@ -168,7 +168,11 @@ function DiscountForm() {
             sx={inputStyle}
           />
 
-          <BtnBanner fullWidth type="submit">
+          <BtnBanner
+            fullWidth
+            type="submit"
+            disabled={discountStatus === Status.DONE ? true : false}
+          >
             Get a discount
           </BtnBanner>
         </Box>

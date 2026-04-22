@@ -1,6 +1,8 @@
 import { Select, MenuItem, FormControl, styled } from "@mui/material";
 import { useState } from "react";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
+import { useDispatch, useSelector } from "react-redux";
+import { setSortedType } from "../../redux/slices/homeSlice";
 
 const CustomSelect = styled(Select)(() => ({
   background: "transparent",
@@ -36,13 +38,14 @@ const CustomSelect = styled(Select)(() => ({
 }));
 
 function FilterSelector() {
-  const [value, setValue] = useState("default");
+  const { sortedType } = useSelector((state) => state.homeSlice);
+  const dispatch = useDispatch();
 
   return (
     <FormControl>
       <CustomSelect
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={sortedType}
+        onChange={(e) => dispatch(setSortedType(e.target.value))}
         IconComponent={KeyboardArrowDownSharpIcon}
         MenuProps={{
           PaperProps: {

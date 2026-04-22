@@ -1,4 +1,9 @@
 import { Box, TextField, Typography, styled } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setFilterPriceFrom,
+  setFilterPriceTo,
+} from "../../redux/slices/homeSlice";
 
 const Wrapper = styled(Box)(() => ({
   display: "flex",
@@ -34,6 +39,11 @@ const StyledInput = styled(TextField)(() => ({
 }));
 
 function PriceRange() {
+  const { filterPriceFrom, filterPriceTo } = useSelector(
+    (state) => state.homeSlice,
+  );
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <Typography
@@ -49,8 +59,18 @@ function PriceRange() {
         Price
       </Typography>
 
-      <StyledInput placeholder="from" variant="outlined" />
-      <StyledInput placeholder="to" variant="outlined" />
+      <StyledInput
+        value={filterPriceFrom}
+        onChange={(e) => dispatch(setFilterPriceFrom(e.target.value))}
+        placeholder="from"
+        variant="outlined"
+      />
+      <StyledInput
+        value={filterPriceTo}
+        onChange={(e) => dispatch(setFilterPriceTo(e.target.value))}
+        placeholder="to"
+        variant="outlined"
+      />
     </Wrapper>
   );
 }

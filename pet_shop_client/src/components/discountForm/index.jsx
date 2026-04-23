@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getDiscount, resetDiscountStatus } from "../../redux/slices/homeSlice";
+import { getDiscount } from "../../redux/slices/homeSlice";
 import Snackbar from "@mui/material/Snackbar";
 import { useState, useEffect } from "react";
 import React from "react";
@@ -52,7 +52,7 @@ function DiscountForm() {
     if (discountStatus === Status.DONE) {
       setOpen(true);
     }
-  }, [discountStatus, dispatch]);
+  }, [discountStatus]);
 
   const action = (
     <React.Fragment>

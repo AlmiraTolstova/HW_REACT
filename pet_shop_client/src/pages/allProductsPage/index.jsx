@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import BreadCrumbs from "../../components/breadcrumbs";
-import CategoriesList from "../../components/categoriesList";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategories,
   getProducts,
+  resetFilters,
   setProductsLocalList,
 } from "../../redux/slices/homeSlice";
 import { useEffect } from "react";
@@ -60,6 +60,11 @@ function AllProductsPage() {
     filterShowDiscountedItems,
     sortedType,
   } = useSelector((state) => state.homeSlice);
+
+  useEffect(() => {
+    dispatch(resetFilters());
+  }, [dispatch]);
+
   useEffect(() => {
     if (productsList.length === 0) {
       dispatch(getProducts());

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BtnCard from "../btnCard";
 import { addProductToBasket } from "../../redux/slices/basketSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL } from "../../api/api";
 
 function ProductCard({ item }) {
   const dispatch = useDispatch();
@@ -10,7 +11,6 @@ function ProductCard({ item }) {
   const handleClick = (item) => {
     navigate(`/productcard/${item.id}`);
   };
-  const { productsList, categories } = useSelector((state) => state.homeSlice);
   const { ordersList } = useSelector((state) => state.basketSlice);
 
   const orderedProduct =
@@ -47,7 +47,7 @@ function ProductCard({ item }) {
       >
         <CardMedia
           sx={{ height: "17.75rem" }}
-          image={"http://localhost:3333" + item.image}
+          image={BASE_URL + item.image}
           title={item.title}
         />
         <BtnCard

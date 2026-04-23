@@ -19,10 +19,13 @@ export const getProducts = createAsyncThunk("home/get_products", async () => {
 });
 
 //-------------получение скидки----------------------//
-export const getDiscount = createAsyncThunk("home/get_discount", async () => {
-  const response = await axios.post(API.Home.getDiscount(), {});
-  return response.data;
-});
+export const getDiscount = createAsyncThunk(
+  "home/get_discount",
+  async (data) => {
+    const response = await axios.post(API.Home.getDiscount(), data);
+    return response.data;
+  },
+);
 
 const homeSlice = createSlice({
   name: "home",
@@ -40,8 +43,8 @@ const homeSlice = createSlice({
     discountErrorMessage: "",
     discount: "",
     productsLocalList: [],
-    filterPriceFrom: null,
-    filterPriceTo: null,
+    filterPriceFrom: "",
+    filterPriceTo: "",
     filterShowDiscountedItems: false,
     sortedType: "default",
   },
@@ -107,6 +110,12 @@ const homeSlice = createSlice({
     setSortedType: (state, action) => {
       state.sortedType = action.payload;
     },
+    resetFilters: (state) => {
+      state.filterPriceFrom = "";
+      state.filterPriceTo = "";
+      state.filterShowDiscountedItems = false;
+      state.sortedType = "default";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -117,9 +126,8 @@ const homeSlice = createSlice({
         state.categoriesStatus = Status.DONE;
         state.categories = action.payload;
       })
-      .addCase(getCategories.rejected, (state, action) => {
+      .addCase(getCategories.rejected, (state) => {
         state.categoriesStatus = Status.ERROR;
-        state.categoriesErrorMessage = action.payload.message;
       });
     builder
       .addCase(getProducts.pending, (state) => {
@@ -143,9 +151,8 @@ const homeSlice = createSlice({
           .sort((a, b) => b["discount_percentage"] - a["discount_percentage"])
           .slice(0, 4);
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(getProducts.rejected, (state) => {
         state.productsListStatus = Status.ERROR;
-        state.productsListErrorMessage = action.payload.message;
       });
 
     builder
@@ -155,11 +162,9 @@ const homeSlice = createSlice({
       .addCase(getDiscount.fulfilled, (state, action) => {
         state.discountStatus = Status.DONE;
         state.discount = action.payload;
-        console.log(state.discountStatus);
       })
-      .addCase(getDiscount.rejected, (state, action) => {
+      .addCase(getDiscount.rejected, (state) => {
         state.discountStatus = Status.ERROR;
-        state.discountErrorMessage = action.payload.message;
       });
   },
 });
@@ -173,5 +178,6 @@ export const {
   setFilterPriceTo,
   setFilterShowDiscountItems,
   setSortedType,
+  resetFilters,
 } = homeSlice.actions;
 export default homeSlice.reducer;

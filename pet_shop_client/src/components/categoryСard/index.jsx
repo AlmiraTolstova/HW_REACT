@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../api/api";
 
 function CategoryCard({ item }) {
   const navigate = useNavigate();
@@ -12,7 +13,6 @@ function CategoryCard({ item }) {
   };
   return (
     <Box
-      // key={item.id}
       onClick={() => {
         handleClick(item);
       }}
@@ -21,9 +21,6 @@ function CategoryCard({ item }) {
         sx={{
           maxWidth: "19.75rem",
           mx: "auto",
-          // mb: "6.625rem",
-          // border: "1px solid red",
-          // height: "392px",
           height: "100%", // ключевой момент
           cursor: "pointer",
           "&:hover": {
@@ -39,7 +36,7 @@ function CategoryCard({ item }) {
             borderRadius: "12px",
             // border: "1px solid red",
           }}
-          image={"http://localhost:3333" + item.image}
+          image={BASE_URL + item.image}
           title={item.title}
         />
         <CardContent>

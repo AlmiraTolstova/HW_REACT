@@ -4,7 +4,6 @@ import {
   Typography,
   CardMedia,
   CardContent,
-  Button,
   IconButton,
   TextField,
   Grid,
@@ -34,6 +33,7 @@ import { useState, useEffect } from "react";
 import { resetDiscountStatus } from "../../redux/slices/homeSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import BtnCard from "../../components/btnCard";
+import { BASE_URL } from "../../api/api";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
@@ -166,7 +166,7 @@ function BasketPage() {
 
                   <CardMedia
                     component="img"
-                    image={"http://localhost:3333" + product.image}
+                    image={BASE_URL + product.image}
                     alt={product.title}
                     sx={{
                       width: "12.5rem",
@@ -363,7 +363,7 @@ function BasketPage() {
 
           <BtnCard
             sx={{ mb: 5 }}
-            onClick={() => navigate(`/allproductspage/allsales`)}
+            onClick={() => navigate(`/allproductspage/allproducts`)}
           >
             Continue Shopping
           </BtnCard>

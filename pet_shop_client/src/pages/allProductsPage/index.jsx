@@ -13,7 +13,6 @@ import { Spin } from "antd";
 import { Status } from "../../utils/Status";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import ProductsList from "../../components/productsList";
 import ProductSortingFilters from "../../components/productSortingFilters";
 import GridCardsContainer from "../../components/gridCardsContainer";
 import ProductCard from "../../components/productCard";
@@ -146,11 +145,23 @@ function AllProductsPage() {
       sx={{
         maxWidth: "85rem",
         margin: "0 auto",
-        border: "1px solid green",
+        pt: 5,
       }}
     >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
-      <Typography variant="h2">
+      <Typography
+        variant="h2"
+        sx={{
+          pb: 5,
+          pt: 5,
+          fontFamily: "Montserrat",
+          fontStyle: "normal",
+          fontWeight: 700,
+          fontSize: "4rem",
+          lineHeight: "110%",
+          color: "#282828",
+        }}
+      >
         {localBreadCrumps[localBreadCrumps.length - 1].label}
       </Typography>
       <ProductSortingFilters></ProductSortingFilters>
@@ -159,10 +170,6 @@ function AllProductsPage() {
         objectsList={productsLocalList}
         CardComponent={ProductCard}
       ></GridCardsContainer>
-      {/* <ProductsList
-        productslist={productsLocalList}
-        type_id={id}
-      ></ProductsList> */}
     </Box>
   );
 }

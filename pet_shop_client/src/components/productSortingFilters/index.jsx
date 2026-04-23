@@ -10,8 +10,6 @@ const containerStyle = {
   flexDirection: "row",
   justifyContent: "flex-start",
   gap: "2.5rem",
-  //   border: "1px solid red",
-  paddingTop: "2.5rem",
   paddingBottom: "2.5rem",
 };
 

@@ -42,7 +42,7 @@ function CategoriesSlider() {
         <Divider
           sx={{
             flexGrow: 1,
-            maxWidth: "900px",
+            // maxWidth: "900px",
             ml: "32px",
           }}
         ></Divider>

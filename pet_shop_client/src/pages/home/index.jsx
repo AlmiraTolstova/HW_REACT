@@ -3,35 +3,26 @@ import CategoriesSlider from "../../components/categoriesSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getProducts } from "../../redux/slices/homeSlice";
 import DiscountForm from "../../components/discountForm";
-import { Button } from "@mui/material";
 import SalesList from "../../components/salesList";
-import AddToCartButton from "../../components/btnCard";
 import MainBanner from "../../components/mainBanner";
+import { Box } from "@mui/material";
 
 function Home() {
   const dispatch = useDispatch();
 
-  const {
-    categories,
-    categoriesStatus,
-    productsList,
-    productsListStatus,
-    productsSalesList,
-    discountStatus,
-    productsSalesShortList,
-  } = useSelector((state) => state.homeSlice);
+  const { productsSalesShortList } = useSelector((state) => state.homeSlice);
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
   }, [dispatch]);
 
   return (
-    <div>
+    <Box>
       <MainBanner></MainBanner>
       <CategoriesSlider></CategoriesSlider>
       <DiscountForm></DiscountForm>
       <SalesList saleslist={productsSalesShortList}></SalesList>
-    </div>
+    </Box>
   );
 }
 

@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  Typography,
-  CardMedia,
-  CardContent,
-  Divider,
-} from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import BtnNavigation from "../btnNavigation";
 import ProductCard from "../productCard";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +28,7 @@ function SalesList({ saleslist }) {
           sx={{
             fontFamily: "Montserrat",
             fontWeight: 700,
-            fontSize: "64px",
+            fontSize: "4rem",
             lineHeight: "110%",
             color: "#282828",
           }}
@@ -43,7 +36,12 @@ function SalesList({ saleslist }) {
           Sale
         </Typography>
 
-        <Divider sx={{ flexGrow: 1, mx: "32px", maxWidth: "900px" }} />
+        <Divider
+          sx={{
+            flexGrow: 1,
+            ml: "32px",
+          }}
+        />
 
         <BtnNavigation onClick={() => navigate(`/allproductspage/allsales`)}>
           All sales

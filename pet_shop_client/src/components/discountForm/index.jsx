@@ -92,9 +92,9 @@ function DiscountForm() {
         sx={{
           fontFamily: "Montserrat",
           fontWeight: 700,
-          fontSize: "64px",
+          fontSize: "4rem",
           lineHeight: "110%",
-          pb: "24px",
+          pb: 3,
         }}
         variant="h4"
       >
@@ -106,7 +106,7 @@ function DiscountForm() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-end",
-          p: "32px 32px 0px 32px",
+          p: "2rem 2rem 0px 2rem",
           gap: 4,
         }}
       >
@@ -129,7 +129,7 @@ function DiscountForm() {
             display: "flex",
             flexDirection: "column",
             gap: 2,
-            pb: "32px",
+            pb: 4,
           }}
         >
           <TextField

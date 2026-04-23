@@ -4,15 +4,28 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { InstagramSvg, WhatsAppSvg } from "../icons/sozialIcon/index";
 
 const cardStyle = {
-  backgroundColor: "#eaeaea",
-  borderRadius: 2,
+  backgroundColor: "#F1F3F4",
+  borderRadius: "12px",
   p: 3,
-  //   height: "100%",
 };
 
 const labelStyle = {
-  color: "#777",
-  mb: 1,
+  color: "#8B8B8B",
+  pb: 2,
+  fontFamily: "Montserrat",
+  fontStyle: "normal",
+  fontWeight: 500,
+  fontSize: "1.25rem",
+  lineHeight: "130%",
+};
+const infoStyle = {
+  color: "#282828",
+  pb: 2,
+  fontFamily: "Montserrat",
+  fontStyle: "normal",
+  fontWeight: 600,
+  fontSize: "2.25rem",
+  lineHeight: "110%",
 };
 
 function Footer() {
@@ -21,43 +34,45 @@ function Footer() {
       sx={{
         px: 6,
         py: 6,
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "#ffffff",
       }}
     >
-      {/* Title */}
       <Typography
         variant="h2"
-        sx={{ maxWidth: "85rem", margin: "0 auto", mb: 4, fontWeight: 700 }}
+        sx={{
+          maxWidth: "85rem",
+          margin: "0 auto",
+          mb: 4,
+          fontFamily: "Montserrat",
+          fontStyle: "normal",
+          fontWeight: 700,
+          fontSize: "4rem",
+          lineHeight: "110%",
+          color: "#282828",
+        }}
       >
         Contact
       </Typography>
 
-      {/* Top blocks */}
       <Grid
         container
-        rowSpacing={1}
-        columnSpacing={{
-          xs: 1,
-          sm: 2,
-          md: 3,
-        }}
+        rowSpacing={3}
+        columnSpacing={3}
         sx={{
           maxWidth: "85rem",
-          margin: "0 auto",
+          mx: "auto",
+          flexDirection: { xs: "column", md: "row" },
         }}
-        //alignItems="stretch"
       >
-        {/* Phone */}
         <Grid size={7}>
           <Box sx={cardStyle}>
             <Typography variant="h5" sx={labelStyle}>
               Phone
             </Typography>
-            <Typography>+49 30 915-88492</Typography>
+            <Typography sx={infoStyle}>+49 30 915-88492</Typography>
           </Box>
         </Grid>
 
-        {/* Socials */}
         <Grid size={5}>
           <Box sx={cardStyle}>
             <Typography variant="h5" sx={labelStyle}>
@@ -74,32 +89,31 @@ function Footer() {
           </Box>
         </Grid>
 
-        {/* Address */}
         <Grid size={7}>
-          <Box sx={cardStyle}>
+          <Box sx={{ ...cardStyle, minHeight: "12.125rem" }}>
             <Typography variant="h5" sx={labelStyle}>
               Address
             </Typography>
-            <Typography variant="h6">
+            <Typography sx={infoStyle} variant="h6">
               Wallstraße 9-13, 10179 Berlin, Deutschland
             </Typography>
           </Box>
         </Grid>
 
-        {/* Working Hours */}
         <Grid size={5}>
-          <Box sx={cardStyle}>
+          <Box sx={{ ...cardStyle, minHeight: "12.125rem" }}>
             <Typography variant="h5" sx={labelStyle}>
               Working Hours
             </Typography>
-            <Typography>24 hours a day</Typography>
+            <Typography sx={infoStyle}>24 hours a day</Typography>
           </Box>
         </Grid>
       </Grid>
 
-      {/* Map */}
       <Box
         sx={{
+          maxWidth: "85rem",
+          margin: "0 auto",
           mt: 4,
           borderRadius: 3,
           overflow: "hidden",

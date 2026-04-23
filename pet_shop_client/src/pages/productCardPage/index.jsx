@@ -1,5 +1,4 @@
 import BreadCrumbs from "../../components/breadcrumbs";
-import CategoriesList from "../../components/categoriesList";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Spin } from "antd";
@@ -34,7 +33,7 @@ function ProductCardPage() {
     if (productsList.length === 0) {
       dispatch(getProducts());
     }
-  }, [id, productsList, dispatch]);
+  }, [productsList, dispatch]);
 
   const selectedProduct = productsList.find(
     (item) => String(item.id) === String(id),

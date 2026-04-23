@@ -1,18 +1,11 @@
-import { Box, Button } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import { Carousel } from "antd";
-import Divider from "@mui/material/Divider";
-import { useDispatch, useSelector } from "react-redux";
-import { Flex, Spin } from "antd";
+import { useSelector } from "react-redux";
+import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Status } from "../../utils/Status";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import BtnNavigation from "../btnNavigation";
-import styles from "./styles.module.css";
 import CategoryCard from "../categoryСard";
 
 function CategoriesSlider() {
@@ -20,13 +13,15 @@ function CategoriesSlider() {
     (state) => state.homeSlice,
   );
   const navigate = useNavigate();
-  // const handleClick = (item) => {
-  //   navigate(`/allproductspage/${item.id}`);
-  // };
 
   return (
     <Box
-      sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2, pb: 11 }}
+      sx={{
+        maxWidth: "85rem",
+        margin: "0 auto",
+        pb: 11,
+        // border: "1px solid green",
+      }}
     >
       <Box
         sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: "5rem" }}
@@ -36,7 +31,7 @@ function CategoriesSlider() {
             fontFamily: "Montserrat",
             fontStyle: "normal",
             fontWeight: 700,
-            fontSize: "64px",
+            fontSize: "4rem",
             lineHeight: "110%",
             color: "#282828",
           }}
@@ -55,7 +50,9 @@ function CategoriesSlider() {
           All categories
         </BtnNavigation>
       </Box>
-
+      {categoriesStatus === Status.ERROR && (
+        <Typography color="error">Failed to load categories</Typography>
+      )}
       <Spin
         indicator={<LoadingOutlined spin />}
         size="large"
@@ -68,9 +65,17 @@ function CategoriesSlider() {
           autoplay
           autoplaySpeed={3000}
           dots={false}
+          responsive={[
+            { breakpoint: 1024, settings: { slidesToShow: 3 } },
+            { breakpoint: 768, settings: { slidesToShow: 2 } },
+            { breakpoint: 480, settings: { slidesToShow: 1 } },
+          ]}
         >
-          {categories.map((item) => (
+          {/* {categories.map((item) => (
             <CategoryCard item={item}></CategoryCard>
+          ))} */}
+          {categories.map((item) => (
+            <CategoryCard key={item.id} item={item} />
           ))}
         </Carousel>
       </Spin>

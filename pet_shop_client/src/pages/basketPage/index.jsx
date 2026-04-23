@@ -30,14 +30,13 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { resetDiscountStatus } from "../../redux/slices/homeSlice";
 import CloseIcon from "@mui/icons-material/Close";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
-    backgroundColor: "#fff", // 👈 сюда
+    backgroundColor: "#fff",
 
     "& input": {
       color: "#282828",
@@ -98,9 +97,7 @@ function BasketPage() {
         margin: "0 auto",
       }}
     >
-      <Box
-        sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: "5rem" }}
-      >
+      <Box sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: 5 }}>
         <Typography
           sx={{
             fontFamily: "Montserrat",
@@ -112,7 +109,7 @@ function BasketPage() {
           }}
           variant="h2"
         >
-          Basket Page
+          Shopping cart
         </Typography>
         <Divider
           sx={{
@@ -136,12 +133,11 @@ function BasketPage() {
             md: 3,
           }}
         >
-          <Grid size={7} sx={{ border: "1px solid red" }}>
+          <Grid size={7}>
             {ordersList.products.map((item) => {
               const product = productsList.find(
-                (prod) => String(prod.id) === String(item.id),
+                (p) => String(p.id) === String(item.id),
               );
-
               if (!product) return null;
 
               return (
@@ -153,118 +149,73 @@ function BasketPage() {
                     border: "1px solid #DDDDDD",
                     borderRadius: "12px",
                     mb: 2,
+                    position: "relative",
                   }}
                 >
+                  <IconButton
+                    onClick={() => dispatch(delProductFromBasket(item.id))}
+                    sx={{
+                      position: "absolute",
+                      top: 8,
+                      right: 8,
+                    }}
+                  >
+                    <ClearSharpIcon />
+                  </IconButton>
+
                   <CardMedia
                     component="img"
                     image={"http://localhost:3333" + product.image}
                     alt={product.title}
                     sx={{
-                      width: "200px",
+                      width: "12.5rem",
+                      maxHeight: "180px",
                       objectFit: "cover",
                       borderRadius: "12px",
                     }}
                   />
 
                   <Box sx={{ p: 4 }}>
-                    <Box sx={{ display: "flex", alignItems: "baseline" }}>
-                      <Typography
-                        sx={{
-                          fontFamily: "Montserrat",
-                          fontStyle: "normal",
-                          fontWeight: 500,
-                          fontSize: "20px",
-                          lineHeight: "130%",
-                          color: "#282828",
-                          pb: 4,
-                        }}
-                        variant="h5"
-                      >
-                        {product.title}
-                      </Typography>
-                      <IconButton
-                        onClick={() => dispatch(delProductFromBasket(item.id))}
-                      >
-                        <ClearSharpIcon></ClearSharpIcon>
-                      </IconButton>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "flex-end",
-                      }}
-                    >
-                      {/* <Button
-                      variant="contained"
-                      sx={{ width: 50 }}
-                      onClick={() => dispatch(minusProductInBasket(item.id))}
-                    >
-                      -
-                    </Button>
-
-                    <Typography sx={{ width: 50, textAlign: "center" }}>
-                      {item.count || 1}
+                    <Typography variant="h5" sx={{ pb: 2 }}>
+                      {product.title}
                     </Typography>
 
-                    <Button
-                      variant="contained"
-                      sx={{ width: 50 }}
-                      onClick={() => dispatch(plusProductInBasket(item.id))}
-                    >
-                      +
-                    </Button> */}
+                    <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                       <BtnCounterControls
                         count={item.count || 1}
                         onMinus={() => dispatch(minusProductInBasket(item.id))}
                         onPlus={() => dispatch(plusProductInBasket(item.id))}
                       />
-                      <Typography
-                        sx={{
-                          pl: 4,
-                          pr: 2,
-                          fontFamily: "Montserrat",
-                          fontStyle: "normal",
-                          fontWeight: 600,
-                          fontSize: "40px",
-                          lineHeight: "110%",
-                          color: "#282828",
-                        }}
-                      >
-                        {product.discont_price !== null
-                          ? item.count * product.discont_price
-                          : item.count * product.price}
-                        $
+
+                      <Typography sx={{ pl: 3, fontSize: "2rem" }}>
+                        {(product.discont_price ?? product.price) * item.count}$
                       </Typography>
-                      <Typography
-                        sx={{
-                          fontFamily: "Montserrat",
-                          fontStyle: "normal",
-                          fontWeight: 500,
-                          fontSize: "20px",
-                          lineHeight: "130%",
-                          textDecorationLine: "line-through",
-                          color: "#8B8B8B",
-                          alignItems: "flex-end",
-                        }}
-                      >
-                        {product.discont_price !== null
-                          ? `${item.count * product.price}$`
-                          : ""}
-                      </Typography>
+
+                      {product.discont_price && (
+                        <Typography
+                          sx={{
+                            textDecoration: "line-through",
+                            ml: 2,
+                            color: "#888",
+                          }}
+                        >
+                          {product.price * item.count}$
+                        </Typography>
+                      )}
                     </Box>
                   </Box>
                 </Box>
               );
             })}
           </Grid>
-          <Grid size={5} sx={{ border: "1px solid red" }}>
+          <Grid size={5} sx={{}}>
             <Box sx={{ background: "#F1F3F4", borderRadius: "12px", p: 4 }}>
               <Typography
                 sx={{
                   fontFamily: "Montserrat",
                   fontStyle: "normal",
                   fontWeight: 700,
-                  fontSize: "40px",
+                  fontSize: "2.5rem",
                   lineHeight: "110%",
                   color: "#282828",
                   pb: 3,
@@ -277,7 +228,7 @@ function BasketPage() {
                   fontFamily: "Montserrat",
                   fontStyle: "normal",
                   fontWeight: 500,
-                  fontSize: "40px",
+                  fontSize: "2.5rem",
                   lineHeight: "130%",
                   color: "#8B8B8B",
                 }}
@@ -309,7 +260,7 @@ function BasketPage() {
                     fontFamily: "Montserrat",
                     fontStyle: "normal",
                     fontWeight: 700,
-                    fontSize: "64px",
+                    fontSize: "4rem",
                     lineHeight: "110%",
                     color: "#282828",
                   }}
@@ -418,7 +369,6 @@ function BasketPage() {
           },
         }}
       >
-        {/* КРЕСТИК */}
         <IconButton
           onClick={handleClose}
           sx={{
@@ -456,56 +406,6 @@ function BasketPage() {
           </Typography>
         </DialogContent>
       </Dialog>
-      {/* <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          sx: {
-            borderRadius: "12px",
-            p: 4,
-            textAlign: "center",
-            background: "#0D50FF",
-          },
-        }}
-      >
-        <DialogTitle
-          sx={{
-            fontWeight: 600,
-            fontFamily: "Montserrat",
-            fontStyle: "normal",
-            fontSize: "40px",
-            lineHeight: "110%",
-            color: "#FFFFFF",
-          }}
-        >
-          Congratulations!
-        </DialogTitle>
-
-        <DialogContent>
-          <Typography
-            sx={{
-              color: "#FFFFFF",
-              fontFamily: "Montserrat",
-              fontStyle: "normal",
-              fontWeight: 600,
-              fontSize: "20px",
-              lineHeight: "110%",
-            }}
-          >
-            Your order has been successfully placed on the website. A manager
-            will contact you shortly to confirm your order.
-          </Typography>
-        </DialogContent>
-
-        <DialogActions sx={{ justifyContent: "center" }}>
-          <BtnBanner
-            onClick={handleClose}
-            sx={{ background: "#0D50FF", color: "#fff" }}
-          >
-            OK
-          </BtnBanner>
-        </DialogActions>
-      </Dialog> */}
     </Box>
   );
 }

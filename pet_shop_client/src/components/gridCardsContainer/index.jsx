@@ -1,16 +1,12 @@
 import { Box, Card, Typography, CardMedia, CardContent } from "@mui/material";
-import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-//import Grid from "@mui/material/Unstable_Grid2";
+// import Grid from "@mui/material/Unstable_Grid2";
 
 function GridCardsContainer({ objectsList, CardComponent }) {
   return (
-    <Box sx={{ maxWidth: "85rem", margin: "0 auto", border: "1px solid red" }}>
+    <Box sx={{ maxWidth: "85rem", margin: "0 auto" }}>
       <Grid
-        // container
-        // spacing={{ xs: 2, md: 3 }}
-        // columns={{ xs: 4, sm: 8, md: 12 }}
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}

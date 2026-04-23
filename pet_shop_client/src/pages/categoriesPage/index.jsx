@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import BreadCrumbs from "../../components/breadcrumbs";
-import CategoriesList from "../../components/categoriesList";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../redux/slices/homeSlice";
 import { useEffect } from "react";
@@ -32,7 +31,7 @@ function CategoriesPage() {
   }, [dispatch]);
 
   return (
-    <Box sx={{ maxWidth: "85rem", margin: "0 auto" }}>
+    <Box sx={{ maxWidth: "85rem", margin: "0 auto", pt: 5 }}>
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
       <Typography
         variant="h2"
@@ -54,7 +53,6 @@ function CategoriesPage() {
         size="large"
         spinning={categoriesStatus === Status.LOADING ? true : false}
       >
-        {/* <CategoriesList categorieslist={categories}></CategoriesList> */}
         <GridCardsContainer
           objectsList={categories}
           CardComponent={CategoryCard}

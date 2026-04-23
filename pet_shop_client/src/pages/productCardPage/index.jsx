@@ -96,9 +96,16 @@ function ProductCardPage() {
 
   if (!selectedProduct) return <div>Loading...</div>;
   return (
-    <Box sx={{ maxWidth: "85rem", margin: "0 auto", border: "1px solid red" }}>
+    <Box
+      sx={{
+        maxWidth: "85rem",
+        margin: "0 auto",
+        pt: 5,
+      }}
+    >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
       <Grid
+        sx={{ pt: 5 }}
         container
         rowSpacing={1}
         columnSpacing={{
@@ -107,11 +114,11 @@ function ProductCardPage() {
           md: 3,
         }}
       >
-        <Grid size={7} sx={{ border: "2px solid blue" }}>
+        <Grid size={7} sx={{}}>
           <Box
             sx={{
-              width: "548px",
-              height: "572px",
+              width: "34.25rem",
+              height: "35.75rem",
               borderRadius: "8px",
               overflow: "hidden",
             }}
@@ -128,33 +135,33 @@ function ProductCardPage() {
             />
           </Box>
         </Grid>
-        <Grid size={5} sx={{ border: "2px solid blue" }}>
+        <Grid size={5} sx={{}}>
           <CardContent>
             <Typography
               sx={{
                 fontFamily: "Montserrat",
                 fontStyle: "normal",
                 fontWeight: 700,
-                fontSize: "40px",
+                fontSize: "2.5rem",
                 lineHeight: "110%",
                 letterSpacing: "0.03em",
                 color: "#282828",
-                pb: "32px",
+                pb: 4,
               }}
               variant="h4"
             >
               {selectedProduct.title}
             </Typography>
-            <Box sx={{ display: "flex", alignItems: "flex-end", pb: "32px" }}>
+            <Box sx={{ display: "flex", alignItems: "flex-end", pb: 4 }}>
               <Typography
                 sx={{
                   fontFamily: "Montserrat",
                   fontStyle: "normal",
                   fontWeight: 700,
-                  fontSize: "64px",
+                  fontSize: "4rem",
                   lineHeight: "110%",
                   color: "#282828",
-                  pr: "32px",
+                  pr: 4,
                 }}
               >
                 {selectedProduct.price}$
@@ -165,7 +172,7 @@ function ProductCardPage() {
                     fontFamily: "Montserrat",
                     fontStyle: "normal",
                     fontWeight: 500,
-                    fontSize: "40px",
+                    fontSize: "2.5rem",
                     lineHeight: "130%",
                     textDecorationLine: "line-through",
                     color: "#8B8B8B",
@@ -187,7 +194,7 @@ function ProductCardPage() {
                     fontFamily: "Montserrat",
                     fontStyle: "normal",
                     fontWeight: 600,
-                    fontSize: "20px",
+                    fontSize: "1.25rem",
                     lineHeight: "130%",
                     letterSpacing: "0.03em",
                     color: "#FFFFFF",
@@ -226,7 +233,7 @@ function ProductCardPage() {
                 disabled={orderedProduct}
               />
               <BtnCard
-                sx={{ marginLeft: "30px" }}
+                sx={{ marginLeft: "1.875rem" }}
                 onClick={handleAddToBasketClick}
                 disabled={orderedProduct}
               >
@@ -238,7 +245,7 @@ function ProductCardPage() {
                 fontFamily: "Montserrat",
                 fontStyle: "normal",
                 fontWeight: 600,
-                fontSize: "20px",
+                fontSize: "1.25rem",
                 lineHeight: "130%",
                 color: "#282828",
                 mt: 4,

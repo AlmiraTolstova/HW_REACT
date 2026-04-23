@@ -15,15 +15,6 @@ import BtnNavigation from "../btnNavigation";
 import styles from "./styles.module.css";
 import CategoryCard from "../categoryСard";
 
-// const contentStyle = {
-//   margin: 0,
-//   height: "160px",
-//   color: "#fff",
-//   lineHeight: "160px",
-//   textAlign: "center",
-//   background: "#f3f5f8",
-// };
-
 function CategoriesSlider() {
   const { categories, categoriesStatus } = useSelector(
     (state) => state.homeSlice,

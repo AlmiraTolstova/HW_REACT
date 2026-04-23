@@ -46,6 +46,15 @@ const basketSlice = createSlice({
       state.ordersList.phone = action.payload.phone;
       state.ordersList.email = action.payload.email;
     },
+    resetPostOrderStatus: (state) => {
+      state.postOrderStatus = Status.NO_STATUS;
+      state.ordersList = {
+        name: "John Doe",
+        phone: "1234567890",
+        email: "johndoe@example.com",
+        products: [],
+      };
+    },
     addProductToBasket: (state, action) => {
       const product = action.payload;
 
@@ -126,5 +135,6 @@ export const {
   delProductFromBasket,
   minusProductInBasket,
   plusProductInBasket,
+  resetPostOrderStatus,
 } = basketSlice.actions;
 export default basketSlice.reducer;

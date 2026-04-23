@@ -6,24 +6,31 @@ function MainBanner() {
     <Box
       sx={{
         position: "relative",
-        // height: "37.5rem",
-        // backgroundImage: "url('./src/assets/imgMainBanner.png')",
         backgroundImage: `url(${Banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
         alignItems: "center",
+        minHeight: "37.5rem",
       }}
     >
-      {/* контент */}
       <Box
         sx={{
           position: "relative",
           zIndex: 1,
-          width: "85rem",
+          // width: "85rem",
           margin: "auto",
           pt: "5rem",
-          pb: "14rem",
+          // pb: "14rem",
+          pb: {
+            xs: "6rem",
+            md: "10rem",
+            lg: "14rem",
+          },
+          maxWidth: "85rem",
+          width: "100%",
+          mx: "auto",
+          px: 2,
         }}
       >
         <Typography
@@ -33,10 +40,16 @@ function MainBanner() {
             fontFamily: "Montserrat",
             fontStyle: "normal",
             fontWeight: 700,
-            fontSize: "96px",
+            // fontSize: "96px",
+            fontSize: {
+              xs: "2.5rem",
+              sm: "3rem",
+              md: "4rem",
+              lg: "6rem",
+            },
             lineHeight: "110%",
             maxWidth: "62rem",
-            pb: "40px",
+            pb: 5,
           }}
         >
           Amazing Discounts on Pets Products!

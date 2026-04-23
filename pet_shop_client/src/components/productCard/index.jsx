@@ -1,5 +1,4 @@
 import { Box, Card, Typography, CardMedia, CardContent } from "@mui/material";
-import { Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import BtnCard from "../btnCard";
 import { addProductToBasket } from "../../redux/slices/basketSlice";
@@ -31,12 +30,11 @@ function ProductCard({ item }) {
   return (
     <Box key={item.id}>
       <Card
-        sx={{ width: "316px", mx: "auto" }}
         onClick={() => {
           handleClick(item);
         }}
         sx={{
-          width: "316px",
+          width: "19.75rem",
           mx: "auto",
           position: "relative",
 
@@ -47,77 +45,65 @@ function ProductCard({ item }) {
           },
         }}
       >
-        <Box
-        // sx={{
-        //   position: "relative",
-        //   "&:hover .add-btn": {
-        //     opacity: 1,
-        //     transform: "translateY(0)",
-        //   },
-        // }}
+        <CardMedia
+          sx={{ height: "17.75rem" }}
+          image={"http://localhost:3333" + item.image}
+          title={item.title}
+        />
+        <BtnCard
+          className="add-btn"
+          onClick={(e) => {
+            e.stopPropagation(); // защита
+            handleAddToBasketClick(item.id);
+          }}
+          sx={{
+            position: "absolute",
+            bottom: "1rem",
+            left: "2%",
+            transform: "translate(-50%, 20px)",
+            opacity: 0,
+            pointerEvents: "none", // ❗ ключевой фикс
+            transition: "all 0.25s ease",
+            width: "95%",
+            zIndex: 2,
+            fontSize: "16px",
+          }}
+          disabled={orderedProduct}
         >
-          <CardMedia
-            sx={{ height: "284px" }}
-            image={"http://localhost:3333" + item.image}
-            title={item.title}
-          />
-          <BtnCard
-            className="add-btn"
-            onClick={(e) => {
-              e.stopPropagation(); // защита
-              handleAddToBasketClick(item.id);
-            }}
+          {orderedProduct ? "Added" : "Add to cart"}
+        </BtnCard>
+        <Box sx={{ height: "1px", backgroundColor: "#DDDDDD" }} />
+
+        {/* {item.discount_percentage && */}
+        {item.discount_percentage != null && (
+          <Box
             sx={{
               position: "absolute",
-              bottom: "16px",
-              left: "0%",
-              transform: "translate(-50%, 20px)",
-              opacity: 0,
-
-              pointerEvents: "none", // ❗ ключевой фикс
-
-              transition: "all 0.25s ease",
-              width: "90%",
-              zIndex: 2,
+              top: "1rem",
+              right: "1rem",
+              p: "4px 8px 4px 8px",
+              backgroundColor: "#0D50FF",
+              borderRadius: "6px",
+              color: "#fff",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 600,
+              fontFamily: "Montserrat",
+              fontStyle: "normal",
+              fontSize: "20px",
+              lineHeight: "130%",
+              letterSpacing: "0.03em",
             }}
-            disabled={orderedProduct}
           >
-            {orderedProduct ? "Added" : "Add to cart"}
-          </BtnCard>
-          <Box sx={{ height: "1px", backgroundColor: "#DDDDDD" }} />
-
-          {item.discount_percentage && (
-            <Box
-              sx={{
-                position: "absolute",
-                top: "16px",
-                right: "16px",
-                // width: "60px",
-                // height: "40px",
-                p: "4px 8px 4px 8px",
-                backgroundColor: "#0D50FF",
-                borderRadius: "6px",
-                color: "#fff",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontWeight: 600,
-                fontFamily: "Montserrat",
-                fontStyle: "normal",
-                fontSize: "20px",
-                lineHeight: "130%",
-                letterSpacing: "0.03em",
-              }}
-            >
-              -{item.discount_percentage}%
-            </Box>
-          )}
-        </Box>
+            -{item.discount_percentage}%
+          </Box>
+        )}
 
         <CardContent sx={{ p: "20px 32px 32px " }}>
           <Typography
             sx={{
-              maxWidth: "252px",
+              maxWidth: "15.75rem",
               fontFamily: "Montserrat",
               fontStyle: "normal",
               fontWeight: 500,
@@ -138,7 +124,7 @@ function ProductCard({ item }) {
                 fontFamily: "Montserrat",
                 fontStyle: "normal",
                 fontWeight: 600,
-                fontSize: "40px",
+                fontSize: "2.5rem",
                 lineHeight: "110%",
                 color: "#282828",
                 pr: 2,
@@ -153,7 +139,7 @@ function ProductCard({ item }) {
                   fontFamily: "Montserrat",
                   fontStyle: "normal",
                   fontWeight: 500,
-                  fontSize: "20px",
+                  fontSize: "1.25rem",
                   lineHeight: "130%",
                   color: "#8B8B8B",
                 }}

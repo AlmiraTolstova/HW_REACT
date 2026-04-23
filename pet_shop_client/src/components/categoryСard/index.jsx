@@ -11,53 +11,56 @@ function CategoryCard({ item }) {
     navigate(`/allproductspage/${item.id}`);
   };
   return (
-    <div>
+    <Box
+      // key={item.id}
+      onClick={() => {
+        handleClick(item);
+      }}
+    >
       <Box
-        key={item.id}
-        onClick={() => {
-          handleClick(item);
+        sx={{
+          maxWidth: "19.75rem",
+          mx: "auto",
+          // mb: "6.625rem",
+          // border: "1px solid red",
+          // height: "392px",
+          height: "100%", // ключевой момент
+          cursor: "pointer",
+          "&:hover": {
+            transform: "translateY(-4px)",
+            transition: "0.2s",
+          },
         }}
       >
-        <Box
+        <CardMedia
           sx={{
-            maxWidth: "316px",
-            mx: "auto",
-            // mb: "6.625rem",
-            border: "1px solid red",
-            // height: "392px",
-            height: "100%", // ключевой момент
+            height: "350px",
+            backgroundSize: "contain",
+            borderRadius: "12px",
+            // border: "1px solid red",
           }}
-        >
-          <CardMedia
+          image={"http://localhost:3333" + item.image}
+          title={item.title}
+        />
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
             sx={{
-              height: "350px",
-              backgroundSize: "contain",
-              borderRadius: "12px",
-              border: "1px solid red",
+              fontFamily: "Montserrat",
+              fontStyle: "normal",
+              fontWeight: 500,
+              fontSize: "1.25rem",
+              lineHeight: "130%",
+              textAlign: "center",
+              color: "#282828",
             }}
-            image={"http://localhost:3333" + item.image}
-            title={item.title}
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              sx={{
-                fontFamily: "Montserrat",
-                fontStyle: "normal",
-                fontWeight: 500,
-                fontSize: "20px",
-                lineHeight: "130%",
-                textAlign: "center",
-                color: "#282828",
-              }}
-            >
-              {item.title}
-            </Typography>
-          </CardContent>
-        </Box>
+          >
+            {item.title}
+          </Typography>
+        </CardContent>
       </Box>
-    </div>
+    </Box>
   );
 }
 

@@ -33,6 +33,7 @@ import DialogActions from "@mui/material/DialogActions";
 import { useState, useEffect } from "react";
 import { resetDiscountStatus } from "../../redux/slices/homeSlice";
 import CloseIcon from "@mui/icons-material/Close";
+import BtnCard from "../../components/btnCard";
 
 const inputStyle = {
   "& .MuiOutlinedInput-root": {
@@ -118,7 +119,7 @@ function BasketPage() {
             ml: "32px",
           }}
         ></Divider>
-        <BtnNavigation onClick={() => navigate(`/allproductspage/allsales`)}>
+        <BtnNavigation onClick={() => navigate(`/allproductspage/allproducts`)}>
           Back to the store
         </BtnNavigation>
       </Box>
@@ -345,12 +346,27 @@ function BasketPage() {
         </Grid>
       ) : (
         <Box>
-          <Typography>
+          <Typography
+            sx={{
+              pt: 3,
+              pb: 4,
+              fontFamily: "Montserrat",
+              fontStyle: "normal",
+              fontWeight: 500,
+              fontSize: "20px",
+              lineHeight: "130%",
+              color: "#282828",
+            }}
+          >
             Looks like you have no items in your basket currently.
           </Typography>
-          <Button onClick={() => navigate(`/allproductspage/allsales`)}>
+
+          <BtnCard
+            sx={{ mb: 5 }}
+            onClick={() => navigate(`/allproductspage/allsales`)}
+          >
             Continue Shopping
-          </Button>
+          </BtnCard>
         </Box>
       )}
 

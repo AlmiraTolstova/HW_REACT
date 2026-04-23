@@ -81,22 +81,25 @@ function ProductCard({ item }) {
                 pr: 2,
               }}
             >
-              {item.discont_price}$
+              {item.discont_price !== null ? item.discont_price : item.price}$
             </Typography>
-
-            <Typography
-              sx={{
-                textDecoration: "line-through",
-                fontFamily: "Montserrat",
-                fontStyle: "normal",
-                fontWeight: 500,
-                fontSize: "20px",
-                lineHeight: "130%",
-                color: "#8B8B8B",
-              }}
-            >
-              {item.price}$
-            </Typography>
+            {item.discont_price ? (
+              <Typography
+                sx={{
+                  textDecoration: "line-through",
+                  fontFamily: "Montserrat",
+                  fontStyle: "normal",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  lineHeight: "130%",
+                  color: "#8B8B8B",
+                }}
+              >
+                {item.price}$
+              </Typography>
+            ) : (
+              <Box />
+            )}
           </Box>
         </CardContent>
       </Card>

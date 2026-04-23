@@ -28,7 +28,7 @@ function CategoriesSlider() {
   const { categories, categoriesStatus } = useSelector(
     (state) => state.homeSlice,
   );
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const handleClick = (item) => {
   //   navigate(`/allproductspage/${item.id}`);
   // };
@@ -37,9 +37,6 @@ function CategoriesSlider() {
     <Box
       sx={{ maxWidth: "85rem", width: "100%", margin: "0 auto", px: 2, pb: 11 }}
     >
-      <Button onClick={() => console.log(categories)}>
-        reducer to console
-      </Button>
       <Box
         sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: "5rem" }}
       >
@@ -63,7 +60,9 @@ function CategoriesSlider() {
             ml: "32px",
           }}
         ></Divider>
-        <BtnNavigation>All categories</BtnNavigation>
+        <BtnNavigation onClick={() => navigate(`/categoriespage`)}>
+          All categories
+        </BtnNavigation>
       </Box>
 
       <Spin

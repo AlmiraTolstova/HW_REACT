@@ -51,8 +51,16 @@ function AllProductsPage() {
       path: "/",
     },
   ]);
-  const { productsList, categories, productsLocalList, productsSalesList } =
-    useSelector((state) => state.homeSlice);
+  const {
+    productsList,
+    categories,
+    productsLocalList,
+    productsSalesList,
+    filterPriceFrom,
+    filterPriceTo,
+    filterShowDiscountedItems,
+    sortedType,
+  } = useSelector((state) => state.homeSlice);
   useEffect(() => {
     if (productsList.length === 0) {
       dispatch(getProducts());
@@ -101,6 +109,38 @@ function AllProductsPage() {
     }
   }, [dispatch, id, productsList, productsSalesList, categories]);
 
+  useEffect(() => {
+    switch (id) {
+      case "allproducts": {
+        dispatch(setProductsLocalList(productsList));
+        break;
+      }
+
+      case "allsales": {
+        dispatch(setProductsLocalList(productsSalesList));
+        break;
+      }
+      default: {
+        dispatch(
+          setProductsLocalList(
+            [...productsList].filter((item) => {
+              return String(item.categoryId) === id;
+            }),
+          ),
+        );
+      }
+    }
+  }, [
+    filterPriceFrom,
+    filterPriceTo,
+    filterShowDiscountedItems,
+    sortedType,
+    dispatch,
+    productsList,
+    productsSalesList,
+    id,
+  ]);
+
   return (
     <Box
       sx={{
@@ -114,14 +154,7 @@ function AllProductsPage() {
         {localBreadCrumps[localBreadCrumps.length - 1].label}
       </Typography>
       <ProductSortingFilters></ProductSortingFilters>
-      <Button
-        onClick={() => {
-          console.log(productsLocalList);
-        }}
-      >
-        reducer
-      </Button>
-      All Products Page Category ID: {id}
+
       <GridCardsContainer
         objectsList={productsLocalList}
         CardComponent={ProductCard}

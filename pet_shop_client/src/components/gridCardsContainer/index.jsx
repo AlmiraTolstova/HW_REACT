@@ -14,7 +14,7 @@ function GridCardsContainer({ objectsList, CardComponent }) {
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
-        alignItems="stretch" // важно
+        // alignItems="stretch" // важно
       >
         {objectsList.map((item) => {
           return (

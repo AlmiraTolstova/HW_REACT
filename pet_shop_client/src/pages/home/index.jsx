@@ -27,8 +27,6 @@ function Home() {
 
   return (
     <div>
-      Home
-      <Button onClick={() => console.log(discountStatus)}>reducer</Button>
       <MainBanner></MainBanner>
       <CategoriesSlider></CategoriesSlider>
       <DiscountForm></DiscountForm>

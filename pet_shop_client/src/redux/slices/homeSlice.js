@@ -40,6 +40,10 @@ const homeSlice = createSlice({
     discountErrorMessage: "",
     discount: "",
     productsLocalList: [],
+    filterPriceFrom: null,
+    filterPriceTo: null,
+    filterShowDiscountedItems: false,
+    sortedType: "default",
   },
   reducers: {
     setDiscontFormData: (state, action) => {
@@ -49,7 +53,59 @@ const homeSlice = createSlice({
       state.discountStatus = Status.NO_STATUS;
     },
     setProductsLocalList: (state, action) => {
-      state.productsLocalList = action.payload;
+      let filteredProductsList = action.payload;
+      if (state.filterShowDiscountedItems) {
+        filteredProductsList = action.payload.filter(
+          (item) => item.discont_price !== null,
+        );
+      }
+      // 2. Фильтр по цене FROM
+      if (state.filterPriceFrom) {
+        filteredProductsList = filteredProductsList.filter((item) => {
+          const price = item.discont_price ?? item.price;
+          return price >= Number(state.filterPriceFrom);
+        });
+      }
+
+      // 3. Фильтр по цене TO
+      if (state.filterPriceTo) {
+        filteredProductsList = filteredProductsList.filter((item) => {
+          const price = item.discont_price ?? item.price;
+          return price <= Number(state.filterPriceTo);
+        });
+      }
+
+      // 4. СОРТИРОВКА
+      if (state.sortedType === "low") {
+        filteredProductsList = [...filteredProductsList].sort((a, b) => {
+          const priceA = a.discont_price ?? a.price;
+          const priceB = b.discont_price ?? b.price;
+          return priceA - priceB; // по возрастанию
+        });
+      }
+
+      if (state.sortedType === "high") {
+        filteredProductsList = [...filteredProductsList].sort((a, b) => {
+          const priceA = a.discont_price ?? a.price;
+          const priceB = b.discont_price ?? b.price;
+          return priceB - priceA; // по убыванию
+        });
+      }
+
+      // default → без сортировки
+      state.productsLocalList = filteredProductsList;
+    },
+    setFilterPriceFrom: (state, action) => {
+      state.filterPriceFrom = action.payload;
+    },
+    setFilterPriceTo: (state, action) => {
+      state.filterPriceTo = action.payload;
+    },
+    setFilterShowDiscountItems: (state, action) => {
+      state.filterShowDiscountedItems = action.payload;
+    },
+    setSortedType: (state, action) => {
+      state.sortedType = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -99,6 +155,7 @@ const homeSlice = createSlice({
       .addCase(getDiscount.fulfilled, (state, action) => {
         state.discountStatus = Status.DONE;
         state.discount = action.payload;
+        console.log(state.discountStatus);
       })
       .addCase(getDiscount.rejected, (state, action) => {
         state.discountStatus = Status.ERROR;
@@ -107,6 +164,14 @@ const homeSlice = createSlice({
   },
 });
 
-export const { resetState, logout, resetDiscountStatus, setProductsLocalList } =
-  homeSlice.actions;
+export const {
+  resetState,
+  logout,
+  resetDiscountStatus,
+  setProductsLocalList,
+  setFilterPriceFrom,
+  setFilterPriceTo,
+  setFilterShowDiscountItems,
+  setSortedType,
+} = homeSlice.actions;
 export default homeSlice.reducer;

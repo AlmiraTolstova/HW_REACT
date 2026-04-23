@@ -28,9 +28,8 @@ const BtnBanner = styled(Button)(({ theme }) => ({
 
   // disabled = Added
   "&.Mui-disabled": {
-    backgroundColor: "#ffff",
-    color: "#282828",
-    border: "1px solid #282828",
+    backgroundColor: "#F1F3F4",
+    color: "#0D50FF",
   },
 }));
 

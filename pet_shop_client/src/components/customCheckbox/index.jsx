@@ -1,5 +1,7 @@
 import { Checkbox, styled } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterShowDiscountItems } from "../../redux/slices/homeSlice";
 
 const NewCheckbox = styled(Checkbox)(() => ({
   padding: 6,
@@ -28,8 +30,12 @@ const UncheckedIcon = styled("span")({
 });
 
 function CustomCheckbox() {
+  const { filterShowDiscountedItems } = useSelector((state) => state.homeSlice);
+  const dispatch = useDispatch();
   return (
     <NewCheckbox
+      checked={filterShowDiscountedItems}
+      onChange={(e) => dispatch(setFilterShowDiscountItems(e.target.checked))}
       icon={<UncheckedIcon />}
       checkedIcon={
         <CheckedIcon>

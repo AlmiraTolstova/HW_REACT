@@ -1,0 +1,41 @@
+.card {
+  background: white;
+  width: 600px;
+  max-width: 90%;
+  padding: 30px;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+.quote {
+  font-size: 24px;
+  margin: 20px 0;
+  line-height: 1.5;
+}
+
+.author {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.button {
+  background: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background: #3554d1;
+}
+
+.error {
+  color: red;
+}

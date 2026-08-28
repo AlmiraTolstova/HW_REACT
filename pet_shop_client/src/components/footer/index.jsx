@@ -32,7 +32,7 @@ function Footer() {
   return (
     <Box
       sx={{
-        border: "1px solid red",
+        // border: "1px solid red",
         px: 6,
         py: 6,
         backgroundColor: "#ffffff",

@@ -9,8 +9,7 @@ function GridCardsContainer({ objectsList, CardComponent }) {
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        // alignItems="stretch" // важно
+        columns={{ xs: 1, sm: 8, md: 12 }}
       >
         {objectsList.map((item) => {
           return (

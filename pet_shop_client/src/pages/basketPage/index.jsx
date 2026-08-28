@@ -98,13 +98,22 @@ function BasketPage() {
         margin: "0 auto",
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: 5 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mb: "2.5rem",
+          mt: 5,
+          mr: { xs: "0.5rem", sm: "auto" },
+          ml: { xs: "0.5rem", sm: "auto" },
+        }}
+      >
         <Typography
           sx={{
             fontFamily: "Montserrat",
             fontStyle: "normal",
             fontWeight: 700,
-            fontSize: "64px",
+            fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
             lineHeight: "110%",
             color: "#282828",
           }}
@@ -134,7 +143,13 @@ function BasketPage() {
             md: 3,
           }}
         >
-          <Grid size={7}>
+          <Grid
+            size={{
+              xs: 12,
+              sm: 7,
+              md: 7,
+            }}
+          >
             {ordersList.products.map((item) => {
               const product = productsList.find(
                 (p) => String(p.id) === String(item.id),
@@ -151,6 +166,9 @@ function BasketPage() {
                     borderRadius: "12px",
                     mb: 2,
                     position: "relative",
+                    flexDirection: { xs: "column" },
+                    mr: { xs: "0.5rem", sm: "auto" },
+                    ml: { xs: "0.5rem", sm: "auto" },
                   }}
                 >
                   <IconButton
@@ -181,7 +199,12 @@ function BasketPage() {
                       {product.title}
                     </Typography>
 
-                    <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "flex-end",
+                      }}
+                    >
                       <BtnCounterControls
                         count={item.count || 1}
                         onMinus={() => dispatch(minusProductInBasket(item.id))}
@@ -209,7 +232,14 @@ function BasketPage() {
               );
             })}
           </Grid>
-          <Grid size={5} sx={{}}>
+          <Grid
+            size={{
+              xs: 12,
+              sm: 5,
+              md: 5,
+            }}
+            sx={{}}
+          >
             <Box sx={{ background: "#F1F3F4", borderRadius: "12px", p: 4 }}>
               <Typography
                 sx={{

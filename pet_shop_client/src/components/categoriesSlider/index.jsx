@@ -28,8 +28,8 @@ function CategoriesSlider() {
           alignItems: "center",
           mb: "2.5rem",
           mt: "5rem",
-          mr: { xs: "0.5rem" },
-          ml: { xs: "0.5rem" },
+          mr: { xs: "0.5rem", sm: "auto" },
+          ml: { xs: "0.5rem", sm: "auto" },
         }}
       >
         <Typography

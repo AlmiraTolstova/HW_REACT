@@ -7,9 +7,9 @@ const containerStyle = {
   maxWidth: "85rem",
   margin: "0 auto",
   display: "flex",
-  flexDirection: "row",
+  flexDirection: { xs: "column", sm: "row", md: "row" },
   justifyContent: "flex-start",
-  gap: "2.5rem",
+  gap: { xs: "1rem", sm: "2.5rem", md: "2.5rem" },
   paddingBottom: "2.5rem",
 };
 

@@ -151,6 +151,8 @@ function AllProductsPage() {
         maxWidth: "85rem",
         margin: "0 auto",
         pt: 5,
+        mr: { xs: "0.5rem", sm: "auto" },
+        ml: { xs: "0.5rem", sm: "auto" },
       }}
     >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
@@ -162,7 +164,7 @@ function AllProductsPage() {
           fontFamily: "Montserrat",
           fontStyle: "normal",
           fontWeight: 700,
-          fontSize: "4rem",
+          fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
           lineHeight: "110%",
           color: "#282828",
         }}

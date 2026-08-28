@@ -86,8 +86,8 @@ function DiscountForm() {
         borderRadius: 4,
         background: "linear-gradient(90deg, #1e4ed8, #3b82f6)",
         color: "#fff",
-        mr: { xs: "0.5rem" },
-        ml: { xs: "0.5rem" },
+        pr: { xs: "0.5rem" },
+        pl: { xs: "0.5rem" },
       }}
     >
       <Typography
@@ -105,13 +105,6 @@ function DiscountForm() {
       </Typography>
 
       <Box
-        // sx={{
-        //   display: "flex",
-        //   justifyContent: "space-between",
-        //   alignItems: "flex-end",
-        //   p: "2rem 2rem 0px 2rem",
-        //   gap: 4,
-        // }}
         sx={{
           display: "flex",
           flexDirection: {

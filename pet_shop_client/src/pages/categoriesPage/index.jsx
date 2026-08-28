@@ -31,7 +31,15 @@ function CategoriesPage() {
   }, [dispatch]);
 
   return (
-    <Box sx={{ maxWidth: "85rem", margin: "0 auto", pt: 5 }}>
+    <Box
+      sx={{
+        maxWidth: "85rem",
+        margin: "0 auto",
+        pt: 5,
+        mr: { xs: "0.5rem", sm: "auto" },
+        ml: { xs: "0.5rem", sm: "auto" },
+      }}
+    >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
       <Typography
         variant="h2"
@@ -41,7 +49,7 @@ function CategoriesPage() {
           fontFamily: "Montserrat",
           fontStyle: "normal",
           fontWeight: 700,
-          fontSize: "64px",
+          fontSize: { xs: "2.5rem", sm: "3rem", md: "64px" },
           lineHeight: "110%",
           color: "#282828",
         }}

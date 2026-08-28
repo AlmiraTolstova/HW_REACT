@@ -21,6 +21,8 @@ function SalesList({ saleslist }) {
           justifyContent: "space-between",
           mb: "2.5rem",
           mt: "5rem",
+          mr: { xs: "0.5rem", sm: "auto" },
+          ml: { xs: "0.5rem", sm: "auto" },
         }}
       >
         <Typography
@@ -28,7 +30,8 @@ function SalesList({ saleslist }) {
           sx={{
             fontFamily: "Montserrat",
             fontWeight: 700,
-            fontSize: "4rem",
+            fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
+
             lineHeight: "110%",
             color: "#282828",
           }}
@@ -53,7 +56,11 @@ function SalesList({ saleslist }) {
           display: "flex",
           flexWrap: "wrap",
           gap: "20px",
-          justifyContent: "space-between",
+          justifyContent: {
+            xs: "center",
+            sm: "space-between",
+            md: "space-between",
+          },
         }}
       >
         {saleslist?.map((item) => (

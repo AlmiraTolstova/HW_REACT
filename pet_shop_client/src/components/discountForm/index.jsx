@@ -86,13 +86,16 @@ function DiscountForm() {
         borderRadius: 4,
         background: "linear-gradient(90deg, #1e4ed8, #3b82f6)",
         color: "#fff",
+        pr: { xs: "0.5rem" },
+        pl: { xs: "0.5rem" },
       }}
     >
       <Typography
         sx={{
           fontFamily: "Montserrat",
           fontWeight: 700,
-          fontSize: "4rem",
+          fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
+
           lineHeight: "110%",
           pb: 3,
         }}
@@ -104,10 +107,23 @@ function DiscountForm() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
           justifyContent: "space-between",
-          alignItems: "flex-end",
-          p: "2rem 2rem 0px 2rem",
-          gap: 4,
+          alignItems: {
+            xs: "stretch",
+            sm: "flex-end",
+          },
+          p: {
+            xs: "1rem",
+            sm: "2rem 2rem 0",
+          },
+          gap: {
+            xs: 2,
+            sm: 4,
+          },
         }}
       >
         {/* Left side */}
@@ -116,7 +132,11 @@ function DiscountForm() {
             component="img"
             src={Img}
             alt="pets-image"
-            sx={{ maxWidth: "100%", height: "auto", display: "block" }}
+            sx={{
+              maxWidth: "100%",
+              height: "auto",
+              display: { xs: "none", sm: "block", md: "block" },
+            }}
           />
         </Box>
 

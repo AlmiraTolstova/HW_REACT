@@ -14,3 +14,28 @@
 .navLink.active {
   color: #0d50ff;
 }
+.basketIcon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 600px) {
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .navLink {
+    font-size: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .navLink {
+    font-size: 16px;
+  }
+  .basketIcon {
+    width: 16px;
+    height: 16px;
+  }
+}

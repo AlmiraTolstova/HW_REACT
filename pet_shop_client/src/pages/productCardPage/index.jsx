@@ -100,6 +100,8 @@ function ProductCardPage() {
         maxWidth: "85rem",
         margin: "0 auto",
         pt: 5,
+        mr: { xs: "0.5rem", sm: "auto" },
+        ml: { xs: "0.5rem", sm: "auto" },
       }}
     >
       <BreadCrumbs crumbs={localBreadCrumps}></BreadCrumbs>
@@ -113,10 +115,10 @@ function ProductCardPage() {
           md: 3,
         }}
       >
-        <Grid size={7} sx={{}}>
+        <Grid size={{ xs: 12, sm: 7, md: 7 }} sx={{}}>
           <Box
             sx={{
-              width: "34.25rem",
+              width: { xs: "22rem", sm: "34.25rem", md: "34.25rem" },
               height: "35.75rem",
               borderRadius: "8px",
               overflow: "hidden",
@@ -134,14 +136,15 @@ function ProductCardPage() {
             />
           </Box>
         </Grid>
-        <Grid size={5} sx={{}}>
+        <Grid size={{ xs: 12, sm: 5, md: 5 }} sx={{}}>
           <CardContent>
             <Typography
               sx={{
                 fontFamily: "Montserrat",
                 fontStyle: "normal",
                 fontWeight: 700,
-                fontSize: "2.5rem",
+                fontSize: { xs: "2rem", sm: "2.5rem", md: "2.5rem" },
+
                 lineHeight: "110%",
                 letterSpacing: "0.03em",
                 color: "#282828",
@@ -157,7 +160,7 @@ function ProductCardPage() {
                   fontFamily: "Montserrat",
                   fontStyle: "normal",
                   fontWeight: 700,
-                  fontSize: "4rem",
+                  fontSize: { xs: "2.5rem", sm: "4rem", md: "4rem" },
                   lineHeight: "110%",
                   color: "#282828",
                   pr: 4,
@@ -205,26 +208,13 @@ function ProductCardPage() {
                 <Box></Box>
               )}
             </Box>
-            <Box sx={{ display: "flex" }}>
-              {/* <Button
-                onClick={handleMinusClick}
-                variant="outline"
-                sx={{ width: "50px", border: "1px solid #8B8B8B" }}
-                disabled={orderedProduct}
-              >
-                -
-              </Button>
-              <Typography sx={{ width: "50px", backgroundColor: "#9a8585" }}>
-                {count}
-              </Typography>
-              <Button
-                onClick={handlePlusClick}
-                variant="contained"
-                sx={{ width: "50px" }}
-                disabled={orderedProduct}
-              >
-                +
-              </Button> */}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row", md: "row" },
+                gap: { xs: 2 },
+              }}
+            >
               <BtnCounterControls
                 count={count}
                 onMinus={handleMinusClick}

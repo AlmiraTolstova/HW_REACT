@@ -23,14 +23,21 @@ function CategoriesSlider() {
       }}
     >
       <Box
-        sx={{ display: "flex", alignItems: "center", mb: "2.5rem", mt: "5rem" }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mb: "2.5rem",
+          mt: "5rem",
+          mr: { xs: "0.5rem", sm: "auto" },
+          ml: { xs: "0.5rem", sm: "auto" },
+        }}
       >
         <Typography
           sx={{
             fontFamily: "Montserrat",
             fontStyle: "normal",
             fontWeight: 700,
-            fontSize: "4rem",
+            fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
             lineHeight: "110%",
             color: "#282828",
           }}

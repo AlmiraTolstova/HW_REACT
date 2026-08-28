@@ -32,6 +32,7 @@ function Footer() {
   return (
     <Box
       sx={{
+        border: "1px solid red",
         px: 6,
         py: 6,
         backgroundColor: "#ffffff",
@@ -46,7 +47,7 @@ function Footer() {
           fontFamily: "Montserrat",
           fontStyle: "normal",
           fontWeight: 700,
-          fontSize: "4rem",
+          fontSize: { xs: "2.5rem", sm: "3rem", md: "4rem" },
           lineHeight: "110%",
           color: "#282828",
         }}
@@ -61,10 +62,16 @@ function Footer() {
         sx={{
           maxWidth: "85rem",
           mx: "auto",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column", sm: "row", md: "row" },
         }}
       >
-        <Grid size={7}>
+        <Grid
+          size={{
+            xs: 12,
+            sm: 7,
+            md: 7,
+          }}
+        >
           <Box sx={cardStyle}>
             <Typography variant="h5" sx={labelStyle}>
               Phone
@@ -73,7 +80,13 @@ function Footer() {
           </Box>
         </Grid>
 
-        <Grid size={5}>
+        <Grid
+          size={{
+            xs: 12,
+            sm: 5,
+            md: 5,
+          }}
+        >
           <Box sx={cardStyle}>
             <Typography variant="h5" sx={labelStyle}>
               Socials
@@ -89,7 +102,13 @@ function Footer() {
           </Box>
         </Grid>
 
-        <Grid size={7}>
+        <Grid
+          size={{
+            xs: 12,
+            sm: 7,
+            md: 7,
+          }}
+        >
           <Box sx={{ ...cardStyle, minHeight: "12.125rem" }}>
             <Typography variant="h5" sx={labelStyle}>
               Address
@@ -100,7 +119,13 @@ function Footer() {
           </Box>
         </Grid>
 
-        <Grid size={5}>
+        <Grid
+          size={{
+            xs: 12,
+            sm: 5,
+            md: 5,
+          }}
+        >
           <Box sx={{ ...cardStyle, minHeight: "12.125rem" }}>
             <Typography variant="h5" sx={labelStyle}>
               Working Hours

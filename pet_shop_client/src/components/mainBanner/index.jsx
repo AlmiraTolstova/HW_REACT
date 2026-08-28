@@ -18,10 +18,8 @@ function MainBanner() {
         sx={{
           position: "relative",
           zIndex: 1,
-          // width: "85rem",
           margin: "auto",
           pt: "5rem",
-          // pb: "14rem",
           pb: {
             xs: "6rem",
             md: "10rem",
